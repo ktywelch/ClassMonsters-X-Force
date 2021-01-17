@@ -1,12 +1,13 @@
 const express = require("express");
 const clientRouter = require('./routes/clientRoutes');
 const apiRouter = require('./routes/apiRoutes')
+const stuRouter = require('./routes/stuRoutes')
 
 
 // Sets up the Express App
 const app = express();
 
-const PORT = process.send.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 const db = require('./models');
 
@@ -19,6 +20,7 @@ app.use(express.static('public'));
 
 clientRouter(app);
 apiRouter(app);
+stuRouter(app);
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync({ force: true }).then(() => {
