@@ -1,227 +1,176 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Student Registration Form</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
 </head>
 
 <body>
-    <h3>STUDENT REGISTRATION FORM</h3>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="profile-nav col-md-3">
+                <div class="panel">
+                    <div class="user-heading round">
+                        <a href="#">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                        </a>
+                        <h1>Camila Smith</h1>
+                        <p>deydey@theEmail.com</p>
+                    </div>
 
-
-    <table align="center" cellpadding="10">
-
-        <!----- First Name ---------------------------------------------------------->
-        <tr>
-            <td>FIRST NAME</td>
-            <td><input type="text" name="First_Name" maxlength="30" />
-                (max 30 characters a-z and A-Z)
-            </td>
-        </tr>
-
-        <!----- Last Name ---------------------------------------------------------->
-        <tr>
-            <td>LAST NAME</td>
-            <td><input type="text" name="Last_Name" maxlength="30" />
-                (max 30 characters a-z and A-Z)
-            </td>
-        </tr>
-
-        <!----- Date Of Birth -------------------------------------------------------->
-        <tr>
-            <td>DATE OF BIRTH</td>
-
-            <td>
-                <select name="Birthday_day" id="Birthday_Day">
-                    <option value="-1">Day:</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-
-                    <option value="31">31</option>
-                </select>
-
-                <select id="Birthday_Month" name="Birthday_Month">
-                    <option value="-1">Month:</option>
-                    <option value="January">Jan</option>
-                    <option value="February">Feb</option>
-                    <option value="March">Mar</option>
-                    <option value="April">Apr</option>
-                    <option value="May">May</option>
-                    <option value="June">Jun</option>
-                    <option value="July">Jul</option>
-                    <option value="August">Aug</option>
-                    <option value="September">Sep</option>
-                    <option value="October">Oct</option>
-                    <option value="November">Nov</option>
-                    <option value="December">Dec</option>
-                </select>
-
-                <select name="Birthday_Year" id="Birthday_Year">
-
-                    <option value="-1">Year:</option>
-                    <option value="2012">2012</option>
-                    <option value="2011">2011</option>
-                    <option value="2010">2010</option>
-                    <option value="2009">2009</option>
-                    <option value="2008">2008</option>
-                    <option value="2007">2007</option>
-                    <option value="2006">2006</option>
-                    <option value="2005">2005</option>
-                    <option value="2004">2004</option>
-                    <option value="2003">2003</option>
-                    <option value="2002">2002</option>
-                    <option value="2001">2001</option>
-                    <option value="2000">2000</option>
-
-                    <option value="1999">1999</option>
-                    <option value="1998">1998</option>
-                    <option value="1997">1997</option>
-                    <option value="1996">1996</option>
-                    <option value="1995">1995</option>
-                    <option value="1994">1994</option>
-                    <option value="1993">1993</option>
-                    <option value="1992">1992</option>
-                    <option value="1991">1991</option>
-                    <option value="1990">1990</option>
-
-                    <option value="1989">1989</option>
-                    <option value="1988">1988</option>
-                    <option value="1987">1987</option>
-                    <option value="1986">1986</option>
-                    <option value="1985">1985</option>
-                    <option value="1984">1984</option>
-                    <option value="1983">1983</option>
-                    <option value="1982">1982</option>
-                    <option value="1981">1981</option>
-                    <option value="1980">1980</option>
-                </select>
-            </td>
-        </tr>
-
-        <!----- Email Id ---------------------------------------------------------->
-        <tr>
-            <td>EMAIL ID</td>
-            <td><input type="text" name="Email_Id" maxlength="100" /></td>
-        </tr>
-
-        <!----- Mobile Number ---------------------------------------------------------->
-        <tr>
-            <td>MOBILE NUMBER</td>
-            <td>
-                <input type="text" name="Mobile_Number" maxlength="10" />
-                (10 digit number)
-            </td>
-        </tr>
-
-        <!----- Gender ----------------------------------------------------------->
-        <tr>
-            <td>GENDER</td>
-            <td>
-                Male <input type="radio" name="Gender" value="Male" />
-                Female <input type="radio" name="Gender" value="Female" />
-            </td>
-        </tr>
-
-        <!----- Address ---------------------------------------------------------->
-        <tr>
-            <td>ADDRESS <br /><br /><br /></td>
-            <td><textarea name="Address" rows="4" cols="30"></textarea></td>
-        </tr>
-
-        <!----- City ---------------------------------------------------------->
-        <tr>
-            <td>CITY</td>
-            <td><input type="text" name="City" maxlength="30" />
-                (max 30 characters a-z and A-Z)
-            </td>
-        </tr>
-
-        <!----- Pin Code ---------------------------------------------------------->
-        <tr>
-            <td>PIN CODE</td>
-            <td><input type="text" name="Pin_Code" maxlength="6" />
-                (6 digit number)
-            </td>
-        </tr>
-
-        <!----- State ---------------------------------------------------------->
-        <tr>
-            <td>STATE</td>
-            <td><input type="text" name="State" maxlength="30" />
-                (max 30 characters a-z and A-Z)
-            </td>
-        </tr>
-
-        <!----- Country ---------------------------------------------------------->
-        <tr>
-            <td>COUNTRY</td>
-            <td><input type="text" name="Country" value="India" readonly="readonly" /></td>
-        </tr>
-
-        <!----- Hobbies ---------------------------------------------------------->
-
-        <tr>
-            <td>HOBBIES <br /><br /><br /></td>
-
-            <td>
-                Drawing
-                <input type="checkbox" name="Hobby_Drawing" value="Drawing" />
-                Singing
-                <input type="checkbox" name="Hobby_Singing" value="Singing" />
-                Dancing
-                <input type="checkbox" name="Hobby_Dancing" value="Dancing" />
-                Sketching
-                <input type="checkbox" name="Hobby_Cooking" value="Cooking" />
-                <br />
-                Others
-                <input type="checkbox" name="Hobby_Other" value="Other">
-                <input type="text" name="Other_Hobby" maxlength="30" />
-            </td>
-        </tr>
-
-
-
-        <!----- Submit and Reset ------------------------------------------------->
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
-            </td>
-        </tr>
-    </table>
-
-    </form>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity <span
+                                    class="label label-warning pull-right r-activity">9</span></a></li>
+                        <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile-info col-md-9">
+                <div class="panel">
+                    <form>
+                        <textarea placeholder="Whats in your mind today?" rows="2"
+                            class="form-control input-lg p-text-area"></textarea>
+                    </form>
+                    <footer class="panel-footer">
+                        <button class="btn btn-warning pull-right">Post</button>
+                        <ul class="nav nav-pills">
+                            <li>
+                                <a href="#"><i class="fa fa-map-marker"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-camera"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class=" fa fa-film"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-microphone"></i></a>
+                            </li>
+                        </ul>
+                    </footer>
+                </div>
+                <div class="panel">
+                    <div class="bio-graph-heading">
+                        Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac
+                        magna metus.
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <h1>Bio Graph</h1>
+                        <div class="row">
+                            <div class="bio-row">
+                                <p><span>First Name </span>: Camila</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Last Name </span>: Smith</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Country </span>: USA</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Birthday</span>: 13 July 1983</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Occupation </span>: UI Designer</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Email </span>: jsmith@flatlab.com</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Mobile </span>: (12) 03 4567890</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Phone </span>: 88 (02) 123456</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="35" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8"
+                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h4 class="red">Envato Website</h4>
+                                        <p>Started : 15 July</p>
+                                        <p>Deadline : 15 August</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="63" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8"
+                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h4 class="terques">ThemeForest CMS </h4>
+                                        <p>Started : 15 July</p>
+                                        <p>Deadline : 15 August</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="75" data-fgcolor="#96be4b" data-bgcolor="#e8e8e8"
+                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(150, 190, 75); padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h4 class="green">VectorLab Portfolio</h4>
+                                        <p>Started : 15 July</p>
+                                        <p>Deadline : 15 August</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8"
+                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(203, 164, 219); padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h4 class="purple">Adobe Muse Template</h4>
+                                        <p>Started : 15 July</p>
+                                        <p>Deadline : 15 August</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
