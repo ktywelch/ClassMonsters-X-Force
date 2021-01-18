@@ -9,4 +9,16 @@ module.exports = (app) => {
   app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '../public/login.html'))
   );
+
+  app.get('/signup', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/signup.html'))
+  );
+
+  app.get('/student', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/student.html'))
+  );
+
+  app.get('/teacher', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/teacher.html'))
+  );
 }
