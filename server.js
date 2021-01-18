@@ -1,7 +1,9 @@
 const express = require("express");
 const clientRouter = require('./routes/clientRoutes');
-const apiRouter = require('./routes/apiRoutes')
-const stuRouter = require('./routes/stuRoutes')
+const apiRouter = require('./routes/apiRoutes');
+const stuRouter = require('./routes/stuRoutes');
+const teaRouter = require('./routes/teaRoutes')
+
 
 
 // Sets up the Express App
@@ -21,8 +23,9 @@ app.use(express.static('public'));
 clientRouter(app);
 apiRouter(app);
 stuRouter(app);
+teaRouter(app);
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync({ force: true }).then(() => {
-    app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+    app.listen(PORT, () => console.log(`Listening on PORT: http://localhost:${PORT}`));
 });

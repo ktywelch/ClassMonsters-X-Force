@@ -4,14 +4,14 @@ body {
 }
 
 body {
-    background-color: #4052e4;
+    background-color: grey;
     display: grid;
     place-items: center
 }
 
 .card {
-    padding: 0px 15px;
-    border-radius: 20px
+    padding: 5px;
+    border-radius: 10px
 }
 
 .c1 {
@@ -54,7 +54,7 @@ button {
     color: #dccece
 }
 
-input: {
+input {
     text-decoration: none
 }
 
@@ -80,7 +80,7 @@ form>* {
 }
 
 img {
-    background-color: antiquewhite
+    background-color: transparent
 }
 
 .wlcm {
