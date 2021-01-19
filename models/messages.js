@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-var Messages = sequelize.define("Messages", {
+var Messages = sequelize.define("messages", {
   // The email cannot be null, and must be a proper email before creation
   message: {
     type: DataTypes.STRING,
@@ -19,8 +19,8 @@ var Messages = sequelize.define("Messages", {
   timestamps: false
 });
 Messages.associate = function(models) {
-  Messages.hasMany(models.Users,{foreignKey: "fromId"});
-  Messages.hasMany(models.Users,{foreignKey: "toId"})
+  Messages.hasMany(models.users,{foreignKey: "fromId"});
+  Messages.hasMany(models.users,{foreignKey: "toId"})
 };
 return Messages;
 }

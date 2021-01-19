@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Attendence = sequelize.define("Attendence", {
+  var Attendence = sequelize.define("attendence", {
     // The email cannot be null, and must be a proper email before creation
     date: {
       type: DataTypes.DATEONLY,

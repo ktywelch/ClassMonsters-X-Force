@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-  var Call_on = sequelize.define("Call_on", {
+  var Call_on = sequelize.define("call_on", {
     // The email cannot be null, and must be a proper email before creation
     date: {
       type: DataTypes.DATE,
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   
   Call_on.associate =  (models) => {
-    Call_on.hasMany(models.Character);
+    Call_on.hasMany(models.users);
   }
   return Call_on;
 };
