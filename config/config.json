@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Hofgartner01",
+    "password": "password",
     "database": "classHeros_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
