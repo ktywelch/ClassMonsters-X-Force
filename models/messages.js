@@ -2,9 +2,8 @@ module.exports = function(sequelize, DataTypes) {
 var Messages = sequelize.define("Messages", {
   // The email cannot be null, and must be a proper email before creation
   message: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+    type: DataTypes.TEXT('long'),
+    allowNull: false
   },
   read: {
     type: DataTypes.BOOLEAN,
@@ -15,10 +14,12 @@ var Messages = sequelize.define("Messages", {
   toId:  {
     type: DataTypes.INTEGER   
     }
+}, {
+  timestamps: false
 });
 Messages.associate = function(models) {
-  Messages.belongsTo(models.User,{foreignKey: "fromId"});
-  Messages.belongsTo(models.User,{foreignKey: "toId"})
+  Messages.hasMany(models.Users,{foreignKey: "fromId"});
+  Messages.hasMany(models.Users,{foreignKey: "toId"})
 };
 return Messages;
 }
