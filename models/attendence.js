@@ -13,9 +13,5 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false
   });
 
-  // Attendence.associate = (models) => {
-  //   Attendence.belongsTo(models.Student, {foreignKey: 'studentId'});
-  // };
-
   return Attendence;
 };

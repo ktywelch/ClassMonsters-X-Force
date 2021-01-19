@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   
   Call_on.associate =  (models) => {
-    Call_on.belongsTo(models.Character);
+    Call_on.hasMany(models.Character);
   }
   return Call_on;
 };

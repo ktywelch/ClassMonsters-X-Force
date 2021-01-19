@@ -15,6 +15,41 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
+//Login Route
+app.post('/api/login', function(req, res) {
+  var username = req.body.userID;
+  var password = req.body.password;
+  console.log(username,password);
+  if (username && password) {
+// check if user exists
+    db.User.findOne({
+       where: {
+        username: username,
+        password: password
+        },include: [db.Role]
+      })
+      .then((data) => {
+         if(data){
+           if(data.Role.name === 'Teacher'){
+             console.log("going to redirect here");
+             res.redirect("/teacher")
+           } else if (data.Role.name === 'Student'){
+             res.redirect("/student")
+           } else {
+             res.json(data)
+           }
+         } else {
+           res.send([{"msg": "The userID or Password was invalid"}])
+         }
+      })
+      .catch(function(err) {
+       console.log(err);
+      });
+    } else {
+      res.send([{"msg": "Missing User ID or Password try again"}])
+    }
+});
+
 
 
 
@@ -29,15 +64,11 @@ app.get('/api/messages/:id', (req, res) => {
     }).then((dbPost) => res.json(dbPost));
   });
 
-
   app.get('/api/icons/:id', (req, res) => {
     emoji.get(req.params.id)
    console.log(abc)
    return(abc)
   });
-
-
-
 
 
  
@@ -48,7 +79,7 @@ app.get('/api/messages/:id', (req, res) => {
     // In this case, just db.Author
     db.Post.findOne({
       where: {
-        id: req.params.id,
+         id: req.params.id,
       },
       include: [db.Author],
     }).then((dbPost) => res.json(dbPost));
