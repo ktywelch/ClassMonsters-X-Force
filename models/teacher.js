@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     }
+  },
+  {
+    timestamps: false
   });
   Teacher.associate = function(models) {
     Teacher.hasMany(models.Student, {as: 'students'});

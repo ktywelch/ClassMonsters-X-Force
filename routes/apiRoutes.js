@@ -1,8 +1,23 @@
 // Requiring our models
 const db = require('../models');
+var emoji = require('node-emoji')
+
 
 // Routes
 module.exports = (app) => {
+//Message Routes
+app.get('/api/messages/:id', (req, res) => {
+  console.log(req.params.id)
+  db.Messages.findAll({
+    where: {
+      toId: req.params.id
+    }
+  }).then((dbGetMess) => res.json(dbGetMess));
+})
+
+
+
+
   app.get('/api/students', (req, res) => {
     const query = {};
     if (req.query.author_id) {
@@ -14,6 +29,18 @@ module.exports = (app) => {
     }).then((dbPost) => res.json(dbPost));
   });
 
+
+  app.get('/api/icons/:id', (req, res) => {
+    emoji.get(req.params.id)
+   console.log(abc)
+   return(abc)
+  });
+
+
+
+
+
+ 
   // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query

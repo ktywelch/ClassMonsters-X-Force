@@ -14,9 +14,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // roleId:  {
-    //     type: DataTypes.INTEGER
-    //   }
+
+    },
+    {
+      timestamps: false
     });
     User.associate = (models) => {
       User.belongsTo(models.Role)

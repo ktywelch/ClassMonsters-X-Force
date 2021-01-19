@@ -4,6 +4,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
+  },
+  {
+    timestamps: false
   });
   Role.associate = function(models) {
     Role.hasMany(models.User, {as: 'users'})

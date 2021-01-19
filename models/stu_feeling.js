@@ -11,6 +11,9 @@ module.exports = function(sequelize, DataTypes) {
     student_id:  {
         type: DataTypes.INTEGER,
       }
+  },
+  {
+    timestamps: false
   });
   Stu_feeling.associate = (models) => {
   Stu_feeling.belongsTo(models.Student);

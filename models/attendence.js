@@ -8,6 +8,9 @@ module.exports = function(sequelize, DataTypes) {
     studentId: {
       type: DataTypes.INTEGER,
     }
+  },
+  {
+    timestamps: false
   });
 
   // Attendence.associate = (models) => {
