@@ -1,8 +1,60 @@
 // Requiring our models
 const db = require('../models');
+var emoji = require('node-emoji')
+
 
 // Routes
 module.exports = (app) => {
+//Message Routes
+app.get('/api/messages/:id', (req, res) => {
+  console.log(req.params.id)
+  db.Messages.findAll({
+    where: {
+      toId: req.params.id
+    }
+  }).then((dbGetMess) => res.json(dbGetMess));
+})
+
+//Login Route
+app.post('/api/login', function(req, res) {
+  var username = req.body.userID;
+  var password = req.body.password;
+  console.log(username,password);
+  if (username && password) {
+// check if user exists
+    db.Users.findOne({
+       where: {
+        username: username,
+        password: password
+        },include: [db.Role]
+      })
+      .then((data) => {
+         if(data){
+           if(data.Role.name === 'Teacher'){
+             console.log("going to redirect here");
+             res.redirect("/teacher")
+           } else if (data.Role.name === 'Student'){
+             res.redirect("/student")
+           } else {
+             res.json(data)
+           }
+         } else {
+           res.send([{"msg": "The userID or Password was invalid"}])
+         }
+      })
+      .catch(function(err) {
+       console.log(err);
+      });
+    } else {
+      res.send([{"msg": "Missing User ID or Password try again"}])
+    }
+});
+
+
+
+
+
+
   app.get('/api/students', (req, res) => {
     const query = {};
     if (req.query.author_id) {
@@ -14,6 +66,14 @@ module.exports = (app) => {
     }).then((dbPost) => res.json(dbPost));
   });
 
+  app.get('/api/icons/:id', (req, res) => {
+    emoji.get(req.params.id)
+   console.log(abc)
+   return(abc)
+  });
+
+
+ 
   // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query
@@ -21,7 +81,7 @@ module.exports = (app) => {
     // In this case, just db.Author
     db.Post.findOne({
       where: {
-        id: req.params.id,
+         id: req.params.id,
       },
       include: [db.Author],
     }).then((dbPost) => res.json(dbPost));
