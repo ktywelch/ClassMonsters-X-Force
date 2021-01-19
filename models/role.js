@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Role = sequelize.define('role', {
+  const Role = sequelize.define('Role', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
   Role.associate = function(models) {
-    Role.hasMany(models.users, {as: 'users'})
+    Role.hasMany(models.Users, {as: 'users'})
   };
   return Role;
 };

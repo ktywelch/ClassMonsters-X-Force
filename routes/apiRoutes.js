@@ -22,7 +22,7 @@ app.post('/api/login', function(req, res) {
   console.log(username,password);
   if (username && password) {
 // check if user exists
-    db.User.findOne({
+    db.Users.findOne({
        where: {
         username: username,
         password: password
@@ -49,6 +49,8 @@ app.post('/api/login', function(req, res) {
       res.send([{"msg": "Missing User ID or Password try again"}])
     }
 });
+
+
 
 
 

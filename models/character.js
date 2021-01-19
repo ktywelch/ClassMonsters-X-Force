@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Character = sequelize.define("character", {
+  var Character = sequelize.define("Character", {
     // The email cannot be null, and must be a proper email before creation
 
     character_name: {
@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false
   });
   Character.associate = (models) => {
-    Character.belongsTo(models.users);
+    Character.belongsTo(models.Users);
   }
   return Character;
 };

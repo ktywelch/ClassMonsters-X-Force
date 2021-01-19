@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Feeling_icon = sequelize.define("feeling_icon", {
+  var Feeling_icon = sequelize.define("Feeling_icon", {
     // The email cannot be null, and must be a proper email before creation
     description: {
       type: DataTypes.STRING,
