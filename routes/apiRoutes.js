@@ -42,7 +42,6 @@ app.post('/api/login', function(req, res) {
          }
       })
       .catch(function(err) {
-       console.log(err);
       });
     } 
 });
