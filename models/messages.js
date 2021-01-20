@@ -1,6 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
 var Messages = sequelize.define("Messages", {
-  // The email cannot be null, and must be a proper email before creation
+  subject: {
+    type: DataTypes.STRING(55),
+    allowNull: false
+  },
   message: {
     type: DataTypes.TEXT('long'),
     allowNull: false
