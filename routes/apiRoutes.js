@@ -15,6 +15,16 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
+app.post('/api/messages', (req, res) => {
+  db.Messages.create({
+    message: req.body.message,
+    read: req.body.read,
+    fromId: req.body.fromId,
+    toId: req.body.toId,
+  }).then((dbGetMess) => res.json(dbGetMess))
+    .catch((err) => res.json(err));
+});
+
 //Login Route
 app.post('/api/login', function(req, res) {
   var username = req.body.userID;
@@ -23,23 +33,23 @@ app.post('/api/login', function(req, res) {
   if (username && password) {
 // check if user exists
     db.Users.findOne({
-       where: {
+      where: {
         username: username,
         password: password
         },include: [db.Role]
       })
       .then((data) => { 
-         if(data){
-           if(data.Role.name === 'Teacher'){
-             res.redirect(`/teacher?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
-           } else if (data.Role.name === 'Student'){
-             res.redirect(`/student?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
-           } else {
-             res.json(data)
-           }
-         } else {
-           return res.json([{"msg": "The userID or Password was invalid"}])
-         }
+        if(data){
+          if(data.Role.name === 'Teacher'){
+            res.redirect(`/teacher?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
+          } else if (data.Role.name === 'Student'){
+            res.redirect(`/student?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
+          } else {
+            res.json(data)
+          }
+        } else {
+          return res.json([{"msg": "The userID or Password was invalid"}])
+        }
       })
       .catch(function(err) {
       });
@@ -77,7 +87,7 @@ app.post('/api/login', function(req, res) {
     // In this case, just db.Author
     db.Post.findOne({
       where: {
-         id: req.params.id,
+        id: req.params.id,
       },
       include: [db.Author],
     }).then((dbPost) => res.json(dbPost));
