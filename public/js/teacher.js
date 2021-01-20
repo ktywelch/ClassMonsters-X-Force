@@ -1,6 +1,6 @@
-let newMessages;
+let newMessages, recMess;
 let newMessageAlert;
-let snedMessageBtn;
+let sendMessageBtn;
 let newMessageCreateBtn;
 let messCreateFrom, messChanged, params, uid;
 
@@ -35,19 +35,31 @@ const getMess = (id) =>{
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((data) => {
-   if(data){
+  }).then((res) => {
+   return res.json();
+  }).then((messages) => { 
+
+   console.log(messages.length)
+  
+   if(messages.length > 0 ){
     newMessageAlert = document.querySelector('.new-msg');
-    console(data);
+    newMessageAlert.addEventListener("click", (e) =>{
+      e.preventDefault();
+      console.log("been clicked")
+      let myModal = document.querySelector('#messModal')
+      $('#messModal').modal('show')
+    })
     show(newMessageAlert); 
+   } else {
+     hide(newMessageAler);
    }
-  return data;
+  return res.body;
   }).catch(handleLoginErr);
 };
 
 
 function handleLoginErr(err) {
-  alert({"msg": err.responseJSON});
+  console.log({"msg": err.responseJSON});
 }
 
 //main
@@ -56,13 +68,5 @@ if (window.location.pathname === '/teacher') {
     let navbar = document.querySelector('#navBar');
     navbar.textContent = "Classroom of " +  params.fname + " " + params.lname;
     getMess(uid);
-}
 
-if (window.location.pathname === '/notes') {
-  noteIdLoc = document.querySelector('.note-id');
-  noteTitle = document.querySelector('.note-title');
-  noteText = document.querySelector('.note-textarea');
-  saveNoteBtn = document.querySelector('.save-note');
-  newNoteBtn = document.querySelector('.new-note');
-  noteList = document.querySelectorAll('.list-container .list-group');
 }
