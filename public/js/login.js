@@ -1,39 +1,43 @@
-$(document).ready(function() {
+  let userInput, passwordInput;
+
+document.addEventListener('DOMContentLoaded', (event) => {
   // Getting references to our form and inputs
-  var loginForm = $("form.login");
-  var userInput = $("input#userid-input");
-  var passwordInput = $("input#password-input");
+  
+  var loginBtn = document.querySelector("#loginBtn");
 
-  // When the form is submitted, we validate there's an email and password entered
-  loginForm.on("submit", function(event) {
-    event.preventDefault();
-    var userData = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
-    };
-
-    if (!userData.email || !userData.password) {
-      return;
-    }
-
-    // If we have an email and password we run the loginUser function and clear the form
-    loginUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
+  loginBtn.addEventListener('click', (e) => {
+  //loginForm.on("submit", function(event) {
+    e.preventDefault();
+    userInput = document.querySelector('#userID');
+    passwordInput = document.querySelector("#password");
+    loginUser(userInput.value,passwordInput.value);
   });
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-  function loginUser(email, password) {
-    $.post("/api/login", {
-      email: email,
-      password: password
-    })
-      .then(function() {
-        window.location.replace("/members");
-        // If there's an error, log the error
+  function loginUser(userid, password) {
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userID: userid,
+        password: password
+        })
+      })
+      .then((data) => {
+        console.log(data);
+        if(data.url.includes("login")){
+        alert("Invalid Credentals Provided"); 
+        if(data.url)
+        window.location.href="/"} else {
+          window.location.href=data.url  
+        }  
       })
       .catch(function(err) {
         console.log(err);
       });
+
   }
 });
