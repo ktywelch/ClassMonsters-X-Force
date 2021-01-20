@@ -28,11 +28,9 @@ app.post('/api/login', function(req, res) {
         password: password
         },include: [db.Role]
       })
-      .then((data) => {
-        
+      .then((data) => { 
          if(data){
            if(data.Role.name === 'Teacher'){
-             console.log("going to redirect here");
              res.redirect(`/teacher?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
            } else if (data.Role.name === 'Student'){
              res.redirect(`/student?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
@@ -40,18 +38,16 @@ app.post('/api/login', function(req, res) {
              res.json(data)
            }
          } else {
-           res.json([{"msg": "The userID or Password was invalid"}])
+           return res.json([{"msg": "The userID or Password was invalid"}])
          }
       })
       .catch(function(err) {
        console.log(err);
       });
-    } else {
-      res.json([{"msg": "Missing User ID or Password try again"}])
-    }
+    } 
 });
 
-
+  
 
 
 

@@ -9,6 +9,10 @@ body{
     overflow: hidden
 }
 
+.new-msg{
+    display: none;
+}
+
 .profile-header .profile-header-cover {
     background-image: url(https://via.placeholder.com/600x100/);
     background-size: cover;
