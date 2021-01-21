@@ -115,3 +115,10 @@ body {
       font-size: 14px;
       color: #919aa3; }
 
+      body {
+      background: url(../images/hero-clipart-transparent-background-3.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
