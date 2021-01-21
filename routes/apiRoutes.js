@@ -1,7 +1,6 @@
 // Requiring our models
 const db = require('../models');
-var emoji = require('node-emoji')
-
+var emoji = require('node-emoji');
 
 // Routes
 module.exports = (app) => {
@@ -15,6 +14,7 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
+//Create messages
 app.post('/api/messages', (req, res) => {
   db.Messages.create({
     subject: req.body.subject,
@@ -24,6 +24,34 @@ app.post('/api/messages', (req, res) => {
     toId: req.body.toId,
   }).then((dbGetMess) => res.json(dbGetMess))
 });
+
+//Delete Messages
+app.delete('/api/messages/:id', (req, res) => {
+  db.Messages.destroy({
+    where: {
+      id: req.params.id
+    }, 
+  }).then((dbMess) => res.json(dbMess))
+})
+
+//Update Messages
+//FIXME:!!!
+app.put('/api/messages/:id', (req, res) => {
+  const condition = `id = ${req.params.id}`
+  console.log(req)
+  db.Messages.update(['read'], ['1'], {
+    where: {
+      id: req.params.id,
+    }
+  },
+  (results) => {
+    if (results.changedRows === 0) {
+      return res.status(404).end()
+    }
+    res.status(200).end();
+  })
+})
+
 
 //Login Route
 app.post('/api/login', function(req, res) {
@@ -57,9 +85,6 @@ app.post('/api/login', function(req, res) {
 });
 
   
-
-
-
 
   app.get('/api/students', (req, res) => {
     const query = {};
