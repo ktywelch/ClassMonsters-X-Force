@@ -35,21 +35,19 @@ app.delete('/api/messages/:id', (req, res) => {
 })
 
 //Update Messages
-//FIXME:!!!
-app.put('/api/messages/:id', (req, res) => {
-  const condition = `id = ${req.params.id}`
-  console.log(req)
-  db.Messages.update(['read'], ['1'], {
-    where: {
-      id: req.params.id,
-    }
-  },
-  (results) => {
-    if (results.changedRows === 0) {
-      return res.status(404).end()
-    }
-    res.status(200).end();
-  })
+app.put('/api/messages/:id', (req, res, next) => { 
+  db.Messages.update(
+    {read: req.body.read},
+    {where: {id: req.params.id}}
+    ).then((results) => {
+      res.json(results);
+      console.log(results);
+      if (results.changedRows === 0) {
+        return res.status(404).end()
+      }
+        res.status(200).end();
+    })
+  .catch(next)
 })
 
 
