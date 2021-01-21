@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Character = sequelize.define("Character", {
     // The email cannot be null, and must be a proper email before creation
 
-    character_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
       },
     },
-    character_pic_filename: {
+    filename: {
       type: DataTypes.STRING,
       allowNull: false
     }
