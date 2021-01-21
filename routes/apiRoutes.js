@@ -70,9 +70,9 @@ app.post('/api/login', function(req, res) {
       .then((data) => { 
         if(data){
           if(data.Role.name === 'Teacher'){
-            res.redirect(`/teacher?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
+            res.redirect(`/teacher?uname=${username}&fname=${data.first_name}&lname=${data.last_name}&uid=${data.id}`)
           } else if (data.Role.name === 'Student'){
-            res.redirect(`/student?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
+            res.redirect(`/student?uname=${username}&fname=${data.first_name}&lname=${data.last_name}&uid=${data.id}`)
           } else {
             res.json(data)
           }
