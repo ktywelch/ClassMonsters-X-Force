@@ -407,3 +407,11 @@ body.flat-black {
     display: table-cell;
     vertical-align: top;
 }
+
+body {
+    background: url(../images/TEACHER\ BACKGROUND.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
