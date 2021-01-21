@@ -13,7 +13,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 =======
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 >>>>>>> aad04b67933226e59b769b8b96e328127e777620
@@ -77,23 +77,6 @@
             <i class="fas fa-bell text-light new-msg" style="display: none;"></i>  
         </div>
     </nav>
-
-    <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                    <div id="messModalLabel" class="modal-title">Messages in queue</div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            <div class="modal-body">
-            </div>
-        </div>  
-    </div>
-
-
-
 
 
 
@@ -252,6 +235,44 @@
         </script>
 =======
     </div>
+    <!---  Start of modal Please leave in place has place holders-->
+    <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+                <div id="messModalLabel" class="modal-title">Messages in queue</div>
+                <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                <!--  --> 
+                <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-4 list-container">
+                        <div class="card">
+                          <ul class="list-group">
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
+                        <input class="message-from" placeholder="Message From" maxlength="28" type="text">
+                        <textarea class="message-textarea" placeholder="message Text"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                <!--  --> 
+                </div>
+          </div>  
+        </div>
+      </div>
+
+
+
+
+
+
     <script src="./js/teacher.js" ></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
