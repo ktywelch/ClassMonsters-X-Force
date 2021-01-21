@@ -68,13 +68,11 @@ app.post('/api/login', function(req, res) {
         } else {
           return res.json([{"msg": "The userID or Password was invalid"}])
         }
-      })
-      .catch(function(err) {
-      });
-    } 
-});
-
-
+        })
+      .catch((err) => {throw err})
+    }
+ });
+  
   app.get('/api/students', (req, res) => {
     const query = {};
     if (req.query.author_id) {
