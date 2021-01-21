@@ -86,10 +86,38 @@ let studentEmail = document.querySelector("#studentEmail");
 studentEmail.textContent = params.fname.charAt(0) + params.lname + "@theEmail.com"
 
 
+//clickable character icon
+//UPDATE: can potentially use modal to 1. change nickname, 2. update emergency contact, 3. update feelings...etc
+let characterIcon = document.querySelector(".characterIcon");
+characterIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("character imaged clicked")
+
+})
 
 //creating new messages
+//UPDATE: work in progress
 let postMsg = document.getElementById("postMsg");
+
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
+    let msg = {
+        message: document.getElementById("newMsg").value.trim(),
+
+    };
+    if (msg.message) {
+        fetch('/api/messages', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(msg),
+        })
+            .then((response) => response.json())
+            .then(() => {
+                document.getElementById("newMsg").value = ''
+                console.log(response)
+        })
+    }
 })

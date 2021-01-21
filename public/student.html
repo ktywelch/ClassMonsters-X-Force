@@ -8,11 +8,11 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/public/css/student.css">
+    <link rel="stylesheet" href="./css/student.css">
 </head>
 
 <body>
@@ -20,10 +20,12 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand text-light" id="navBar">
         </a>
-        <div class="icons">
+        
+        <div class="icons p-2">
+            <a href="/" id="logoutBtn" style="font-size: 17px; color: white">Logout</a>
             <i class="fas fa-bell text-light new-msg" style="display: none;"></i>  
-          </div>
-      </nav>
+        </div>
+    </nav>
 
     <!-- <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -45,7 +47,7 @@
                 <div class="panel">
                     <div class="user-heading round">
                         <a href="#">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                            <img class="characterIcon" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
                         </a>
                         <h1 id='studentName'>Camila Smith</h1>
                         <p id="studentEmail">deydey@theEmail.com</p>
@@ -59,11 +61,12 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="profile-info col-md-9">
                 <div class="panel">
-                    <form>
+                    <form id="msgForm">
                         <textarea placeholder="Whats in your mind today?" rows="2"
-                            class="form-control input-lg p-text-area"></textarea>
+                            class="form-control input-lg p-text-area" id="newMsg"></textarea>
                     </form>
                     <footer class="panel-footer">
                         <button class="btn btn-warning pull-right" id="postMsg">Post</button>
@@ -205,3 +208,4 @@
 </body>
 
 </html>
+
