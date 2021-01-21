@@ -5,7 +5,8 @@ var emoji = require('node-emoji')
 
 // Routes
 module.exports = (app) => {
-//Message Routes
+
+//find all messages that belong to specific user
 app.get('/api/messages/:id', (req, res) => {
   console.log(req.params.id)
   db.Messages.findAll({
@@ -15,6 +16,7 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
+//create a message
 app.post('/api/messages', (req, res) => {
   db.Messages.create({
     subject: req.body.subject,
@@ -24,6 +26,22 @@ app.post('/api/messages', (req, res) => {
     toId: req.body.toId,
   }).then((dbGetMess) => res.json(dbGetMess))
 });
+
+//Update to meessages set read
+app.put('/api/messages/:id', (req, res, next) => { 
+  db.Messages.update(
+    {read: req.body.read},
+    {where: {id: req.params.id}}
+    ).then((results) => {
+       res.json(results);
+       console.log(results);
+       if (results.changedRows === 0) {
+         return res.status(404).end()
+       }
+         res.status(200).end();
+      })
+   .catch(next)
+})
 
 //Login Route
 app.post('/api/login', function(req, res) {
@@ -56,10 +74,6 @@ app.post('/api/login', function(req, res) {
     } 
 });
 
-  
-
-
-
 
   app.get('/api/students', (req, res) => {
     const query = {};
@@ -78,13 +92,8 @@ app.post('/api/login', function(req, res) {
     return(abc)
   });
 
-
-
-  // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
+
     db.Post.findOne({
       where: {
         id: req.params.id,
