@@ -5,12 +5,13 @@ module.exports = function(sequelize, DataTypes) {
     character_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [1, 40],
       },
+    alt_text: {
+      type: DataTypes.STRING
+      },
     },
-    // The password cannot be null
     character_pic_filename: {
       type: DataTypes.STRING,
       allowNull: false
