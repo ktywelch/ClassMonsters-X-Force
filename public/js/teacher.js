@@ -22,11 +22,11 @@ const getParams = () => {   var idx = document.URL.indexOf('?');
     for (var i=0; i<pairs.length; i++) {
     nameVal = pairs[i].split('=');
     params[nameVal[0]] = nameVal[1];
-       }
+      }
     }
     uid=params.id;
     return params;
- }
+}
 
 // Show an element
 const show = (elem) => {
@@ -46,10 +46,10 @@ const getMess = (id) =>{
       'Content-Type': 'application/json',
     },
   }).then((res) => {
-   return res.json();
+    return res.json();
   }).then((messages) => { 
-   console.log(messages.length)
-   if(messages.length > 0 ){
+    console.log(messages.length)
+    if(messages.length > 0 ){
       newMessageAlert = document.querySelector('.new-msg');
       show(newMessageAlert); 
       } else {

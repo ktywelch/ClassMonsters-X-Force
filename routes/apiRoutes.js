@@ -17,12 +17,12 @@ app.get('/api/messages/:id', (req, res) => {
 
 app.post('/api/messages', (req, res) => {
   db.Messages.create({
+    subject: req.body.subject,
     message: req.body.message,
     read: req.body.read,
     fromId: req.body.fromId,
     toId: req.body.toId,
   }).then((dbGetMess) => res.json(dbGetMess))
-    .catch((err) => res.json(err));
 });
 
 //Login Route
@@ -74,12 +74,12 @@ app.post('/api/login', function(req, res) {
 
   app.get('/api/icons/:id', (req, res) => {
     emoji.get(req.params.id)
-   console.log(abc)
-   return(abc)
+    console.log(abc)
+    return(abc)
   });
 
 
- 
+
   // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query
