@@ -1,7 +1,6 @@
 // Requiring our models
 const db = require('../models');
-var emoji = require('node-emoji')
-
+var emoji = require('node-emoji');
 
 // Routes
 module.exports = (app) => {
@@ -16,7 +15,8 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
-//create a message
+
+//Create messages
 app.post('/api/messages', (req, res) => {
   db.Messages.create({
     subject: req.body.subject,
@@ -27,7 +27,18 @@ app.post('/api/messages', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess))
 });
 
-//Update to meessages set read
+
+//Delete Messages
+app.delete('/api/messages/:id', (req, res) => {
+  db.Messages.destroy({
+    where: {
+      id: req.params.id
+    }, 
+  }).then((dbMess) => res.json(dbMess))
+})
+
+ 
+//Update Messages
 app.put('/api/messages/:id', (req, res, next) => { 
   db.Messages.update(
     {read: req.body.read},
