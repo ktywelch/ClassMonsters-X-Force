@@ -6,10 +6,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     }
+  },
+  {
+    timestamps: false
   });
   
   Call_on.associate =  (models) => {
-    Call_on.belongsTo(models.Character);
+    Call_on.hasMany(models.Users);
   }
   return Call_on;
 };

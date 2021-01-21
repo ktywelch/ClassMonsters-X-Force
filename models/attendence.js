@@ -8,11 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     studentId: {
       type: DataTypes.INTEGER,
     }
+  },
+  {
+    timestamps: false
   });
-
-  // Attendence.associate = (models) => {
-  //   Attendence.belongsTo(models.Student, {foreignKey: 'studentId'});
-  // };
 
   return Attendence;
 };

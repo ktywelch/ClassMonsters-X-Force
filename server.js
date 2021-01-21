@@ -1,7 +1,11 @@
 const express = require("express");
+//APIs for Public
 const clientRouter = require('./routes/clientRoutes');
+//APIs for internals
 const apiRouter = require('./routes/apiRoutes');
+//Studnet APIs
 const stuRouter = require('./routes/stuRoutes');
+//Teacher APIs
 const teaRouter = require('./routes/teaRoutes')
 
 
@@ -26,6 +30,6 @@ stuRouter(app);
 teaRouter(app);
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Listening on PORT: http://localhost:${PORT}`));
 });
