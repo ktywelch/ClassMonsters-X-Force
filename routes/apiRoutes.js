@@ -1,11 +1,11 @@
 // Requiring our models
 const db = require('../models');
-var emoji = require('node-emoji')
-
+var emoji = require('node-emoji');
 
 // Routes
 module.exports = (app) => {
-//Message Routes
+
+//find all messages that belong to specific user
 app.get('/api/messages/:id', (req, res) => {
   console.log(req.params.id)
   db.Messages.findAll({
@@ -15,6 +15,7 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
+//Create messages
 app.post('/api/messages', (req, res) => {
   db.Messages.create({
     subject: req.body.subject,
@@ -24,6 +25,45 @@ app.post('/api/messages', (req, res) => {
     toId: req.body.toId,
   }).then((dbGetMess) => res.json(dbGetMess))
 });
+
+//Delete Messages
+app.delete('/api/messages/:id', (req, res) => {
+  db.Messages.destroy({
+    where: {
+      id: req.params.id
+    }, 
+  }).then((dbMess) => res.json(dbMess))
+})
+
+//Update Messages
+app.put('/api/messages/:id', (req, res, next) => { 
+  db.Messages.update(
+    {read: req.body.read},
+    {where: {id: req.params.id}}
+    ).then((results) => {
+      res.json(results);
+      console.log(results);
+      if (results.changedRows === 0) {
+        return res.status(404).end()
+      }
+        res.status(200).end();
+    })
+  .catch(next)
+})
+
+//Search "1" User
+app.get('/api/users/:id', function(req, res) {
+  db.Users.findOne({
+      where: {
+        id: req.params.id,
+        },include: [db.Role],
+      }).then((dbGetMess) => {
+      console.log(dbGetMess);  
+      res.json(dbGetMess)})
+    .catch(err => {
+  console.error(err);
+  })
+})
 
 //Login Route
 app.post('/api/login', function(req, res) {
@@ -41,26 +81,20 @@ app.post('/api/login', function(req, res) {
       .then((data) => { 
         if(data){
           if(data.Role.name === 'Teacher'){
-            res.redirect(`/teacher?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
+            res.redirect(`/teacher?uname=${username}&fname=${data.first_name}&lname=${data.last_name}&uid=${data.id}`)
           } else if (data.Role.name === 'Student'){
-            res.redirect(`/student?id=${username}&fname=${data.first_name}&lname=${data.last_name}&id=${data.id}`)
+            res.redirect(`/student?uname=${username}&fname=${data.first_name}&lname=${data.last_name}&uid=${data.id}`)
           } else {
             res.json(data)
           }
         } else {
           return res.json([{"msg": "The userID or Password was invalid"}])
         }
-      })
-      .catch(function(err) {
-      });
-    } 
+        })
+      .catch((err) => {throw err})
+    }
 });
-
   
-
-
-
-
   app.get('/api/students', (req, res) => {
     const query = {};
     if (req.query.author_id) {
@@ -78,13 +112,19 @@ app.post('/api/login', function(req, res) {
     return(abc)
   });
 
+  //Feelings route;
+  app.post('/api/feelings', (req, res) => {
+    db.Feeling.create({
+      feeling: req.body.feeling,
+      where: {
+        UserId: req.body.id
+      }
+    }).then((dbFeelings) => res.json(dbFeelings))
+    .catch((err) => res.json(err))
+  })
 
 
-  // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
     db.Post.findOne({
       where: {
         id: req.params.id,
@@ -98,3 +138,5 @@ app.post('/api/login', function(req, res) {
     db.Post.create(req.body).then((dbPost) => res.json(dbPost));
   });
 }
+
+

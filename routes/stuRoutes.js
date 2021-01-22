@@ -14,6 +14,24 @@ module.exports = (app) => {
     }).then((dbPost) => res.json(dbPost));
   });
 
+  //update nicknames
+  app.put('/api/students/:id', (req, res) => {
+    console.log("from api: ", req.body)
+    db.Users.update(
+      {nickname: req.body.nickname},
+      {where: {id: req.params.id}}
+      ).then((results) => {
+        res.json(results);
+        if (results.changedRows === 0) {
+          return res.status(404).end()
+        }
+          res.status(200).end();
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  })
+
   // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {
     // Here we add an "include" property to our options in our findOne query
@@ -25,10 +43,5 @@ module.exports = (app) => {
       },
       include: [db.Author],
     }).then((dbPost) => res.json(dbPost));
-  });
-
-  // POST route for saving a new post
-  app.post('/api/posts', (req, res) => {
-    db.Post.create(req.body).then((dbPost) => res.json(dbPost));
   });
 }

@@ -1,17 +1,30 @@
-INSERT INTO `classHeros_db`.`Roles` (`name`) VALUES ('Teacher');
+INSERT INTO classHeros_db.Roles (`name`) VALUES ('Teacher');
 INSERT INTO `classHeros_db`.`Roles` (`name`) VALUES ('Student');
 INSERT INTO `classHeros_db`.`Roles` (`name`) VALUES ('Parent');
 
-INSERT INTO `classHeros_db`.`users` (`username`,`password`,`last_name`,`first_name`,RoleId)
+INSERT INTO `classHeros_db`.`users` (`username`,`password`,`last_name`,`first_name`,`RoleId`)
 VALUES
 ('eli','teacher','Li','Elaine','1'), 
-('rsmith','teacher','Smith','Robert','1'),
-('rysmith','student','Smith','Ryan','2'),
-('mcruz','student','Cruz','Monica','2'),
-('jdoe','student','Doe','Jean','2'),
-('kcat','student','Cat','Kitty','2');
+('rsmith','teacher','Smith','Robert','1');
 
-INSERT INTO `classHeros_db`.`Messages`('subject',`message`,`read`,`fromId`,`toId`) 
+INSERT INTO `classHeros_db`.`users` (`username`,`password`,`last_name`,`first_name`,`RoleId`,`CharactersId`) VALUES  
+('rysmith','student','Smith','Ryan','2','1'),
+('mcruz','student','Cruz','Monica','2','2'),
+('jdoe','student','Doe','Jean','2','2'),
+('kcat','student','Cat','Kitty','2','4');
+
+INSERT INTO `classHeros_db`.`Characters` (`character_name`,`character_pic_filename`,`alt_text`) VALUES 
+('caped_orange', 'ClipartKey_1528455.png','cartoon image of caped hero from ClipartKey'),
+('caped_blue', 'ClipartKey_156046.png','cartoon image of caped hero from ClipartKey'),
+('flying_purple', 'ClipartKey_1586159.png','cartoon image of caped hero from ClipartKey'),
+('super_duo', 'ClipartKey_1586175.png','cartoon image of caped hero from ClipartKey'),
+('facebok_power', 'ClipartKey_1786243.png','cartoon image of caped hero from ClipartKey'),
+('cape_red', 'ClipartKey_302350.png','cartoon image of caped male hero from  ClipartKey'),
+('super_spidey', 'ClipartKey_3277063.png','cartoon image of kid spider man from ClipartKey'),
+('bunny_teach', '3495165.png','cartoon image bunny teaching from pngtree.com'),
+('bat_gir1', 'ClipartKey_552957.png','cartoon image of kid batgirl from ClipartKey');
+
+INSERT INTO `classHeros_db`.`Messages` (`subject`,`message`,`read`,`fromId`,`toId`) 
 VALUES 
 ("Message1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '1','3'), 
 ("Message3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '2','5'), 
@@ -22,14 +35,6 @@ VALUES
 ("Message7", " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '1','5'),
 ("Message8", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '5','1');
 
-
-INSERT INTO `classHeros_db`.`feelings` (`date`,`feeling_id`,`UserId`) VALUES 
-(CURDATE(),'1','3'),
-(CURDATE(),'5','4'),
-(CURDATE(),'9','5'),
-(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'4','3'),
-(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'7','4'),
-(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'2','5');
 
 INSERT INTO `classHeros_db`.`feeling_icons` (`emotion`,`description`,`icon_hex`) VALUES 
 ('happy','BIG SMILW FACE','&#x1F600'),

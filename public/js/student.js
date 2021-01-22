@@ -14,7 +14,7 @@ const getParams = () => {   var idx = document.URL.indexOf('?');
     params[nameVal[0]] = nameVal[1];
         }
     }
-    uid=params.id;
+    uid=params.uid;
     return params;
 }
 
@@ -28,7 +28,6 @@ const hide = (elem) => {
     elem.style.display = 'none';
 };
 
-
 const getMess = (id) =>{
     fetch(`/api/messages/${id}`, {
         method: 'GET',
@@ -39,15 +38,12 @@ const getMess = (id) =>{
     return res.json();
     }).then((messages) => { 
 
-    console.log(messages.length)
-    
+    // console.log(messages.length)
     if(messages.length > 0 ){
         newMessageAlert = document.querySelector('.new-msg');
         newMessageAlert.addEventListener("click", (e) =>{
         e.preventDefault();
-
         console.log("been clicked")
-
         let myModal = document.querySelector('#messModal')
         $('#messModal').modal('show')
         })
@@ -56,10 +52,8 @@ const getMess = (id) =>{
         hide(newMessageAlert);
     }
     return res.body;
-
     }).catch(handleLoginErr);
 };
-
 
 function handleLoginErr(err) {
     console.log({"msg": err.responseJSON});
@@ -71,29 +65,61 @@ if (window.location.pathname === '/student') {
     let navbar = document.querySelector('#navBar');
     navbar.textContent = "Student: " +  params.fname + " " + params.lname;
     getMess(uid);
-
 }
-
-
-
-//NOTE: name appear under the photo, can change to a nickname later on
-let studentName = document.querySelector("#studentName");
-studentName.textContent = params.fname + " " + params.lname;
 
 
 //Email
 let studentEmail = document.querySelector("#studentEmail");
 studentEmail.textContent = params.fname.charAt(0) + params.lname + "@theEmail.com"
 
-
-//clickable character icon
-//UPDATE: can potentially use modal to 1. change nickname, 2. update emergency contact, 3. update feelings...etc
+//Clickable icon to open modal
 let characterIcon = document.querySelector(".characterIcon");
 characterIcon.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("character imaged clicked")
-
+    $('#studModal').modal('show')
 })
+
+//NOTE: Edit nickname
+let studentName = document.querySelector("#studentName");
+let editNickname = document.querySelector("#editStudbtn")
+
+editNickname.addEventListener('click', (e) => {
+    e.preventDefault();
+    let newNickname = document.getElementById("btn_text").value
+    fetch(`/api/students/${uid}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            nickname: newNickname
+        })
+    }).then((res) => {
+        console.log(res.json)
+    })
+    .catch(err => {
+        console.error(err);
+    })
+    location.reload()
+})
+
+const usersInfo = () => {
+    fetch(`/api/users/${uid}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application-json'
+        },
+    }).then(res => res.json())
+    .then(data => {
+        console.log(data) // === view objects
+        // console.log(data.nickname) // === Kitten
+        userNickName = data.nickname
+        studentName.textContent = userNickName;
+    })
+}
+getParams();
+usersInfo();
 
 //creating new messages
 //UPDATE: work in progress
@@ -102,22 +128,17 @@ let postMsg = document.getElementById("postMsg");
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
-    let msg = {
-        message: document.getElementById("newMsg").value.trim(),
 
-    };
-    if (msg.message) {
-        fetch('/api/messages', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(msg),
-        })
-            .then((response) => response.json())
-            .then(() => {
-                document.getElementById("newMsg").value = ''
-                console.log(response)
-        })
-    }
+    
+})
+
+let msgForm = document.querySelector(".msgArea").value
+
+
+//Dropdown btns
+let feelingsBtn = document.querySelector(".dropdown-menu")
+
+feelingsBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log('clicked')
 })

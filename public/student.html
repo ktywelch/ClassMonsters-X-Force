@@ -11,39 +11,30 @@
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/student.css">
 
-    <link rel="stylesheet" href="/public/css/student.css">
 </head>
-
 <style>
     body {
-      background-image: url('./images/Student\ background\ 2.png');
+        background-image: url('./images/Student\ background\ 2.png');
     }
     </style>
+
 
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand text-light" id="navBar">
         </a>
-        <div class="icons">
-            <i class="fas fa-bell text-light new-msg" style="display: none;"></i>
+
+
+        
+        <div class="icons p-2">
+            <a href="/" id="logoutBtn" style="font-size: 17px; color: white">Logout</a>
+            <i class="fas fa-bell text-light new-msg" style="display: none;"></i>  
         </div>
     </nav>
 
-    <!-- <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div id="messModalLabel" class="modal-title">Messages in queue</div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-            </div>
-        </div>  
-    </div> -->
 
     <div class="container bootstrap snippets bootdey">
         <div class="row">
@@ -51,30 +42,37 @@
                 <div class="panel">
                     <div class="user-heading round">
                         <a href="#">
-                            <img src="./images/girl 4.png" alt="">
+                            <img class="characterIcon" src="./images/girl 4.png" alt="">
                         </a>
-                        <h1 id='studentName'>Emma Suchoski</h1>
+                        <h1 id='studentName'></h1>
                         <p id="studentEmail">
                             <ehuski@icloud class="com"></ehuski@icloud>.com
                         </p>
                     </div>
 
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity <span
-                                    class="label label-warning pull-right r-activity">9</span></a></li>
-                        <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
-                    </ul>
                 </div>
             </div>
             <div class="profile-info col-md-9">
                 <div class="panel">
                     <form>
                         <textarea placeholder="Whats in your mind today?" rows="2"
-                            class="form-control input-lg p-text-area"></textarea>
+                            class="form-control input-lg p-text-area msgArea"></textarea>
                     </form>
                     <footer class="panel-footer">
                         <button class="btn btn-warning pull-right" id="postMsg">Post</button>
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Feelings
+                                </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item" type="button">Happy</button>
+                                <button class="dropdown-item" type="button">Sad</button>
+                                <button class="dropdown-item" type="button">Angry</button>
+                                <button class="dropdown-item" type="button">Tired</button>
+                                <button class="dropdown-item" type="button">Confused</button>
+                            </div>
+                        </div>
                         <ul class="nav nav-pills">
                             <li>
                                 <a href="#"><i class="fa fa-camera"></i></a>
@@ -200,6 +198,64 @@
             </div>
         </div>
     </div>
+
+        <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+        <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <div id="messModalLabel" class="modal-title">Messages in queue</div>
+                    <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                    <!--  --> 
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-4 list-container">
+                            <div class="card">
+                                <ul class="list-group">
+                                </ul>
+                            </div>
+                            </div>
+                            <div class="col-8">
+                            <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
+                            <input class="message-from" placeholder="Message From" maxlength="28" type="text">
+                            <textarea class="message-textarea" placeholder="message Text"></textarea>
+                            </div>
+                        </div>
+                        </div>
+                    <!--  --> 
+                    </div>
+                </div>  
+            </div>
+        </div>
+    <!---  END of modal  DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+    
+        <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+        <div class="modal fade" id="studModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <div id="messModalLabel" class="modal-title" style="text-align: center;">Student Profiles:</div>
+                    <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                    <!--  --> 
+                    <ul>Edit Nickname: 
+                        <input type="text" id="btn_text" />
+                        <button id="editStudbtn">Update</button>
+                    </ul>           
+                    <!--  --> 
+                    </div>
+                </div>  
+            </div>
+        </div>
+    <!---  END of modal  DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+    
     <script src="./js/student.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
