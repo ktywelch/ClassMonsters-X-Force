@@ -36,7 +36,6 @@
     </nav>
 
 
-
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="profile-nav col-md-3">
@@ -45,7 +44,7 @@
                         <a href="#">
                             <img class="characterIcon" src="./images/girl 4.png" alt="">
                         </a>
-                        <h1 id='studentName'>Emma Suchoski</h1>
+                        <h1 id='studentName'></h1>
                         <p id="studentEmail">
                             <ehuski@icloud class="com"></ehuski@icloud>.com
                         </p>
@@ -57,10 +56,23 @@
                 <div class="panel">
                     <form>
                         <textarea placeholder="Whats in your mind today?" rows="2"
-                            class="form-control input-lg p-text-area"></textarea>
+                            class="form-control input-lg p-text-area msgArea"></textarea>
                     </form>
                     <footer class="panel-footer">
                         <button class="btn btn-warning pull-right" id="postMsg">Post</button>
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Feelings
+                                </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item" type="button">Happy</button>
+                                <button class="dropdown-item" type="button">Sad</button>
+                                <button class="dropdown-item" type="button">Angry</button>
+                                <button class="dropdown-item" type="button">Tired</button>
+                                <button class="dropdown-item" type="button">Confused</button>
+                            </div>
+                        </div>
                         <ul class="nav nav-pills">
                             <li>
                                 <a href="#"><i class="fa fa-camera"></i></a>
@@ -226,7 +238,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <div id="messModalLabel" class="modal-title">Messages in queue</div>
+                    <div id="messModalLabel" class="modal-title" style="text-align: center;">Student Profiles:</div>
                     <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -236,10 +248,7 @@
                     <ul>Edit Nickname: 
                         <input type="text" id="btn_text" />
                         <button id="editStudbtn">Update</button>
-                    </ul>
-                    <ul>Update Feelings</ul>
-                    <ul>Read Messages</ul>
-                    <ul>Send Messages to Teacher</ul>
+                    </ul>           
                     <!--  --> 
                     </div>
                 </div>  

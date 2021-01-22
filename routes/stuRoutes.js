@@ -18,7 +18,7 @@ module.exports = (app) => {
   app.put('/api/students/:id', (req, res) => {
     console.log("from api: ", req.body)
     db.Users.update(
-      {last_name: req.body.last_name},
+      {nickname: req.body.nickname},
       {where: {id: req.params.id}}
       ).then((results) => {
         res.json(results);
@@ -43,10 +43,5 @@ module.exports = (app) => {
       },
       include: [db.Author],
     }).then((dbPost) => res.json(dbPost));
-  });
-
-  // POST route for saving a new post
-  app.post('/api/posts', (req, res) => {
-    db.Post.create(req.body).then((dbPost) => res.json(dbPost));
   });
 }

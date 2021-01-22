@@ -15,7 +15,6 @@ app.get('/api/messages/:id', (req, res) => {
   }).then((dbGetMess) => res.json(dbGetMess));
 })
 
-
 //Create messages
 app.post('/api/messages', (req, res) => {
   db.Messages.create({
@@ -26,7 +25,6 @@ app.post('/api/messages', (req, res) => {
     toId: req.body.toId,
   }).then((dbGetMess) => res.json(dbGetMess))
 });
-
 
 //Delete Messages
 app.delete('/api/messages/:id', (req, res) => {
@@ -95,7 +93,7 @@ app.post('/api/login', function(req, res) {
         })
       .catch((err) => {throw err})
     }
- });
+});
   
   app.get('/api/students', (req, res) => {
     const query = {};
@@ -114,8 +112,19 @@ app.post('/api/login', function(req, res) {
     return(abc)
   });
 
-  app.get('/api/posts/:id', (req, res) => {
+  //Feelings route;
+  app.post('/api/feelings', (req, res) => {
+    db.Feeling.create({
+      feeling: req.body.feeling,
+      where: {
+        UserId: req.body.id
+      }
+    }).then((dbFeelings) => res.json(dbFeelings))
+    .catch((err) => res.json(err))
+  })
 
+
+  app.get('/api/posts/:id', (req, res) => {
     db.Post.findOne({
       where: {
         id: req.params.id,
@@ -129,3 +138,5 @@ app.post('/api/login', function(req, res) {
     db.Post.create(req.body).then((dbPost) => res.json(dbPost));
   });
 }
+
+
