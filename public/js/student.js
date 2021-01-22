@@ -5,7 +5,6 @@ let newMessageCreateBtn;
 let messCreateFrom, messChanged, params, uid;
 
 
-
 const getParams = () => {   var idx = document.URL.indexOf('?');
     var params = new Array();
     if (idx != -1) {
@@ -29,7 +28,6 @@ const hide = (elem) => {
     elem.style.display = 'none';
 };
 
-
 const getMess = (id) =>{
     fetch(`/api/messages/${id}`, {
         method: 'GET',
@@ -41,14 +39,11 @@ const getMess = (id) =>{
     }).then((messages) => { 
 
     // console.log(messages.length)
-    
     if(messages.length > 0 ){
         newMessageAlert = document.querySelector('.new-msg');
         newMessageAlert.addEventListener("click", (e) =>{
         e.preventDefault();
-
         console.log("been clicked")
-
         let myModal = document.querySelector('#messModal')
         $('#messModal').modal('show')
         })
@@ -57,10 +52,8 @@ const getMess = (id) =>{
         hide(newMessageAlert);
     }
     return res.body;
-
     }).catch(handleLoginErr);
 };
-
 
 function handleLoginErr(err) {
     console.log({"msg": err.responseJSON});
@@ -75,14 +68,11 @@ if (window.location.pathname === '/student') {
 }
 
 
-
 //Email
 let studentEmail = document.querySelector("#studentEmail");
 studentEmail.textContent = params.fname.charAt(0) + params.lname + "@theEmail.com"
 
-
-//clickable character icon
-//UPDATE: can potentially use modal to 1. change nickname, 2. update emergency contact, 3. update feelings...etc
+//Clickable icon to open modal
 let characterIcon = document.querySelector(".characterIcon");
 characterIcon.addEventListener("click", (e) => {
     e.preventDefault();
@@ -97,7 +87,6 @@ let editNickname = document.querySelector("#editStudbtn")
 editNickname.addEventListener('click', (e) => {
     e.preventDefault();
     let newNickname = document.getElementById("btn_text").value
-    
     fetch(`/api/students/${uid}`, {
         method: "PUT",
         headers: {
@@ -115,9 +104,7 @@ editNickname.addEventListener('click', (e) => {
     location.reload()
 })
 
-let userNickName;
 const usersInfo = () => {
-    
     fetch(`/api/users/${uid}`, {
         method: "GET",
         headers: {
@@ -125,17 +112,15 @@ const usersInfo = () => {
         },
     }).then(res => res.json())
     .then(data => {
-        console.log(data)
+        console.log(data) // === view objects
         // console.log(data.nickname) // === Kitten
         userNickName = data.nickname
         studentName.textContent = userNickName;
     })
 }
 getParams();
+usersInfo();
 
-usersInfo()
-
-console.log(userNickName)
 //creating new messages
 //UPDATE: work in progress
 let postMsg = document.getElementById("postMsg");
@@ -145,4 +130,15 @@ postMsg.addEventListener('click', (e) => {
     console.log("clicked")
 
     
+})
+
+let msgForm = document.querySelector(".msgArea").value
+
+
+//Dropdown btns
+let feelingsBtn = document.querySelector(".dropdown-menu")
+
+feelingsBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log('clicked')
 })

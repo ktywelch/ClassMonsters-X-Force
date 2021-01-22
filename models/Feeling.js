@@ -1,22 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
   var Feeling = sequelize.define("Feeling", {
     // The email cannot be null, and must be a proper email before creation
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    feeling_id: {
-      type: DataTypes.INTEGER,
+    feeling: {
+      type: DataTypes.STRING,
       },
-    student_id:  {
-        type: DataTypes.INTEGER,
-      }
   },
   {
-    timestamps: false
+    timestamps: true
   });
   Feeling.associate = (models) => {
-    Feeling.hasMany(models.Feeling_icon);
+    Feeling.hasMany(models.Users);
   }
   return Feeling;
 };

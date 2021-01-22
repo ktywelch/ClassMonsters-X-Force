@@ -36,14 +36,6 @@ VALUES
 ("Message8", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '5','1');
 
 
-INSERT INTO `classHeros_db`.`feelings` (`date`,`feeling_id`,`UserId`) VALUES 
-(CURDATE(),'1','3'),
-(CURDATE(),'5','4'),
-(CURDATE(),'9','5'),
-(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'4','3'),
-(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'7','4'),
-(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'2','5');
-
 INSERT INTO `classHeros_db`.`feeling_icons` (`emotion`,`description`,`icon_hex`) VALUES 
 ('happy','BIG SMILW FACE','&#x1F600'),
 ('happy','GRINNING FACE','&#x1F601'),
