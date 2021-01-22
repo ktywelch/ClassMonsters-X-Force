@@ -31,6 +31,30 @@ module.exports = function(sequelize, DataTypes) {
     nickname: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    parentFName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    parentLName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    parentPhoneNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    parentEmail: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    teacherID: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
     },
     {
