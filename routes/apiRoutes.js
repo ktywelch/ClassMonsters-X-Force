@@ -37,21 +37,34 @@ app.delete('/api/messages/:id', (req, res) => {
   }).then((dbMess) => res.json(dbMess))
 })
 
- 
 //Update Messages
 app.put('/api/messages/:id', (req, res, next) => { 
   db.Messages.update(
     {read: req.body.read},
     {where: {id: req.params.id}}
     ).then((results) => {
-       res.json(results);
-       console.log(results);
-       if (results.changedRows === 0) {
-         return res.status(404).end()
-       }
-         res.status(200).end();
-      })
-   .catch(next)
+      res.json(results);
+      console.log(results);
+      if (results.changedRows === 0) {
+        return res.status(404).end()
+      }
+        res.status(200).end();
+    })
+  .catch(next)
+})
+
+//Search "1" User
+app.get('/api/users/:id', function(req, res) {
+  db.Users.findOne({
+      where: {
+        id: req.params.id,
+        },include: [db.Role],
+      }).then((dbGetMess) => {
+      console.log(dbGetMess);  
+      res.json(dbGetMess)})
+    .catch(err => {
+  console.error(err);
+  })
 })
 
 //Login Route
