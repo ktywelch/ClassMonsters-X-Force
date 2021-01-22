@@ -1,13 +1,28 @@
+///Based on the Notes exercise will need to add more functionality
+
 let newMessages, newMessageAlert,sendMessageBtn, newMessageCreateBtn;
 let messCreateFrom, messChanged,params,messList;
 let messIdLoc = document.querySelector('.message-id');
 let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
-let messFrom = document.querySelector('.message-from')
-messList = document.querySelectorAll('.list-container .list-group');
 
-/////////
 //This is from the browser no need for call back since this is the url base
+const getParams = () => {var url_det = document.URL.indexOf('?');
+    var params = new Array();
+    // checks if therer are parametes
+    if ( url_det  != -1) {
+    //splits to an array called pairs all of the variable & as seperator  
+    var pairs = document.URL.substring(url_det+1, document.URL.length).split('&');
+    for (var i=0; i<pairs.length; i++) {
+    nameVal = pairs[i].split('=');
+    params[nameVal[0]] = nameVal[1];
+       }
+    }
+    return params;
+ }
+
+
+
 // Sets the activeNote and displays it
 const handleMessView = (e) => {
   e.preventDefault();
@@ -42,8 +57,7 @@ const handleMessDelete = (e) => {
   e.stopPropagation();
 
   const message = e.target;
-  //activeMess = JSON.parse(e.target.parentElement.getAttribute('data-message'));
-  const messId = JSON.parse(message.parentElement.getAttribute('data-message')).id;
+  const messId = JSON.parse(note.parentElement.getAttribute('data-mess')).id;
 
   console.log("mess",message,messId)
 
@@ -137,64 +151,6 @@ const handleRenderMsgAlert = () => {
   }
 };
 
-// // Show an element
-// const show = (elem) => {
-//   elem.style.display = 'inline';
-// };
-
-// // Hide an element
-// const hide = (elem) => {
-//   elem.style.display = 'none';
-// };
-
-// //const getAndRenderMess = (id) => getMessages(id).then(renderMessList);
-
-// //main function
-// const main = async () => {
-// params = getParams();  
-// let messages, uid, mess_ul,mess_li;
-
-// //mess_ul = document.querySelector('.list-group')
-
-// let navbar = document.querySelector('#navBar');
-// if (params){
-// uid = params.uid;
-// }
-// navbar.textContent = "Classroom of " +  params.fname + " " + params.lname;
-// getAndRendMessages(uid);
-// }
-
-
-
-// main();
-
-
-
-
-
-
-
-
-
-
-
-/////////
-
-
-
-const getParams = () => {var url_det = document.URL.indexOf('?');
-var params = new Array();
-if ( url_det  != -1) {
-//splits to an array called pairs all of the variable & as seperator  
-var pairs = document.URL.substring(url_det+1, document.URL.length).split('&');
-for (var i=0; i<pairs.length; i++) {
-nameVal = pairs[i].split('=');
-params[nameVal[0]] = nameVal[1];
-   }
-}
-return params;
-}
-
 // Show an element
 const show = (elem) => {
   elem.style.display = 'inline';
@@ -206,43 +162,28 @@ const hide = (elem) => {
 };
 
 
-const getMess = (id) =>{
-  fetch(`/api/messages/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((res) => {
-    return res.json();
-  }).then((messages) => { 
-    console.log(messages.length)
-    if(messages.length > 0 ){
-      newMessageAlert = document.querySelector('#msg-alert');
-      show(newMessageAlert); 
-      } else {
-      hide(newMessageAlert);
-      } 
-    newMessageAlert.addEventListener("click", (e) =>{
-      e.preventDefault();
-      console.log("been clicked")
-      // this is how message pops happen - will need to update the modal 
-      $('#messModal').modal('show')
-    })
-  return res.body;
-  }).catch(handleLoginErr);
-};
+//main function
+const main = async () => {
+params = getParams();  
 
+messList = document.querySelectorAll('.list-container .list-group');
 
-function handleLoginErr(err) {
-  console.log({"msg": err.responseJSON});
+getAndRendMessages(uid);
 }
 
-//main
-params = getParams();
-uid = params.uid;
-if (window.location.pathname === '/teacher') {
-    let navbar = document.querySelector('#navBar');
-    navbar.textContent = "Classroom of " +  params.fname + " " + params.lname;
-    getMess(uid);
-    getAndRendMessages(uid)
-}
+main();
+
+
+
+
+// if (window.location.pathname === '/tmessage') {
+//   noteIdLoc = document.querySelector('.message-id');
+//   messSubject = document.querySelector('.message-subject');
+ 
+//   saveMessBtn = document.querySelector('.message-note');
+//   newMessBtn = document.querySelector('.new-message');
+//   messList = document.querySelectorAll('.list-container .list-group');
+// }
+
+
+
