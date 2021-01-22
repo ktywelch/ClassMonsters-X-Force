@@ -38,7 +38,6 @@ module.exports = function(sequelize, DataTypes) {
     });
     Users.associate = (models) => {
       Users.belongsTo(models.Role),
-      Users.hasMany(models.Feeling);
       Users.hasMany(models.Attendence);
       Users.hasOne(models.Character);
     };

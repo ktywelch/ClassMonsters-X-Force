@@ -44,9 +44,4 @@ module.exports = (app) => {
       include: [db.Author],
     }).then((dbPost) => res.json(dbPost));
   });
-
-  // POST route for saving a new post
-  app.post('/api/posts', (req, res) => {
-    db.Post.create(req.body).then((dbPost) => res.json(dbPost));
-  });
 }
