@@ -5,6 +5,7 @@ let newMessageCreateBtn;
 let messCreateFrom, messChanged, params, uid;
 
 
+
 const getParams = () => {   var idx = document.URL.indexOf('?');
     var params = new Array();
     if (idx != -1) {
@@ -39,7 +40,7 @@ const getMess = (id) =>{
     return res.json();
     }).then((messages) => { 
 
-    console.log(messages.length)
+    // console.log(messages.length)
     
     if(messages.length > 0 ){
         newMessageAlert = document.querySelector('.new-msg');
@@ -72,7 +73,6 @@ if (window.location.pathname === '/student') {
     navbar.textContent = "Student: " +  params.fname + " " + params.lname;
     getMess(uid);
 }
-console.log(params)
 
 
 
@@ -94,18 +94,17 @@ characterIcon.addEventListener("click", (e) => {
 let studentName = document.querySelector("#studentName");
 let editNickname = document.querySelector("#editStudbtn")
 
-studentName.textContent = params.lname
 editNickname.addEventListener('click', (e) => {
     e.preventDefault();
-    let name = document.getElementById("btn_text").value
-    studentName.textContent = name;
+    let newNickname = document.getElementById("btn_text").value
+    
     fetch(`/api/students/${uid}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            last_name: name
+            nickname: newNickname
         })
     }).then((res) => {
         console.log(res.json)
@@ -113,14 +112,32 @@ editNickname.addEventListener('click', (e) => {
     .catch(err => {
         console.error(err);
     })
-
     location.reload()
 })
 
+let userNickName;
+const usersInfo = () => {
+    
+    fetch(`/api/users/${uid}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application-json'
+        },
+    }).then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // console.log(data.nickname) // === Kitten
+        userNickName = data.nickname
+        studentName.textContent = userNickName;
+    })
+}
+getParams();
 
+usersInfo()
+
+console.log(userNickName)
 //creating new messages
 //UPDATE: work in progress
-getParams();
 let postMsg = document.getElementById("postMsg");
 
 postMsg.addEventListener('click', (e) => {

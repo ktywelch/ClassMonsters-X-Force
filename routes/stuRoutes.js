@@ -18,7 +18,7 @@ module.exports = (app) => {
   app.put('/api/students/:id', (req, res) => {
     console.log("from api: ", req.body)
     db.Users.update(
-      {last_name: req.body.last_name},
+      {nickname: req.body.nickname},
       {where: {id: req.params.id}}
       ).then((results) => {
         res.json(results);
