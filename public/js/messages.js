@@ -1,27 +1,3 @@
-///Based on the Notes exercise will need to add more functionality
-
-let newMessages, newMessageAlert,sendMessageBtn, newMessageCreateBtn;
-let messCreateFrom, messChanged,params,messList;
-let messIdLoc = document.querySelector('.message-id');
-let messSubject = document.querySelector('.message-subject')
-let messText = document.querySelector('.message-textarea');
-
-//This is from the browser no need for call back since this is the url base
-const getParams = () => {var url_det = document.URL.indexOf('?');
-    var params = new Array();
-    // checks if therer are parametes
-    if ( url_det  != -1) {
-    //splits to an array called pairs all of the variable & as seperator  
-    var pairs = document.URL.substring(url_det+1, document.URL.length).split('&');
-    for (var i=0; i<pairs.length; i++) {
-    nameVal = pairs[i].split('=');
-    params[nameVal[0]] = nameVal[1];
-       }
-    }
-    return params;
- }
-
-
 
 // Sets the activeNote and displays it
 const handleMessView = (e) => {
@@ -71,7 +47,6 @@ const handleMessDelete = (e) => {
     renderActiveMess();
   });
 };
-
 
 const getAndRendMessages = async = (id) => {
   fetch(`/api/messages/${id}`, {
@@ -125,11 +100,6 @@ const getAndRendMessages = async = (id) => {
 });
 }
 
-
-
-
-
-
 const updMessages = (id,cb) =>
  fetch(`/api/messages/:${id}`, {
    method: 'GET',
@@ -140,8 +110,6 @@ const updMessages = (id,cb) =>
    cb(data.json())
 });
 
-
-
 const handleRenderMsgAlert = () => {
   newMessageAlert = document.querySelector("#")
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
@@ -151,39 +119,7 @@ const handleRenderMsgAlert = () => {
   }
 };
 
-// Show an element
-const show = (elem) => {
-  elem.style.display = 'inline';
-};
 
-// Hide an element
-const hide = (elem) => {
-  elem.style.display = 'none';
-};
-
-
-//main function
-const main = async () => {
-params = getParams();  
-
-messList = document.querySelectorAll('.list-container .list-group');
-
-getAndRendMessages(uid);
-}
-
-main();
-
-
-
-
-// if (window.location.pathname === '/tmessage') {
-//   noteIdLoc = document.querySelector('.message-id');
-//   messSubject = document.querySelector('.message-subject');
- 
-//   saveMessBtn = document.querySelector('.message-note');
-//   newMessBtn = document.querySelector('.new-message');
-//   messList = document.querySelectorAll('.list-container .list-group');
-// }
 
 
 
