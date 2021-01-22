@@ -5,10 +5,9 @@ let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
 let messFrom = document.querySelector('.message-from')
 messList = document.querySelectorAll('.list-container .list-group');
+let lname,fname,role,full_name;
 
-/////////
-//This is from the browser no need for call back since this is the url base
-// Sets the activeNote and displays it
+/// The message handling is based on the note taker 
 const handleMessView = (e) => {
   e.preventDefault();
   console.log("clicked on message",e.target)
@@ -18,15 +17,12 @@ const handleMessView = (e) => {
   activeMess = {};
 };
 
-
-const renderActiveMess = () => {
-  //hide(saveNoteBtn);
-
-  
+const renderActiveMess = () => {  
   if (activeMess.id) {
     messIdLoc.setAttribute('readonly', true)
-    //noteTitle.setAttribute('readonly', true);
-    //noteText.setAttribute('readonly', true);
+    messSubject.setAttribute('readonly', true);
+    messText.setAttribute('readonly', true);
+    messFrom.setAttribute('readonly', true);
     messIdLoc.value = activeMess.id
     messSubject.value = activeMess.subject;
     messText.value = activeMess.message;
@@ -42,6 +38,7 @@ const handleMessDelete = (e) => {
   e.stopPropagation();
 
   const message = e.target;
+  console.log(message);
   //activeMess = JSON.parse(e.target.parentElement.getAttribute('data-message'));
   const messId = JSON.parse(message.parentElement.getAttribute('data-message')).id;
 
@@ -113,9 +110,6 @@ const getAndRendMessages = async = (id) => {
 
 
 
-
-
-
 const updMessages = (id,cb) =>
  fetch(`/api/messages/:${id}`, {
    method: 'GET',
@@ -136,50 +130,6 @@ const handleRenderMsgAlert = () => {
     show(saveNoteBtn);
   }
 };
-
-// // Show an element
-// const show = (elem) => {
-//   elem.style.display = 'inline';
-// };
-
-// // Hide an element
-// const hide = (elem) => {
-//   elem.style.display = 'none';
-// };
-
-// //const getAndRenderMess = (id) => getMessages(id).then(renderMessList);
-
-// //main function
-// const main = async () => {
-// params = getParams();  
-// let messages, uid, mess_ul,mess_li;
-
-// //mess_ul = document.querySelector('.list-group')
-
-// let navbar = document.querySelector('#navBar');
-// if (params){
-// uid = params.uid;
-// }
-// navbar.textContent = "Classroom of " +  params.fname + " " + params.lname;
-// getAndRendMessages(uid);
-// }
-
-
-
-// main();
-
-
-
-
-
-
-
-
-
-
-
-/////////
-
 
 
 const getParams = () => {var url_det = document.URL.indexOf('?');
@@ -215,7 +165,6 @@ const getMess = (id) =>{
   }).then((res) => {
     return res.json();
   }).then((messages) => { 
-    console.log(messages.length)
     if(messages.length > 0 ){
       newMessageAlert = document.querySelector('#msg-alert');
       show(newMessageAlert); 
@@ -232,17 +181,37 @@ const getMess = (id) =>{
   }).catch(handleLoginErr);
 };
 
+const getUserInfo = (id,cb) =>{
+  fetch(`/api/users/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+}).then((res) => {
+  return res.json();
+}).then((userInfo) => {
+  console.log(userInfo)
+  cb(userInfo); 
+ })
+}
 
-function handleLoginErr(err) {
+
+const handleLoginErr = (err) => {
   console.log({"msg": err.responseJSON});
 }
 
 //main
 params = getParams();
 uid = params.uid;
+getUserInfo(uid, user => {
+  lname = user.last_name;
+  fname = user.first_name;
+  fn_loc = document.querySelector('#user_full_name');
+  fn_loc.innerText = `${fname} ${lname}`
+
+});
+ 
 if (window.location.pathname === '/teacher') {
-    let navbar = document.querySelector('#navBar');
-    navbar.textContent = "Classroom of " +  params.fname + " " + params.lname;
     getMess(uid);
     getAndRendMessages(uid)
 }
