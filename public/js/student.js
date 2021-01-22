@@ -14,7 +14,7 @@ const getParams = () => {   var idx = document.URL.indexOf('?');
     params[nameVal[0]] = nameVal[1];
         }
     }
-    uid=params.id;
+    uid=params.uid;
     return params;
 }
 
@@ -71,14 +71,9 @@ if (window.location.pathname === '/student') {
     let navbar = document.querySelector('#navBar');
     navbar.textContent = "Student: " +  params.fname + " " + params.lname;
     getMess(uid);
-
 }
+console.log(params)
 
-
-
-//NOTE: name appear under the photo, can change to a nickname later on
-let studentName = document.querySelector("#studentName");
-studentName.textContent = params.fname + " " + params.lname;
 
 
 //Email
@@ -92,32 +87,45 @@ let characterIcon = document.querySelector(".characterIcon");
 characterIcon.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("character imaged clicked")
-
+    $('#studModal').modal('show')
 })
+
+//NOTE: Edit nickname
+let studentName = document.querySelector("#studentName");
+let editNickname = document.querySelector("#editStudbtn")
+
+studentName.textContent = params.lname
+editNickname.addEventListener('click', (e) => {
+    e.preventDefault();
+    let name = document.getElementById("btn_text").value
+    studentName.textContent = name;
+    fetch(`/api/students/${uid}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            last_name: name
+        })
+    }).then((res) => {
+        console.log(res.json)
+    })
+    .catch(err => {
+        console.error(err);
+    })
+
+    location.reload()
+})
+
 
 //creating new messages
 //UPDATE: work in progress
+getParams();
 let postMsg = document.getElementById("postMsg");
 
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
-    let msg = {
-        message: document.getElementById("newMsg").value.trim(),
 
-    };
-    if (msg.message) {
-        fetch('/api/messages', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(msg),
-        })
-            .then((response) => response.json())
-            .then(() => {
-                document.getElementById("newMsg").value = ''
-                console.log(response)
-        })
-    }
+    
 })
