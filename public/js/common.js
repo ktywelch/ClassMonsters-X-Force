@@ -6,7 +6,7 @@ var pairs = document.URL.substring(url_det+1, document.URL.length).split('&');
 for (var i=0; i<pairs.length; i++) {
 nameVal = pairs[i].split('=');
 params[nameVal[0]] = nameVal[1];
-   }
+  }
 }
 return params;
 }
@@ -32,7 +32,7 @@ const getUserInfo = (id,cb) =>{
 }).then((userInfo) => {
   console.log(userInfo)
   cb(userInfo); 
- })
+  })
 }
 
 const handleLoginErr = (err) => {
@@ -63,3 +63,7 @@ const getMess = (id) =>{
   return res.body;
   }).catch(handleLoginErr);
 };
+
+const logout = () => {
+  
+}
