@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
       Users.belongsTo(models.Role),
       Users.hasMany(models.Attendence);
       Users.hasOne(models.Character);
-      Users.hasOne(Users, {as: 'teacher'});
+      Users.hasOne(Users, {as: 'Teacher'});
       Users.hasMany(models.Feeling);
       Users.hasMany(models.Messages, {foreignKey: 'FromId'});
       Users.hasMany(models.Messages, {foreignKey: 'ToId'});
