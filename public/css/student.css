@@ -465,3 +465,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
   }
+
+#studPostFeeling {
+    font-size: 25px;
+}

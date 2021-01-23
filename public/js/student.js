@@ -45,18 +45,28 @@ editNickname.addEventListener('click', (e) => {
     location.reload();
 })
 
+
+
+
 const usersInfo = async () => {
     
     await getUserInfo(uid, user => {
         lname = user.last_name;
-        console.log(fname)
+        // console.log(lname)
         fname = user.first_name;
         email = user.email;
         nickname = user.nickname;
-        fn_loc = document.querySelector('#studentName');
-        fn_loc.innerText = nickname
+
+
+        fn_loc = document.querySelector('#user_full_name');
+        fn_loc.innerText = `${fname} ${lname}`
+
+        nickn_loc = document.querySelector('#studentName');
+        nickn_loc.innerText = nickname
+
         em_loc = document.querySelector('#studentEmail');
         em_loc.textContent = `${email}`
+
     
     });
     
@@ -72,12 +82,54 @@ let postMsg = document.getElementById("postMsg");
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
-
     
+    let feelingMsg = document.querySelector('#feelingMsg').value
+    let studPostFeeling = document.querySelector('#studPostFeeling')
+
+    studPostFeeling.innerText = "I am feeling " + feelingMsg + " today"
+    console.log(feelingMsg)
+    createFeelings(feelingMsg)
+    getFeeling(uid)
 })
-//logout btn to prevent use to go back
-const logoutBtn = document.querySelector("#logoutBtn")
-logoutBtn.addEventListener('click', logout())
+
+
+const createFeelings = (studentFeels) => {
+    fetch(`/api/feelings/${uid}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            feeling: studentFeels
+        }),
+    })
+        .then((res) => {
+            console.log(res.json);
+        })
+        .catch((err) => console.error(err));
+}
+
+const getFeeling = () => {
+    fetch(`/api/feelings/${uid}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((res) => {
+        return res.json();
+    }).then((feelingInfo) => {
+        
+        let currentFeeling = feelingInfo[feelingInfo.length - 1]
+        console.log(currentFeeling)
+        let todayFeeling = currentFeeling.feeling
+        console.log(todayFeeling)
+    })
+}
+
+
+
+
+
 
 //Dropdown btns
 let feelingsBtn = document.querySelector(".dropdown-menu")
@@ -96,3 +148,8 @@ if (window.location.pathname === '/student') {
     getMess(uid);
     getAndRendMessages(uid)
 }
+
+//FIXME:
+//logout btn to prevent user to go backwards
+const logoutBtn = document.querySelector("#logoutBtn")
+logoutBtn.addEventListener('click', logout())
