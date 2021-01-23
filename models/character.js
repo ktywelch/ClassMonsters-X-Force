@@ -8,10 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 40],
       },
+    },
     alt_text: {
       type: DataTypes.STRING
       },
-    },
     filename: {
       type: DataTypes.STRING,
       allowNull: false
@@ -20,5 +20,8 @@ module.exports = function(sequelize, DataTypes) {
   {
     timestamps: false
   });
+  Character.associate = function(models) {
+    Character.belongsTo(models.Users);
+  };
   return Character;
 };
