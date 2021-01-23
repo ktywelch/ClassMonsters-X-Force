@@ -20,8 +20,5 @@ module.exports = function(sequelize, DataTypes) {
   {
     timestamps: false
   });
-  Character.associate = (models) => {
-    Character.belongsTo(models.Users);
-  }
   return Character;
 };

@@ -56,7 +56,7 @@ app.get('/api/users/:id', function(req, res) {
   db.Users.findOne({
       where: {
         id: req.params.id,
-        },include: [db.Role],
+        }, include: [db.Role], include: [db.Character]
       }).then((dbGetMess) => {
       console.log(dbGetMess);  
       res.json(dbGetMess)})
@@ -81,9 +81,9 @@ app.post('/api/login', function(req, res) {
       .then((data) => { 
         if(data){
           if(data.Role.name === 'Teacher'){
-            res.redirect(`/teacher?uname=${username}&fname=${data.first_name}&lname=${data.last_name}&uid=${data.id}`)
+            res.redirect(`/teacher?uid=${data.id}`)
           } else if (data.Role.name === 'Student'){
-            res.redirect(`/student?uname=${username}&fname=${data.first_name}&lname=${data.last_name}&uid=${data.id}`)
+            res.redirect(`/student?uid=${data.id}`)
           } else {
             res.json(data)
           }
@@ -122,20 +122,10 @@ app.post('/api/login', function(req, res) {
     }).then((dbFeelings) => res.json(dbFeelings))
     .catch((err) => res.json(err))
   })
-
-
-  app.get('/api/posts/:id', (req, res) => {
-    db.Post.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: [db.Author],
-    }).then((dbPost) => res.json(dbPost));
-  });
-
-  // POST route for saving a new post
-  app.post('/api/posts', (req, res) => {
-    db.Post.create(req.body).then((dbPost) => res.json(dbPost));
+  //Logout api
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
   });
 }
 
