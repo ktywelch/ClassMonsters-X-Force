@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: true
   });
   Feeling.associate = (models) => {
-    Feeling.hasMany(models.Users);
+    Feeling.belongsTo(models.Users);
   }
   return Feeling;
 };

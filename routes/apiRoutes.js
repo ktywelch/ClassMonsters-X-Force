@@ -1,6 +1,8 @@
 // Requiring our models
 const db = require('../models');
 var emoji = require('node-emoji');
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 // Routes
 module.exports = (app) => {
@@ -113,15 +115,27 @@ app.post('/api/login', function(req, res) {
   });
 
   //Feelings route;
-  app.post('/api/feelings', (req, res) => {
+  app.post('/api/feelings/:id', (req, res) => {
+    console.log(req.body)
     db.Feeling.create({
       feeling: req.body.feeling,
-      where: {
-        UserId: req.body.id
-      }
+      UserId: req.params.id,
     }).then((dbFeelings) => res.json(dbFeelings))
     .catch((err) => res.json(err))
-  })
+  });
+
+  app.get('/api/feelings/:id', (req, res) => {
+    let now = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+
+    db.Feeling.findAll({
+      where: {
+        createdAt: { [Op.between]: ["2021-01-20 00:00:00", now] },
+        UserId: req.params.id,
+      },
+    }).then((dbFeelings) => res.json(dbFeelings))
+    .catch((err) => res.json(err))
+  });
+
   //Logout api
   app.get("/logout", function(req, res) {
     req.logout();
