@@ -60,8 +60,10 @@ module.exports = function(sequelize, DataTypes) {
       Users.belongsTo(models.Role),
       Users.hasMany(models.Attendence);
       Users.hasOne(models.Character);
-      Users.hasOne(Users, {as: 'teacher'});
+      Users.hasOne(Users, {as: 'Teacher'});
       Users.hasMany(models.Feeling);
+      Users.hasMany(models.Messages, {foreignKey: 'FromId'});
+      Users.hasMany(models.Messages, {foreignKey: 'ToId'});
     };
   
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
