@@ -4,73 +4,13 @@ let sendMessageBtn;
 let newMessageCreateBtn;
 let messCreateFrom, messChanged, params, uid;
 
+let messIdLoc = document.querySelector('.message-id');
+let messSubject = document.querySelector('.message-subject')
+let messText = document.querySelector('.message-textarea');
+let messFrom = document.querySelector('.message-from')
+let messList = document.querySelectorAll('.list-container .list-group');
+let lname,fname,role,full_name;
 
-const getParams = () => {   var idx = document.URL.indexOf('?');
-    var params = new Array();
-    if (idx != -1) {
-    var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
-    for (var i=0; i<pairs.length; i++) {
-    nameVal = pairs[i].split('=');
-    params[nameVal[0]] = nameVal[1];
-        }
-    }
-    uid=params.uid;
-    return params;
-}
-
-// Show an element
-const show = (elem) => {
-    elem.style.display = 'inline';
-};
-
-// Hide an element
-const hide = (elem) => {
-    elem.style.display = 'none';
-};
-
-const getMess = (id) =>{
-    fetch(`/api/messages/${id}`, {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-    }).then((res) => {
-    return res.json();
-    }).then((messages) => { 
-
-    // console.log(messages.length)
-    if(messages.length > 0 ){
-        newMessageAlert = document.querySelector('.new-msg');
-        newMessageAlert.addEventListener("click", (e) =>{
-        e.preventDefault();
-        console.log("been clicked")
-        let myModal = document.querySelector('#messModal')
-        $('#messModal').modal('show')
-        })
-        show(newMessageAlert); 
-    } else {
-        hide(newMessageAlert);
-    }
-    return res.body;
-    }).catch(handleLoginErr);
-};
-
-function handleLoginErr(err) {
-    console.log({"msg": err.responseJSON});
-}
-
-//main
-params = getParams();
-if (window.location.pathname === '/student') {
-    let navbar = document.querySelector('#navBar');
-    navbar.textContent = "Student: " +  params.fname + " " + params.lname;
-    getMess(uid);
-}
-
-
-//Email
-let studentEmail = document.querySelector("#studentEmail");
-studentEmail.textContent = params.fname.charAt(0) + params.lname + "@theEmail.com"
 
 //Clickable icon to open modal
 let characterIcon = document.querySelector(".characterIcon");
@@ -87,6 +27,7 @@ let editNickname = document.querySelector("#editStudbtn")
 editNickname.addEventListener('click', (e) => {
     e.preventDefault();
     let newNickname = document.getElementById("btn_text").value
+    console.log(newNickname)
     fetch(`/api/students/${uid}`, {
         method: "PUT",
         headers: {
@@ -101,23 +42,26 @@ editNickname.addEventListener('click', (e) => {
     .catch(err => {
         console.error(err);
     })
-    location.reload()
+    location.reload();
 })
 
-const usersInfo = () => {
-    fetch(`/api/users/${uid}`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application-json'
-        },
-    }).then(res => res.json())
-    .then(data => {
-        console.log(data) // === view objects
-        // console.log(data.nickname) // === Kitten
-        userNickName = data.nickname
-        studentName.textContent = userNickName;
-    })
+const usersInfo = async () => {
+    
+    await getUserInfo(uid, user => {
+        lname = user.last_name;
+        console.log(fname)
+        fname = user.first_name;
+        email = user.email;
+        nickname = user.nickname;
+        fn_loc = document.querySelector('#studentName');
+        fn_loc.innerText = nickname
+        em_loc = document.querySelector('#studentEmail');
+        em_loc.textContent = `${email}`
+    
+    });
+    
 }
+
 getParams();
 usersInfo();
 
@@ -131,9 +75,9 @@ postMsg.addEventListener('click', (e) => {
 
     
 })
-
-let msgForm = document.querySelector(".msgArea").value
-
+//logout btn to prevent use to go back
+const logoutBtn = document.querySelector("#logoutBtn")
+logoutBtn.addEventListener('click', logout())
 
 //Dropdown btns
 let feelingsBtn = document.querySelector(".dropdown-menu")
@@ -142,3 +86,13 @@ feelingsBtn.addEventListener("click", (e) => {
     e.preventDefault();
     console.log('clicked')
 })
+
+//main
+params = getParams();
+uid = params.uid;
+usersInfo()
+
+if (window.location.pathname === '/student') {
+    getMess(uid);
+    getAndRendMessages(uid)
+}
