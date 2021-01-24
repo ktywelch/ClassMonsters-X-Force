@@ -21,31 +21,6 @@ let begHtml =`<div class="row row-space-2" >
 //                 <b class="text-inverse">${full_name}</b>`;
 
 
-let endHtml= ` 
-           </div>
-            <div class="media-body valign-middle text-right overflow-visible">
-                <div class="btn-group dropdown">
-                    <a href="javascript:;" class="btn btn-default">Friends</a>
-                    <a href="javascript:;" data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="false"></a>
-                    <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
-                        style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(101px, 34px, 0px);">
-                        <li>
-                          <a href="javascript:;">Action1</a>
-                        </li>
-                          <a href="javascript:;">Action2</a>
-                        <li>
-                          <a href="javascript:;">Action3</a>
-                        </li>
-                        <li>
-                          <a href="javascript:;">Action4</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>`
-
 // Teacher Functions
 const getStudents = (t_id,cb) => {
   console.log("getting Students");
@@ -84,6 +59,30 @@ if (window.location.pathname === '/teacher') {
       <div class="media-body valign-middle">
           <b class="text-inverse">${st.first_name} ${st.last_name}</b>`;
       console.log(midHtml)        
+
+
+
+      let endHtml= ` </div>
+      </div>
+      
+       <div class="dropdown">
+       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Teacher Actions
+       </button>
+       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+         <button class="dropdown-item" type="button" id="Send_Message" value="${st.id}">Send Message to Student</button>
+         <button class="dropdown-item"> <a href="mailto:${st.parentEmail}">Send an e-mail to parent</a></button>
+         <button class="dropdown-item" type="button" id="Change_Character" value="${st.id}">Change Character</button> 
+         <button class="dropdown-item" type="button" id="Change_Teacher" value="${st.id}">Change Teacher</button>    
+           </div>
+       </div>
+   </div>
+</div>`
+
+
+
+
+
 
       /* Things we can set in the future
         "email": null,

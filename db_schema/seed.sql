@@ -32,8 +32,8 @@ INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`,UserID) V
 ('facebok_power', 'ClipartKey_1786243.png','cartoon image of caped hero from ClipartKey','4'),
 ('cape_red', 'ClipartKey_302350.png','cartoon image of caped male hero from  ClipartKey','5'),
 ('super_spidey', 'ClipartKey_3277063.png','cartoon image of kid spider man from ClipartKey','6'),
-('bunny_teach', '3495165.png','cute clipart png from pngtree.com','3'),
-('bat_gir1', 'ClipartKey_552957.png','cartoon image of kid batgirl from ClipartKey','7');
+('bat_gir1', 'ClipartKey_552957.png','cartoon image of kid batgirl from ClipartKey','7'),
+('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','3');
 
 INSERT INTO `classHeros_db`.`Messages` (`subject`,`message`,`read`,`FromId`,`ToId`) 
 VALUES 
