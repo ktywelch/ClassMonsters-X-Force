@@ -32,7 +32,7 @@ const renderStudents = (students) => {
     }
     let newHtml =`
                 <div class="col-md-6">
-                  <div class="card mb-2 mx-auto" style="width: 18rem;">
+                  <div class="card mb-2 mx-auto" style="width: 18rem;display: flex;">
                   <div class="text-center">
                   <img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" 
                      class="img-responsive profile-image" 
