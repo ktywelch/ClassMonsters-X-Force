@@ -1,4 +1,4 @@
-INSERT INTO classHeros_db.Roles (`name`) VALUES ('Teacher');
+INSERT INTO `classHeros_db`.`Roles` (`name`) VALUES ('Teacher');
 INSERT INTO `classHeros_db`.`Roles` (`name`) VALUES ('Student');
 INSERT INTO `classHeros_db`.`Roles` (`name`) VALUES ('Parent');
 
