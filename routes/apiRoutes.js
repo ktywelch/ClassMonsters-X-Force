@@ -138,16 +138,15 @@ app.post('/api/login', function(req, res) {
       .catch((err) => {throw err})
     }
 });
-  
-  app.get('/api/students', (req, res) => {
-    const query = {};
-    if (req.query.author_id) {
-      query.AuthorId = req.query.author_id;
-    }
-    db.Student.findAll({
-      where: query,
-      include: [db.Author],
-    }).then((dbPost) => res.json(dbPost));
+  //Get all students for teacher
+  app.get('/api/students/:id', (req, res) => {
+    db.Users.findAll({
+      where: {
+        TeacherId: req.params.id,
+        RoleId: "2"
+      }, include: [db.Character]
+    }).then((dbStudents) => res.json(dbStudents))
+    .catch((err) => res.json(err))
   });
 
   app.get('/api/icons/:id', (req, res) => {
