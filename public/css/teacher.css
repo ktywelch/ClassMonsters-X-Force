@@ -416,5 +416,25 @@ body {
     background-size: cover;
   }
 
+ .profile-header-content {
+    /* background-image: url('../images/black\ background.jpg'); */
+    background-color: steelblue;
+}
 
+.container {
+    margin-top: 10px;
+    background-color: steelblue;
+}
+
+#stuCount {
+    margin-top: -10px;
+}
+
+#stu-info {
+    margin-top: 20px;
+}
+
+.profile-header-img {
+    margin-right: 20px;
+}
 
