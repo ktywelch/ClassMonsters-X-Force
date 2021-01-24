@@ -1,54 +1,56 @@
 
 // Sets the activeNote and displays it
+
+
+const deleteMess = (id) => 
+{ fetch(`/api/messages/${id}`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}).then(() => {
+  console.log("Message Deleted")
+  getAndRendMessages(uid);
+});
+};
+
 const handleMessView = (e) => {
   e.preventDefault();
-  console.log("clicked on message",e.target)
   activeMess = JSON.parse(e.target.parentElement.getAttribute('data-message'));
   renderActiveMess();
-  //added this so that either new note or changed note after save will return a blank new note
   activeMess = {};
 };
 
 
 const renderActiveMess = () => {
   //hide(saveNoteBtn);
-
+  messIdLoc.value = '';
+  messSubject.value = '';
+  messText.value = '';
+  messFrom.value = ''; 
   
   if (activeMess.id) {
+    console.log(activeMess)
     messIdLoc.setAttribute('readonly', true)
-    //noteTitle.setAttribute('readonly', true);
-    //noteText.setAttribute('readonly', true);
+    messSubject.setAttribute('readonly', true);
+    messFrom.setAttribute('readonly', true);
+    messText.setAttribute('readonly', true);
     messIdLoc.value = activeMess.id
     messSubject.value = activeMess.subject;
     messText.value = activeMess.message;
+    messFrom.value = activeMess.FromFullname;
   } else {
     messIdLoc.value = '';
     messSubject.value = '';
     messText.value = '';
+    messFrom.value = '';
   }
 };
 
-const handleMessDelete = (e) => {
-  // prevents the click listener for the list from being called when the button inside of it is clicked
-  e.stopPropagation();
 
-  const message = e.target;
-  const messId = JSON.parse(note.parentElement.getAttribute('data-mess')).id;
-
-  console.log("mess",message,messId)
-
-  if (activeNote.id === messId) {
-    activeNote = {};
-  }
-
-  deleteMess(messId).then(() => {
-    activeMess = {};
-    getAndRenderMess();
-    renderActiveMess();
-  });
-};
 
 const getAndRendMessages = async = (id) => {
+
   fetch(`/api/messages/${id}`, {
     method: 'GET',
     headers: {
@@ -57,6 +59,7 @@ const getAndRendMessages = async = (id) => {
   })
  .then((messages) = async(messages) => {
   let jsonMess = await messages.json();
+
   if (window.location.pathname === '/teacher' || window.location.pathname === '/student' ) {
     messList.forEach((el) => (el.innerHTML = ''));
   }
@@ -76,7 +79,7 @@ const getAndRendMessages = async = (id) => {
     if (delBtn) {
       const delBtnEl = document.createElement('i');
       delBtnEl.classList.add(
-        'fas','fa-trash-alt','float-right','text-danger','delete-note');
+        'fas','fa-trash-alt','float-right','text-danger','delete-mess');
       delBtnEl.addEventListener('click', handleMessDelete);
 
       liEl.append(delBtnEl);
@@ -94,14 +97,16 @@ const getAndRendMessages = async = (id) => {
     messListItems.push(li);
   });
 
-  if (window.location.pathname === '/teacher') {
+  if (window.location.pathname === '/teacher' || window.location.pathname === '/student') {
     messListItems.forEach((message) => messList[0].append(message));
   }
 });
 }
 
+
+
 const updMessages = (id,cb) =>
- fetch(`/api/messages/:${id}`, {
+ {fetch(`/api/messages/${id}`, {
    method: 'GET',
    headers: {
      'Content-Type': 'application/json',
@@ -109,17 +114,31 @@ const updMessages = (id,cb) =>
  }).then((data) => {
    cb(data.json())
 });
+};
 
 const handleRenderMsgAlert = () => {
   newMessageAlert = document.querySelector("#")
-  if (!noteTitle.value.trim() || !noteText.value.trim()) {
-    hide(saveNoteBtn);
+  if (!messSubject.value.trim() || !messText.value.trim()) {
+    hide(saveMessBtn);
   } else {
-    show(saveNoteBtn);
+    show(saveMessBtn);
   }
 };
 
-
+const handleMessDelete = (e) => {
+  // prevents the click listener for the list from being called when the button inside of it is clicked
+  e.preventDefault();
+  const messId = JSON.parse(e.target.parentElement.getAttribute('data-message')).id;
+  console.log("mess",messId)
+  if (activeMess.id === messId) {
+    activeMess = {};
+  }
+    deleteMess(messId).then(() => {
+    activeMess={};
+    getAndRenderMessages();
+    renderActiveMess();
+  });
+};
 
 
 

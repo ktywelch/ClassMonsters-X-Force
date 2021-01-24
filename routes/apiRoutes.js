@@ -3,19 +3,61 @@ const db = require('../models');
 var emoji = require('node-emoji');
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
+const path = require('path');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+
+
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
 // Routes
 module.exports = (app) => {
 
 //find all messages that belong to specific user
+// app.get('/api/messages/:id', (req, res) => {
+//   if (req.query.author_id) {
+//     query.AuthorId = req.query.author_id;
+//   }
+//   db.Messages.findAll({
+//     where: {
+//       ToId: req.params.id
+//     },
+//     include: [{
+//       model: db.Users,
+//       as: 'from',
+//       where: 
+//          {id: {$col: db.Messages.fromId}},
+//       required: true
+//       },
+//       { 
+//         model: db.Users,
+//         as: 'to',
+//         where: {
+//           id: req.params.id
+//         }
+//     }]
+//   }).then((dbGetMess) => res.json(dbGetMess))
+//   .catch(err => console.error(err))
+// })
+
+//find all messages that belong to specific user
+
 app.get('/api/messages/:id', (req, res) => {
-  console.log(req.params.id)
-  db.Messages.findAll({
-    where: {
-      toId: req.params.id
-    }
-  }).then((dbGetMess) => res.json(dbGetMess));
-})
+  let query = 'SELECT `Messages`.`id`, `message`, `subject`, `read`, `fromId`, `toId`, concat(Frm.last_name," ", Frm.first_name) as FromFullname FROM Messages ';
+  query += `left join Users as Frm on  Messages.fromId = Frm.id  where ToId = "${req.params.id}"`;
+  //console.log("myQuery",query)
+  sequelize.query(query,{
+    model: db.Messages,
+    mapToModel: true
+  }).then((dbGetMess) => res.json(dbGetMess))
+    .catch(err => console.error(err))
+  })
 
 //Create messages
 app.post('/api/messages', (req, res) => {
@@ -96,16 +138,15 @@ app.post('/api/login', function(req, res) {
       .catch((err) => {throw err})
     }
 });
-  
-  app.get('/api/students', (req, res) => {
-    const query = {};
-    if (req.query.author_id) {
-      query.AuthorId = req.query.author_id;
-    }
-    db.Student.findAll({
-      where: query,
-      include: [db.Author],
-    }).then((dbPost) => res.json(dbPost));
+  //Get all students for teacher
+  app.get('/api/students/:id', (req, res) => {
+    db.Users.findAll({
+      where: {
+        TeacherId: req.params.id,
+        RoleId: "2"
+      }, include: [db.Character]
+    }).then((dbStudents) => res.json(dbStudents))
+    .catch((err) => res.json(err))
   });
 
   app.get('/api/icons/:id', (req, res) => {
