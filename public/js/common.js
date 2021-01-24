@@ -21,8 +21,8 @@ const hide = (elem) => {
   elem.style.display = 'none';
 };
 
-const getUserInfo = (id,cb) =>{
-  fetch(`/api/users/${id}`, {
+const getUserInfo = async (id,cb) =>{
+  await fetch(`/api/users/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -107,8 +107,11 @@ params = getParams();
 uid = params.uid;
 //getUserInfor is in common 
 getUserInfo(uid, user =>  {
+  console.log(user)
+  if (user) {
   lname = user.last_name;
   fname = user.first_name;
+  console.log(user.Character.filename)
   let teach_place = document.querySelector('#teacher_img')
   let newD2 = document.createElement("div");
   let newHtml = `<img src="./images/${user.Character.filename}" alt="${user.Character.alt_text}">`
@@ -117,6 +120,7 @@ getUserInfo(uid, user =>  {
   fn_loc = document.querySelector('#user_full_name');
   fn_loc.innerText = `${fname} ${lname}`
   newD2="";
+  }
 });
  
 if (window.location.pathname === '/teacher') {
