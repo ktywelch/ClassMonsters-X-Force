@@ -19,34 +19,6 @@ if (config.use_env_variable) {
 // Routes
 module.exports = (app) => {
 
-//find all messages that belong to specific user
-// app.get('/api/messages/:id', (req, res) => {
-//   if (req.query.author_id) {
-//     query.AuthorId = req.query.author_id;
-//   }
-//   db.Messages.findAll({
-//     where: {
-//       ToId: req.params.id
-//     },
-//     include: [{
-//       model: db.Users,
-//       as: 'from',
-//       where: 
-//          {id: {$col: db.Messages.fromId}},
-//       required: true
-//       },
-//       { 
-//         model: db.Users,
-//         as: 'to',
-//         where: {
-//           id: req.params.id
-//         }
-//     }]
-//   }).then((dbGetMess) => res.json(dbGetMess))
-//   .catch(err => console.error(err))
-// })
-
-//find all messages that belong to specific user
 
 app.get('/api/messages/:id', (req, res) => {
   let query = 'SELECT `Messages`.`id`, `message`, `subject`, `read`, `fromId`, `toId`, concat(Frm.last_name," ", Frm.first_name) as FromFullname FROM Messages ';
@@ -100,9 +72,8 @@ app.get('/api/users/:id', function(req, res) {
   db.Users.findOne({
       where: {
         id: req.params.id,
-        }, include: [db.Role], include: [db.Character]
-      }).then((dbGetMess) => {
-      console.log(dbGetMess);  
+        }, include: [db.Role], include: [db.Character],  include: [db.Feeling]
+      }).then((dbGetMess) => { 
       res.json(dbGetMess)})
     .catch(err => {
   console.error(err);
