@@ -73,6 +73,7 @@ app.get('/api/users/:id', function(req, res) {
       where: {
         id: req.params.id,
         }, include: [db.Role], include: [db.Character],
+
       }).then((dbGetMess) => { 
       res.json(dbGetMess)})
     .catch(err => {

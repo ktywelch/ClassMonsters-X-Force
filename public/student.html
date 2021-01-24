@@ -25,7 +25,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand text-light" id="navBar">
         </a>
-
+        <h4 class="m-t-10 m-b-5" id="user_full_name"></h4>
         <div class="icons p-2">
             <a href="/" id="logoutBtn" style="font-size: 17px; color: white">Logout</a>
             <i class="fas fa-bell text-light new-msg" style="display: none;"></i>  
@@ -41,10 +41,8 @@
             <div class="profile-header-cover"></div>
             <div class="profile-header-content">
                 <div class="profile-header-img" id="user_img">
-                    <img src="./images/image (1).png" alt="">
                 </div>
                 <div class="profile-header-info">
-                    <h4 class="m-t-10 m-b-5" id="user_full_name"></h4>
                     <p class="m-b-10" id="user_role"></p>
                 </div>
                 <ul class="profile-header-tab nav nav-tabs">
@@ -95,11 +93,11 @@
                                 Feelings
                                 </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" type="button" id='happy'>Happy 😀</button>
-                                <button class="dropdown-item" type="button" id="sad">Sad😞</button>
-                                <button class="dropdown-item" type="button" id="angry">Angry😡</button>
-                                <button class="dropdown-item" type="button" id="tired">Tired😴</button>
-                                <button class="dropdown-item" type="button" id="confused">Confused😕</button>
+                                <button class="dropdown-item" type="button" id='happy 😀'>Happy 😀</button>
+                                <button class="dropdown-item" type="button" id="sad 😞">Sad 😞</button>
+                                <button class="dropdown-item" type="button" id="angry 😡">Angry 😡</button>
+                                <button class="dropdown-item" type="button" id="tired 😴">Tired 😴</button>
+                                <button class="dropdown-item" type="button" id="confused 😕">Confused 😕</button>
                                 
                             </div>
                 
@@ -117,33 +115,40 @@
                 <div class="panel">
                     <div class="bio-graph-heading">How I am Currently Feeling: <h3 id='studPostFeeling'></h3>
                     </div>
-                    <div class="bio-graph-heading">Latest Feeling Update:<h3 id="updateFeelStatus"></h3></div>   
-                    <div class="panel-body bio-graph-info">
-                        <h1>Bio Graph</h1>
-                        <div class="row">
-                            <div class="bio-row">
-                                <p><span>First Name </span>: Camila</p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Last Name </span>: Smith</p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Country </span>: USA</p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Birthday</span>: 13 July 1983</p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Email </span>: jsmith@flatlab.com</p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Mobile </span>: (12) 03 4567890</p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span>Phone </span>: 88 (02) 123456</p>
+                    <div class="bio-graph-heading">Latest Feeling Update:<h3 id="updateFeelStatus"></h3></div> 
+                    <form class="studentBio" >
+                        <div class="panel-body bio-graph-info">
+                            <h1>Bio Graph</h1>
+                            <div class="row">
+                                <div class="bio-row" id='parentFirst'>
+                                    <p>
+                                        
+                                        <label>First Name: </label>
+                                        <input type="text" placeholder="Camila">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p id='parentLast'>
+                                        <label>Last Name: </label>
+                                        <input type="text" placeholder="Smith">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p id='parentEmail'>
+                                        <label>Email: </label>
+                                        <input type="text" placeholder="jsmith@flatlab.com">
+                                    </p>
+                                </div>
+                                <div class="bio-row">
+                                    <p id='parentMobile'>
+                                        <label>Mobile: </label>
+                                        <input type="text" placeholder="(12) 03 4567890">
+                                    
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div>
                     <div class="row">

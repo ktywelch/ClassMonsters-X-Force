@@ -27,11 +27,11 @@ const getUserInfo = async (id,cb) =>{
     headers: {
       'Content-Type': 'application/json',
     },
-}).then((res) => {
-  return res.json();
-}).then((userInfo) => {
-  console.log(userInfo)
-  cb(userInfo); 
+  }).then((res) => {
+    return res.json();
+  }).then((userInfo) => {
+    console.log(userInfo)
+    cb(userInfo); 
   })
 }
 
@@ -59,7 +59,6 @@ const getMess = (id) =>{
 
       // this is how message pops happen - will need to update the modal 
       $('#messModal').modal('show')
-   
 
     $("#messModal").on('hide.bs.modal', function() { 
         //alert('The modal is about to be hidden.'); 
@@ -73,6 +72,19 @@ const getMess = (id) =>{
   return res.body;
   }).catch(handleLoginErr);
 };
+
+
+const updateUser = async (jsonUser, cb) => {
+  fetch(`/api/students/${uid}`, {
+    method: "PUT",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: jsonUser,
+  }).then((response) => {
+      cb(response)
+  })
+}
 
 const logout = () => {
   
