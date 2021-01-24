@@ -6,6 +6,7 @@ let messText = document.querySelector('.message-textarea');
 let messFrom = document.querySelector('.message-from')
 let messList = document.querySelectorAll('.list-container .list-group');
 let lname,fname,role,full_name;
+let activeMess = {};
 
 
 

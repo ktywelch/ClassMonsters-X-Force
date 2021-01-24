@@ -15,8 +15,12 @@ var Messages = sequelize.define("Messages", {
   timestamps: false
 });
 Messages.associate = function(models) {
-  Messages.belongsTo(models.Users,{as: "FromId"});
-  Messages.belongsTo(models.Users,{as: "ToId"})
+  Messages.belongsTo(models.Users,{
+        foreignKey: 'fromId'
+      });
+  Messages.belongsTo(models.Users,{
+    foreignKey: 'toId'
+  })
 };
 return Messages;
 }
