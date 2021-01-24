@@ -43,8 +43,14 @@ uid = params.uid;
 getUserInfo(uid, user =>  {
   lname = user.last_name;
   fname = user.first_name;
+  let teach_place = document.querySelector('#teacher_img')
+  let newD = document.createElement("div");
+  let newHtml = `<img src="./images/${user.Character.filename}" alt="${user.Character.alt_text}">`
+  newD.innerHTML=newHtml
+  teach_place.appendChild(newD); 
   fn_loc = document.querySelector('#user_full_name');
   fn_loc.innerText = `${fname} ${lname}`
+  newD="";
 });
  
 if (window.location.pathname === '/teacher') {
@@ -53,15 +59,13 @@ if (window.location.pathname === '/teacher') {
     getMess(uid);
     getAndRendMessages(uid);
     getStudents(uid, students =>{
+      let newD = document.createElement("div");
       let headHtml = `<h4 class="m-t-0 m-b-20"> Student List (${students.length})</h4>`
       students.forEach(st => {   
       let midHtml =  `<img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" class="media-object img-circle"></a>
       <div class="media-body valign-middle">
           <b class="text-inverse">${st.first_name} ${st.last_name}</b>`;
       console.log(midHtml)        
-
-
-
       let endHtml= ` </div>
       </div>
       
@@ -79,11 +83,6 @@ if (window.location.pathname === '/teacher') {
    </div>
 </div>`
 
-
-
-
-
-
       /* Things we can set in the future
         "email": null,
         "nickname": null,
@@ -96,6 +95,7 @@ if (window.location.pathname === '/teacher') {
       // console.log (stuHtml)        
       });
       let stuInfo = document.querySelector('#profile-friends')
-      stuInfo.innerHTML = headHtml + allStuHtml;
+      newD.innerHTML = headHtml + allStuHtml;
+      stuInfo.appendChild(newD);
     })
 }
