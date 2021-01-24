@@ -24,16 +24,19 @@ INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`,UserId) V
 ('caped_blue', 'ClipartKey_156046.png','cartoon image of caped hero from ClipartKey','8'),
 ('flying_purple', 'ClipartKey_1586159.png','cartoon image of caped hero from ClipartKey','9'),
 ('Super_girl', 'super_girl.jpg','cartoon image of caped hero from Etsy','10'),
-('Hulk', 'hulk.png','cartoon image of caped hero from Etsy','1'),
-('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','2');
+('Hulk', 'hulk.png','cartoon image of caped hero from Etsy','3'),
+('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','1');
 
 
 INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`,UserID) VALUES 
 ('facebok_power', 'ClipartKey_1786243.png','cartoon image of caped hero from ClipartKey','4'),
 ('cape_red', 'ClipartKey_302350.png','cartoon image of caped male hero from  ClipartKey','5'),
 ('super_spidey', 'ClipartKey_3277063.png','cartoon image of kid spider man from ClipartKey','6'),
-('bat_gir1', 'ClipartKey_552957.png','cartoon image of kid batgirl from ClipartKey','7'),
-('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','3');
+('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','2');
+ 
+ /* Extra images should be added here */
+INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`) VALUES 
+('bat_gir1', 'ClipartKey_552957.png','cartoon image of kid batgirl from ClipartKey');
 
 INSERT INTO `classHeros_db`.`Messages` (`subject`,`message`,`read`,`FromId`,`ToId`) 
 VALUES 

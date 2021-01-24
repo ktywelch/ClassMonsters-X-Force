@@ -62,39 +62,48 @@ if (window.location.pathname === '/teacher') {
       let newD = document.createElement("div");
       let headHtml = `<h4 class="m-t-0 m-b-20"> Student List (${students.length})</h4>`
       students.forEach(st => {   
-      let midHtml =  `<img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" class="media-object img-circle"></a>
-      <div class="media-body valign-middle">
-          <b class="text-inverse">${st.first_name} ${st.last_name}</b>`;
-      console.log(midHtml)        
-      let endHtml= ` </div>
-      </div>
-      
-       <div class="dropdown">
-       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Teacher Actions
-       </button>
-       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-         <button class="dropdown-item" type="button" id="Send_Message" value="${st.id}">Send Message to Student</button>
-         <button class="dropdown-item"> <a href="mailto:${st.parentEmail}">Send an e-mail to parent</a></button>
-         <button class="dropdown-item" type="button" id="Change_Character" value="${st.id}">Change Character</button> 
-         <button class="dropdown-item" type="button" id="Change_Teacher" value="${st.id}">Change Teacher</button>    
-           </div>
-       </div>
-   </div>
-</div>`
+        let nickname = st.nickname;
+        if (st.nickname === null){
+            nickname = st.first_name;
+        }
+        let newHtml =`
+                    <div class="col-md-4">
+                      <div class="card mb-4 box-shadow">
+                      <div class="float-md-left">
+                      <img src="./images//${st.Character.filename}" alt="${st.Character.alt_txt}" 
+                         class="p-3 img-responsive profile-image float-md-left float-sm-left w-25" 
+                         />
+                      <h5 class="card-title">Student Information</h5>
+                      <div class="text-left" >
+                          <p>Name: ${st.first_name}  ${st.last_name}</p>
+                          <p>Prefers: ${nickname} </p>
+                          <p>Bio: </p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <div class="dropdown">
+                              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Class Tools</button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                      <button class="dropdown-item" type="button" id="Send_Message" value="${st.id}">Send Message to Student</button>
+                                      <button class="dropdown-item"> <a href="mailto:${st.parentEmail}">Send an e-mail to parent</a></button>
+                                      <button class="dropdown-item" type="button" id="Change_Character" value="${st.id}">Change Character</button> 
+                                      <button class="dropdown-item" type="button" id="Change_Teacher" value="${st.id}">Change Teacher</button>    
+                                  </div>
+                                </div>
+                              </div> 
 
-      /* Things we can set in the future
-        "email": null,
-        "nickname": null,
-        "parentFName": null,
-        "parentLName": null,
-        "parentPhoneNumber": null,
-        "parentEmail": null,*/
-
-      allStuHtml += begHtml + midHtml + endHtml; 
+                              <button type="button" class="btn btn-sm btn-outline-secondary">Admin Tools</button>
+                            </div>
+                            <small class="text-muted"></small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        `
+      allStuHtml += newHtml; 
       // console.log (stuHtml)        
       });
-      let stuInfo = document.querySelector('#profile-friends')
+      let stuInfo = document.querySelector('#stu-info')
       newD.innerHTML = headHtml + allStuHtml;
       stuInfo.appendChild(newD);
     })
