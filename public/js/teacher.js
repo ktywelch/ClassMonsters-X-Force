@@ -71,9 +71,9 @@ if (window.location.pathname === '/teacher') {
                       <div class="card mb-4 box-shadow">
                       <div class="float-md-left">
                       <img src="./images//${st.Character.filename}" alt="${st.Character.alt_txt}" 
-                         class="p-3 img-responsive float-md-left float-sm-left rounded-circle w-25" 
+                         class="p-3 img-responsive profile-image float-md-left float-sm-left w-25" 
                          />
-                      <h5 class="card-title">Student Informatio</h5>
+                      <h5 class="card-title">Student Information</h5>
                       <div class="text-left" >
                           <p>Name: ${st.first_name}  ${st.last_name}</p>
                           <p>Prefers: ${nickname} </p>
