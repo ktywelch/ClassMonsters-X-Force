@@ -20,10 +20,7 @@
     }
     </style>
 
-
 <body>
-
-
 
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand text-light" id="navBar">
@@ -51,16 +48,13 @@
                     <p class="m-b-10" id="user_role"></p>
                 </div>
                 <ul class="profile-header-tab nav nav-tabs">
-                    <li class="nav-item"><a href="#profile-post" class="nav-link"
-                            data-toggle="tab">EDIT PROFILE</a></li>
+
                     <li class="nav-item"><a href="#profile-about" class="nav-link"
                             data-toggle="tab">RECENT ACTIVITIES</a></li>
                     <li class="nav-item"><a href="#profile-photos" class="nav-link"
                             data-toggle="tab">PHOTOS</a></li>
                     <li class="nav-item"><a href="#profile-videos" class="nav-link"
                             data-toggle="tab">VIDEOS</a></li>
-                    <li class="nav-item"><a href="#profile-friends" class="nav-link active show"
-                            data-toggle="tab">STUDENTS</a></li>
                     <li class="nav-item" id="msg-alert" style="display: none;">
                             <a class="btn btn-lg btn-success" href="#">
                                 <i class="fa fa-bell fa-2x text-light pull-right"></i></a>
@@ -101,12 +95,14 @@
                                 Feelings
                                 </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" type="button">Happy</button>
-                                <button class="dropdown-item" type="button">Sad</button>
-                                <button class="dropdown-item" type="button">Angry</button>
-                                <button class="dropdown-item" type="button">Tired</button>
-                                <button class="dropdown-item" type="button">Confused</button>
+                                <button class="dropdown-item" type="button" id='happy'>Happy 😀</button>
+                                <button class="dropdown-item" type="button" id="sad">Sad😞</button>
+                                <button class="dropdown-item" type="button" id="angry">Angry😡</button>
+                                <button class="dropdown-item" type="button" id="tired">Tired😴</button>
+                                <button class="dropdown-item" type="button" id="confused">Confused😕</button>
+                                
                             </div>
+                
                         </div>
                         <ul class="nav nav-pills">
                             <li>
@@ -119,8 +115,9 @@
                     </footer>
                 </div>
                 <div class="panel">
-                    <div class="bio-graph-heading" id='studPostFeeling'>
+                    <div class="bio-graph-heading">How I am Currently Feeling: <h3 id='studPostFeeling'></h3>
                     </div>
+                    <div class="bio-graph-heading">Latest Feeling Update:<h3 id="updateFeelStatus"></h3></div>   
                     <div class="panel-body bio-graph-info">
                         <h1>Bio Graph</h1>
                         <div class="row">
