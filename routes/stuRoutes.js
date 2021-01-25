@@ -18,7 +18,7 @@ module.exports = (app) => {
   app.put('/api/students/:id', (req, res) => {
     console.log("from api: ", req.body)
     db.Users.update(
-      {nickname: req.body.nickname},
+      req.body,
       {where: {id: req.params.id}}
       ).then((results) => {
         res.json(results);
@@ -31,6 +31,8 @@ module.exports = (app) => {
         console.error(err);
       })
   })
+
+
 
   // Get route for retrieving a single post
   app.get('/api/posts/:id', (req, res) => {

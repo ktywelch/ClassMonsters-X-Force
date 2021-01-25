@@ -29,14 +29,14 @@ editNickname.addEventListener('click', (e) => {
     e.preventDefault();
     let newNickname = document.getElementById("btn_text").value
     console.log(newNickname)
-    fetch(`/api/students/${uid}`, {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            nickname: newNickname
-        })
+
+    let updateJson = JSON.stringify(
+        {
+            nickname: newNickname,
+        }
+        )
+    updateUser(updateJson, json_string => {
+    console.log(json_string)
     }).then((res) => {
         console.log(res.json)
     })
@@ -45,8 +45,6 @@ editNickname.addEventListener('click', (e) => {
     })
     location.reload();
 })
-
-
 
 
 const usersInfo = async () => {
@@ -59,7 +57,7 @@ const usersInfo = async () => {
         nickname = user.nickname;
 
         fn_loc = document.querySelector('#user_full_name');
-        fn_loc.innerText = `${fname} ${lname}`
+        fn_loc.innerText = `${"Student: "} ${fname} ${lname}`
 
         nickn_loc = document.querySelector('#studentName');
         nickn_loc.innerText = nickname
@@ -85,12 +83,12 @@ postMsg.addEventListener('click', (e) => {
 
     studPostFeeling.innerText = "I am feeling " + feelingMsg + " today"
     console.log(feelingMsg)
-    createFeelings(feelingMsg)
+    updateFeelings(feelingMsg)
     getFeeling(uid)
 })
 
 
-const createFeelings = (studentFeels) => {
+const updateFeelings = (studentFeels) => {
     fetch(`/api/feelings/${uid}`, {
         method: 'POST',
         headers: {
@@ -120,64 +118,26 @@ const getFeeling = () => {
         let currentFeeling = feelingInfo[feelingInfo.length - 1]
         console.log(currentFeeling)
 
-        let todayFeeling = currentFeeling.feeling
-        console.log(todayFeeling)
-
         let latestUpdate = currentFeeling.createdAt
         console.log(latestUpdate)
 
-
         const updateFeelStatus = document.querySelector("#updateFeelStatus")
-        updateFeelStatus.innerText = latestUpdate.slice(0, 10)
+        updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
     })
 }
 
 
-
-
-//Dropdown btns
+//Dropdown btn so student don't have to type out how they are feeling
 let feelingsBtn = document.querySelector(".dropdown-menu")
+feelingsBtn.addEventListener("click", printFeels)
 
-feelingsBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    let happy = document.querySelector("#happy")
-    happy.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        feelingMsg.innerText = 'happy 😀'
-    })
-
-    let sad = document.querySelector("#sad")
-    sad.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        feelingMsg.innerText = 'sad 😞' 
-    })
-
-    let angry = document.querySelector("#angry")
-    angry.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        feelingMsg.innerText = 'angry 😡 '
-    })
-
-    let confused = document.querySelector("#confused")
-    confused.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        feelingMsg.innerText = 'confused 😕'
-    })
-
-    let tired = document.querySelector("#tired")
-    tired.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        feelingMsg.innerText = 'tired 😴'
-    })
-})
-
-
+function printFeels(e) {
+    if (e.target !== e.currentTarget) {
+        let clickedItem = e.target.id
+        feelingMsg.innerText = clickedItem
+    };
+    e.stopPropagation();
+}
 
 //main
 params = getParams();

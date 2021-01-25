@@ -72,7 +72,8 @@ app.get('/api/users/:id', function(req, res) {
   db.Users.findOne({
       where: {
         id: req.params.id,
-        }, include: [db.Role], include: [db.Character],  include: [db.Feeling]
+        }, include: [db.Role], include: [db.Character],
+
       }).then((dbGetMess) => { 
       res.json(dbGetMess)})
     .catch(err => {
