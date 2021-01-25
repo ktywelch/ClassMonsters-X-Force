@@ -29,11 +29,9 @@ editNickname.addEventListener('click', (e) => {
     let newNickname = document.getElementById("btn_text").value
     console.log(newNickname)
 
-    let updateJson = JSON.stringify(
-        {
+    let updateJson = JSON.stringify({
             nickname: newNickname,
-        }
-        )
+        })
     updateUser(updateJson, json_string => {
     console.log(json_string)
     }).then((res) => {
@@ -50,7 +48,7 @@ const usersInfo = async () => {
     
     await getUserInfo(uid, user => {
         lname = user.last_name;
-        // console.log(lname)
+
         fname = user.first_name;
         email = user.email;
         nickname = user.nickname;
@@ -58,11 +56,26 @@ const usersInfo = async () => {
         fn_loc = document.querySelector('#user_full_name');
         fn_loc.innerText = `${"Student: "} ${fname} ${lname}`
 
+        //adding nickname
         nickn_loc = document.querySelector('#studentName');
         nickn_loc.innerText = nickname
 
+        //adding email
         em_loc = document.querySelector('#studentEmail');
         em_loc.textContent = fname.charAt(0) + lname + "@WeAreHeroes.com"
+
+        //setting current feelings
+        currentFeels = user.Feelings.pop().feeling
+        console.log(currentFeels)
+        let studPostFeeling = document.querySelector('#studPostFeeling')
+        studPostFeeling.innerText = "I am feeling " + currentFeels + " today"
+
+        //setting latest feelings update
+        latestUpdate = user.Feelings.pop().createdAt
+        console.log(latestUpdate)
+
+        const updateFeelStatus = document.querySelector("#updateFeelStatus")
+        updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
     });
 }
 
@@ -70,22 +83,18 @@ getParams();
 usersInfo();
 
 //creating new messages
-//UPDATE: work in progress
 let postMsg = document.getElementById("postMsg");
 
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
     
+    //students can type in the textarea to update feelings
     let feelingMsg = document.querySelector('#feelingMsg').value
-    let studPostFeeling = document.querySelector('#studPostFeeling')
-
-    studPostFeeling.innerText = "I am feeling " + feelingMsg + " today"
-    console.log(feelingMsg)
     updateFeelings(feelingMsg)
     getFeeling(uid)
+    location.reload()
 })
-
 
 const updateFeelings = (studentFeels) => {
     fetch(`/api/feelings/${uid}`, {
@@ -113,19 +122,8 @@ const getFeeling = () => {
         return res.json();
     }).then((feelingInfo) => {
         console.log(feelingInfo)
-        
-        let currentFeeling = feelingInfo[feelingInfo.length - 1]
-        console.log(currentFeeling)
-
-        let latestUpdate = currentFeeling.createdAt
-        console.log(latestUpdate)
-
-        const updateFeelStatus = document.querySelector("#updateFeelStatus")
-        updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
-
     })
 }
-
 
 //Dropdown btn so student don't have to type out how they are feeling
 let feelingsBtn = document.querySelector(".dropdown-menu")
@@ -148,11 +146,6 @@ if (window.location.pathname === '/student') {
     getMess(uid);
     getAndRendMessages(uid)
 }
-
-//FIXME:
-//logout btn to prevent user to go backwards
-const logoutBtn = document.querySelector("#logoutBtn")
-logoutBtn.addEventListener('click', logout())
 
 
 
