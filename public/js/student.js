@@ -1,4 +1,3 @@
-
 let newMessages;
 let newMessageAlert;
 let sendMessageBtn;
@@ -123,6 +122,7 @@ const getFeeling = () => {
 
         const updateFeelStatus = document.querySelector("#updateFeelStatus")
         updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
+
     })
 }
 
