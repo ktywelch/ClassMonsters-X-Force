@@ -21,6 +21,18 @@ const hide = (elem) => {
   elem.style.display = 'none';
 };
 
+const resetView = () => {
+  messSubject.style.display =  'none';
+  messText.style.display =  'none';
+  messFrom.style.display =  'none';
+  messTo.style.display = 'none';
+  messSubject.value = "";
+  messText.value = "";
+  messFrom.value = "";
+  // will take care of this one later///
+  uid=myId;
+}
+
 const getUserInfo = async (id,cb) =>{
   await fetch(`/api/users/${id}`, {
     method: 'GET',
@@ -65,10 +77,8 @@ const getMess = (id) =>{
 
     $("#messModal").on('hide.bs.modal', function() { 
         //alert('The modal is about to be hidden.'); 
-        messIdLoc.value = '';
-        messSubject.value = '';
-        messText.value = '';
-        messFrom.value = '';
+        resetView();
+        location.reload();
     }); 
   
     })
