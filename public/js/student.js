@@ -3,7 +3,6 @@ let newMessageAlert;
 let sendMessageBtn;
 let newMessageCreateBtn;
 let messCreateFrom, messChanged, params, uid;
-
 let messIdLoc = document.querySelector('.message-id');
 let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
@@ -11,24 +10,35 @@ let messFrom = document.querySelector('.message-from')
 let messList = document.querySelectorAll('.list-container .list-group');
 let lname,fname,role,full_name;
 
+let editNickname = document.querySelector("#editStudbtn")
+let editParentBio = document.querySelector("#editParBio")
+let fn_loc = document.querySelector('#user_full_name');
+let nickn_loc = document.querySelector('#studentName');
+let em_loc = document.querySelector('#studentEmail');
+let studPostFeeling = document.querySelector('#studPostFeeling')
+let updateFeelStatus = document.querySelector("#updateFeelStatus")
+let parentContactBtn = document.querySelector("#parentContact")
+let pFName = document.querySelector("#editFirst")
+let pLName = document.querySelector("#parentLast")
+let emailPar = document.querySelector("#EmailPar")
+let postMsg = document.getElementById("postMsg");
+
+
 
 //Clickable icon to open modal
-let characterIcon = document.querySelector(".characterIcon");
-characterIcon.addEventListener("click", (e) => {
+let editPro = document.querySelector("#editPro");
+editPro.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("character imaged clicked")
     $('#studModal').modal('show')
 })
 
-//NOTE: Edit nickname
-let studentName = document.querySelector("#studentName");
-let editNickname = document.querySelector("#editStudbtn")
-
+// Edit nickname
 editNickname.addEventListener('click', (e) => {
     e.preventDefault();
     let newNickname = document.getElementById("btn_text").value
     console.log(newNickname)
-
+    
     let updateJson = JSON.stringify({
             nickname: newNickname,
         })
@@ -43,39 +53,80 @@ editNickname.addEventListener('click', (e) => {
     location.reload();
 })
 
+//Update Parent Button
+editParentBio.addEventListener('click', (e) => {
+    e.preventDefault();
 
-const usersInfo = async () => {
+    let parentFi = document.querySelector("#parentFi").value
+    let parentLa = document.querySelector("#parentLa").value
+    let parentEm = document.querySelector("#parentEm").value
     
-    await getUserInfo(uid, user => {
-        lname = user.last_name;
+    let updateJson = JSON.stringify({
+            parentFName: parentFi,
+            parentLName: parentLa,
+            parentEmail: parentEm,
+        })
+    console.log(updateJson)
+    updateUser(updateJson, json_string => {
+    console.log(json_string)
+    }).then((res) => {
+        console.log(res.json)
+    })
+    .catch(err => {
+        console.error(err);
+    })
+    location.reload()
+})
 
+//Parent Contact Modal
+parentContactBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    $('#parentCon').modal('show')
+})
+
+const usersInfo = () => {
+    getUserInfo(uid, user => {
+        lname = user.last_name;
         fname = user.first_name;
         email = user.email;
         nickname = user.nickname;
+        pFirst = user.parentFName;
+        pLast = user.parentLName;
+        pEmail = user.parentEmail;
+        userChar = user.Character.filename;
+        userAlt = user.Character.alt_text
+        
 
-        fn_loc = document.querySelector('#user_full_name');
+        userImg = document.querySelector("#studentImg");
+
+        let newDiv = document.createElement("div");
+        let newHtml = `<img  src="./images/${userChar}" alt="#{userAlt}">`
+        newDiv.innerHTML = newHtml
+        userImg.appendChild(newDiv)
+
         fn_loc.innerText = `${"Student: "} ${fname} ${lname}`
 
         //adding nickname
-        nickn_loc = document.querySelector('#studentName');
         nickn_loc.innerText = nickname
 
         //adding email
-        em_loc = document.querySelector('#studentEmail');
         em_loc.textContent = fname.charAt(0) + lname + "@WeAreHeroes.com"
 
         //setting current feelings
         currentFeels = user.Feelings.pop().feeling
         console.log(currentFeels)
-        let studPostFeeling = document.querySelector('#studPostFeeling')
+
         studPostFeeling.innerText = "I am feeling " + currentFeels + " today"
 
         //setting latest feelings update
         latestUpdate = user.Feelings.pop().createdAt
-        console.log(latestUpdate)
 
-        const updateFeelStatus = document.querySelector("#updateFeelStatus")
         updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
+
+        pFName.innerText = pFirst
+        pLName.innerText = pLast
+        emailPar.innerText = pEmail
+
     });
 }
 
@@ -83,8 +134,6 @@ getParams();
 usersInfo();
 
 //creating new messages
-let postMsg = document.getElementById("postMsg");
-
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
