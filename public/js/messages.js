@@ -10,6 +10,7 @@ let messBtn = document.querySelector('#messBtn');
 let messList = document.querySelectorAll('.list-container .list-group');
 */
 
+//Calls the fetchto delete the message from the DB - renders and refetches afer delete
 const deleteMess = (id) => 
 { fetch(`/api/messages/${id}`, {
   method: 'DELETE',
@@ -22,7 +23,29 @@ const deleteMess = (id) =>
 });
 };
 
-// assumes the mess locations are set by the main..
+const sendMess = () => {
+  let subject =  messSubject.value;
+  let message = messText.value;
+  let msgJSON = JSON.stringify({
+    subject:  subject,
+    message: message,
+    fromId: myId, 
+    read: 0,
+    toId:  toId
+  })
+  fetch(`/api/messages`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+      body: msgJSON
+  }).then((res) => {
+          resetView();
+          getAndRendMessages(uid);
+  }).catch((err) => console.error(err));
+  messBtn.innerText = "New Message"; 
+}
+
+/* assumes the mess locations are set by the main and chances when he user clicks on the subject they will be able to see the message 
+deatils - the click/listener action is assigned to each message in generated list*/
 const handleMessView = (e) => {
   e.preventDefault();
   let messBtn = document.querySelector('#messBtn');
@@ -32,17 +55,16 @@ const handleMessView = (e) => {
   activeMess = {};
 };
 
-// this function resets all the vlause and the forms so that a new messages are clean
-
-
+/* We have one button on the messages and the action changes based on the text value
+THis function handles what happens when there is a click on the button.
+*/
 const handleMessBtn = (e,uid) => {
-  console.log("value of uid",uid);
   uid=myId;
   let  btnAction;
   if (typeof(e) !== 'string'){
   e.preventDefault();
   btnAction = messBtn.innerText;
-  } else {  btnAction = "renderActive";}
+  } else {  btnAction = e;}
    switch (btnAction){
     case 'Close Message':  
         resetView();
@@ -61,47 +83,65 @@ const handleMessBtn = (e,uid) => {
           messText.removeAttribute("readonly");
           messSubject.style.display =  'initial';
           messText.style.display = 'initial';
-          messTo.style.display =  'initial';
           messBtn.innerText = "Send Message"
       break;
+    case 'New Stu Message':
+          let listGroup = document.querySelector('.list-group')
+          listGroup.style.display =  'none';
+          messSubject.removeAttribute("readonly");
+          messText.removeAttribute("readonly");
+          messSubject.style.display =  'initial';
+          messText.style.display = 'initial';
+          messTo.style.display =  'none';
+          console.log(stuId);
+          toId=stuId;
+          messBtn.innerText = "Send and Close Messages"
+      break;
     case 'Send Message':
-         console.log(uid);
-          let subject =  messSubject.value;
-          let message = messText.value;
-          let msgJSON = JSON.stringify({
-            subject:  subject,
-            message: message,
-            fromId: myId, 
-            read: 0,
-            toId:  toId
-          })
-          fetch(`/api/messages`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-              body: msgJSON
-          }).then((res) => {
-                  resetView();
-                  getAndRendMessages(uid);
-                //console.log(res.json);
-          }).catch((err) => console.error(err));
-          messBtn.innerText = "New Message";  
+        sendMess();
+        
         break;
+      case 'Send and Close Messages':
+         sendMess();
+         resetView();
       case 'RenderActive':
         messBtn.innerText = "New Message";
         renderActiveMess ();
         break;
       default:
+        console.log(e)
         messBtn.innerText = "New Message";
         resetView();
         break;
     }
-  //activeMess = {};
 };
 
+// const sendMess = () => {
+//   let subject =  messSubject.value;
+//   let message = messText.value;
+//   let msgJSON = JSON.stringify({
+//     subject:  subject,
+//     message: message,
+//     fromId: myId, 
+//     read: 0,
+//     toId:  toId
+//   })
+//   fetch(`/api/messages`, {
+//     method: 'POST',
+//     headers: {'Content-Type': 'application/json'},
+//       body: msgJSON
+//   }).then((res) => {
+//           resetView();
+//           getAndRendMessages(uid);
+//   }).catch((err) => console.error(err));
+//   messBtn.innerText = "New Message"; 
+// }
+
+//This creates our message drop down button so we can select users to send message to 
 const createMessageDropDown = () => {
   let dropSelection = `<div class="dropdown">
   <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle messTo" value="" style="display: none;">
-  <span id="selected">Chose Person</span><span class="caret"></span></a><ul class="dropdown-menu">`;
+  <span id="selected">Select Recipient</span><span class="caret"></span></a><ul class="dropdown-menu">`;
   let t = document.querySelector('.dropDownTo');
   let newD = document.createElement('div');
   fetch('/api/allnames', {
@@ -111,21 +151,22 @@ const createMessageDropDown = () => {
     },
   }).then((res) => {return res.json()})
     .then(allusers => {
-      allusers.forEach(user => {
-      let currUser =  `<li><a class="nmli" id="${user.id}" value="${user.id}" >${user.first_name} ${user.last_name}</a></li>`;
+      allusers.forEach(user => { 
+      let currUser =  `<li><a class="nmli" id="${user.id}" value="${user.id}" >${user.first_name} ${user.last_name} - ${user.Role.name}</a></li>`;
       dropSelection += currUser;
       });
       dropSelection += '</ul></div>';
       newD.innerHTML = dropSelection;
       t.appendChild(newD);
       messTo = document.querySelector('.messTo');
-      document.querySelectorAll('.nmli').forEach( function(el) { 
-        el.addEventListener('click', function() {
+      //Listeners for each user so we can select one from the list
+      document.querySelectorAll('.nmli').forEach( (el) => { 
+        el.addEventListener('click',() =>  {
             messTo.innerText = el.textContent;
             toId = el.id;
         });
     });
-  }).catch(err => console.error(JSON.parse(err)))
+  }).catch(err => console.error(err))
   }
   
 
@@ -171,8 +212,13 @@ const getAndRendMessages = async = (id) => {
   let messListItems = [];
 
   // Returns HTML element with or without a delete button
-    const createLi = (text, delBtn = true) => {
+    const createLi = (text,read, delBtn = true) => {
     const liEl = document.createElement('li');
+    if(read){
+      liEl.style.color = "blue"
+    } else {
+      liEl.style.color = "green"
+    }
     liEl.classList.add('list-group-item');
 
     const spanEl = document.createElement('span');
@@ -187,7 +233,23 @@ const getAndRendMessages = async = (id) => {
         'fas','fa-trash-alt','float-right','text-danger','delete-mess');
       delBtnEl.addEventListener('click', handleMessDelete);
       liEl.append(delBtnEl);
+     //Adds the icon to tell if the
+     const iconEnvEl = document.createElement('i');
+       if(read){
+        iconEnvEl.classList.add(
+          'fas','fa-envelope-open','float-right','text-primary','delete-mess');
+       } else{
+        iconEnvEl.classList.add(
+          'fas','fa-envelope','float-right','text-success','delete-mess');
+       } 
+
+
+        iconEnvEl.addEventListener('click', renderActiveMess);
+      liEl.append(iconEnvEl);
+
+
     }
+
     return liEl;
   };
 
@@ -196,8 +258,9 @@ const getAndRendMessages = async = (id) => {
   }
 
   jsonMess.forEach((message) => {
-    const li = createLi(message.subject);
-    // this outs in JSON format with the existing li tag created above
+
+    const li = createLi(message.subject,message.read);
+    // this puts in JSON format with the existing li tag created with data above
     li.dataset.message = JSON.stringify(message);
     messListItems.push(li);
   });
@@ -245,7 +308,7 @@ const handleMessDelete = (e) => {
     deleteMess(messId).then(() => {
     activeMess={};
     getAndRenderMessages(uid);
-    handleMessBtn("render",uid);
+    handleMessBtn("RenderActive",uid);
   });
 };
 

@@ -3,6 +3,8 @@ const db = require('../models');
 
 // Routes
 module.exports = (app) => {
+
+  //// Victor are we calling this anywhere I think it was old .....
   app.get('/api/students', (req, res) => {
     const query = {};
     if (req.query.author_id) {
