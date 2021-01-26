@@ -31,5 +31,4 @@ module.exports = (app) => {
         console.error(err);
       })
   })
-
 }

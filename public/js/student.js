@@ -26,8 +26,8 @@ let postMsg = document.getElementById("postMsg");
 
 
 //Clickable icon to open modal
-let characterIcon = document.querySelector(".characterIcon");
-characterIcon.addEventListener("click", (e) => {
+let editPro = document.querySelector("#editPro");
+editPro.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("character imaged clicked")
     $('#studModal').modal('show')
@@ -93,6 +93,16 @@ const usersInfo = () => {
         pFirst = user.parentFName;
         pLast = user.parentLName;
         pEmail = user.parentEmail;
+        userChar = user.Character.filename;
+        userAlt = user.Character.alt_text
+        
+
+        userImg = document.querySelector("#studentImg");
+
+        let newDiv = document.createElement("div");
+        let newHtml = `<img  src="./images/${userChar}" alt="#{userAlt}">`
+        newDiv.innerHTML = newHtml
+        userImg.appendChild(newDiv)
 
         fn_loc.innerText = `${"Student: "} ${fname} ${lname}`
 

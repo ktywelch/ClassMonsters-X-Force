@@ -333,6 +333,8 @@ ul.summary-list > li:last-child  {
 }
 
 
+
+
 .activity .activity-desk .arrow {
     border-right: 8px solid #F4F4F4 !important;
 }
@@ -468,4 +470,9 @@ body {
 
 #studPostFeeling {
     font-size: 25px;
+}
+
+.profile-nav .user-heading a img {
+    width: 150px;
+    height: 220px;
 }
