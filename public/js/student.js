@@ -1,14 +1,16 @@
-let newMessages;
-let newMessageAlert;
-let sendMessageBtn;
-let newMessageCreateBtn;
+let newMessages, newMessageAlert, sendMessageBtn, newMessageCreateBtn;
 let messCreateFrom, messChanged, params, uid;
 let messIdLoc = document.querySelector('.message-id');
 let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
 let messFrom = document.querySelector('.message-from')
 let messList = document.querySelectorAll('.list-container .list-group');
+let messBtn = document.querySelector('#messBtn');
+let messModal = document.querySelector("#messModal");
 let lname,fname,role,full_name;
+let activeMess = {};
+let toId,myId,stuId,listItems;
+
 
 let editNickname = document.querySelector("#editStudbtn")
 let editParentBio = document.querySelector("#editParBio")
@@ -21,6 +23,7 @@ let parentContactBtn = document.querySelector("#parentContact")
 let pFName = document.querySelector("#editFirst")
 let pLName = document.querySelector("#parentLast")
 let emailPar = document.querySelector("#EmailPar")
+let numberPar = document.querySelector("#numberPar")
 let postMsg = document.getElementById("postMsg");
 
 
@@ -32,6 +35,7 @@ editPro.addEventListener("click", (e) => {
     console.log("character imaged clicked")
     $('#studModal').modal('show')
 })
+
 
 // Edit nickname
 editNickname.addEventListener('click', (e) => {
@@ -60,12 +64,16 @@ editParentBio.addEventListener('click', (e) => {
     let parentFi = document.querySelector("#parentFi").value
     let parentLa = document.querySelector("#parentLa").value
     let parentEm = document.querySelector("#parentEm").value
+    let parentNum = document.querySelector("#parentNum").value 
+                                        
     
     let updateJson = JSON.stringify({
             parentFName: parentFi,
             parentLName: parentLa,
             parentEmail: parentEm,
+            parentPhoneNumber: parentNum
         })
+
     console.log(updateJson)
     updateUser(updateJson, json_string => {
     console.log(json_string)
@@ -95,8 +103,15 @@ const usersInfo = () => {
         pEmail = user.parentEmail;
         userChar = user.Character.filename;
         userAlt = user.Character.alt_text
+        pNum = user.parentPhoneNumber
+        console.log(pNum)
         
 
+        pFName.innerText = pFirst
+        pLName.innerText = pLast
+        emailPar.innerText = pEmail
+        numberPar.innerText =  + pNum
+        
         userImg = document.querySelector("#studentImg");
 
         let newDiv = document.createElement("div");
@@ -123,9 +138,6 @@ const usersInfo = () => {
 
         updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
 
-        pFName.innerText = pFirst
-        pLName.innerText = pLast
-        emailPar.innerText = pEmail
 
     });
 }
@@ -186,15 +198,28 @@ function printFeels(e) {
     e.stopPropagation();
 }
 
+const addNavList = () => {
+    let navMess = document.querySelector('#navMess');
+    navMess.addEventListener('click',() => {
+    handleMessBtn("New Message",uid)
+    showMessCenter();
+    })
+}
+
 //main
 params = getParams();
 uid = params.uid;
 usersInfo()
 
 if (window.location.pathname === '/student') {
+    addNavList()
     getMess(uid);
     getAndRendMessages(uid)
 }
+
+
+
+
 
 
 
