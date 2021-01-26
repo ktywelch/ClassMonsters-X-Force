@@ -35,10 +35,10 @@
                                         data-toggle="tab">RECENT ACTIVITIES</a></li>
                                 <li class="nav-item"><a href="#profile-photos" class="nav-link"
                                         data-toggle="tab">PHOTOS</a></li>
-                                <li class="nav-item"><a href="#profile-videos" class="nav-link"
-                                        data-toggle="tab">VIDEOS</a></li>
+                                <li class="nav-item" id="navMess"><a class="nav-link"
+                                        data-toggle="tab">MESSAGE</a></li>
                                 <li class="nav-item">
-                                    <a href="/" id="logoutBtn" style="color:black;">LOGOUT</a></li>
+                                    <a href="/" id="logoutBtn">LOGOUT</a></li>
                                 <li class="nav-item" id="msg-alert" style="display: none;">
                                         <a class="btn btn-lg btn-success" href="#">
                                             <i class="fa fa-bell fa-2x text-light pull-right"></i></a>
@@ -68,7 +68,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <div id="messModalLabel" class="modal-title">Messages in queue</div>
+            <div id="messModalLabel" class="modal-title">Messages</div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -86,10 +86,11 @@
                     <div class="col-8">
                     <a class="dropDownTo"></a>  
                     <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
-  
                     <input class="message-subject" placeholder="Subject" maxlength="28" type="text" style="display: none;">
+                    <p id="frmTxt" style="display: none;">Message From</p>
                     <input class="message-from" placeholder="Message From" maxlength="28" type="text" style="display: none;">
-                    <textarea class="message-textarea" placeholder="Message Text" style="display: none;"></textarea>
+                    <p id="msgTxt" style="display: none;">Message</p>
+                    <textarea class="message-textarea" placeholder="Message Text" style="display: none;"rows="10"></textarea>
                     <button id="messBtn">New Message</button>
                     </div>
                 </div>

@@ -79,9 +79,11 @@ app.get('/api/users/:id', function(req, res) {
   console.error(err);
   })
 })
-//Search "1" User and a specific fields
+
+//Get all information for all users
 app.get('/api/allnames', function(req, res) {
   db.Users.findAll({
+      include: {all: true}
       }).then((dbGetAll) => {
       res.json(dbGetAll)})
     .catch(err => {

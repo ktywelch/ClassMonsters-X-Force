@@ -25,6 +25,8 @@ body{
     bottom: 0
 }
 
+textarea { height: auto; }
+
 .profile-header .profile-header-cover:before {
     content: '';
     position: absolute;
