@@ -7,24 +7,38 @@ VALUES
 ('eli','teacher','Li','Elaine','1'), 
 ('rsmith','teacher','Smith','Robert','1');
 
-INSERT INTO `classHeros_db`.`users` (`username`,`password`,`last_name`,`first_name`,`RoleId`,`CharactersId`) VALUES  
+INSERT INTO `classHeros_db`.`users` (`username`,`password`,`last_name`,`first_name`,`RoleId`,`TeacherId`) VALUES  
 ('rysmith','student','Smith','Ryan','2','1'),
-('mcruz','student','Cruz','Monica','2','2'),
-('jdoe','student','Doe','Jean','2','2'),
-('kcat','student','Cat','Kitty','2','4');
+('mcruz','student','Cruz','Monica','2','1'),
+('jdoe','student','Doe','Jean','2','1'),
+('kcat','student','Cat','Kitty','2','1');
 
-INSERT INTO `classHeros_db`.`Characters` (`character_name`,`character_pic_filename`,`alt_text`) VALUES 
-('caped_orange', 'ClipartKey_1528455.png','cartoon image of caped hero from ClipartKey'),
-('caped_blue', 'ClipartKey_156046.png','cartoon image of caped hero from ClipartKey'),
-('flying_purple', 'ClipartKey_1586159.png','cartoon image of caped hero from ClipartKey'),
-('super_duo', 'ClipartKey_1586175.png','cartoon image of caped hero from ClipartKey'),
-('facebok_power', 'ClipartKey_1786243.png','cartoon image of caped hero from ClipartKey'),
-('cape_red', 'ClipartKey_302350.png','cartoon image of caped male hero from  ClipartKey'),
-('super_spidey', 'ClipartKey_3277063.png','cartoon image of kid spider man from ClipartKey'),
-('bunny_teach', '3495165.png','cartoon image bunny teaching from pngtree.com'),
+INSERT INTO `classHeros_db`.`users` (`username`,`password`,`last_name`,`first_name`,`RoleId`,`TeacherId`) VALUES  
+('plan','student','Lam','Patrick','2','2'),
+('coman','student','Oman','Chris','2','2'),
+('ijones','student','Jones','Iris','2','2'),
+('cavery','student','Avery','Celie','2','2');
+
+INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`,UserId) VALUES 
+('caped_orange', 'ClipartKey_1528455.png','cartoon image of caped hero from ClipartKey','7'),
+('caped_blue', 'ClipartKey_156046.png','cartoon image of caped hero from ClipartKey','8'),
+('flying_purple', 'ClipartKey_1586159.png','cartoon image of caped hero from ClipartKey','9'),
+('Super_girl', 'super_girl.jpg','cartoon image of caped hero from Etsy','10'),
+('Hulk', 'hulk.png','cartoon image of caped hero from Etsy','3'),
+('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','1');
+
+
+INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`,UserID) VALUES 
+('facebok_power', 'ClipartKey_1786243.png','cartoon image of caped hero from ClipartKey','4'),
+('cape_red', 'ClipartKey_302350.png','cartoon image of caped male hero from  ClipartKey','5'),
+('super_spidey', 'ClipartKey_3277063.png','cartoon image of kid spider man from ClipartKey','6'),
+('rainbow','PlaceHolderRainbow.png','cute clipart png from pngtree.com','2');
+ 
+ /* Extra images should be added here */
+INSERT INTO `classHeros_db`.`Characters` (`name`,`filename`,`alt_text`) VALUES 
 ('bat_gir1', 'ClipartKey_552957.png','cartoon image of kid batgirl from ClipartKey');
 
-INSERT INTO `classHeros_db`.`Messages` (`subject`,`message`,`read`,`fromId`,`toId`) 
+INSERT INTO `classHeros_db`.`Messages` (`subject`,`message`,`read`,`FromId`,`ToId`) 
 VALUES 
 ("Message1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '1','3'), 
 ("Message3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat", '0', '2','5'), 

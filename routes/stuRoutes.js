@@ -3,6 +3,8 @@ const db = require('../models');
 
 // Routes
 module.exports = (app) => {
+
+  //// Victor are we calling this anywhere I think it was old .....
   app.get('/api/students', (req, res) => {
     const query = {};
     if (req.query.author_id) {
@@ -18,7 +20,7 @@ module.exports = (app) => {
   app.put('/api/students/:id', (req, res) => {
     console.log("from api: ", req.body)
     db.Users.update(
-      {nickname: req.body.nickname},
+      req.body,
       {where: {id: req.params.id}}
       ).then((results) => {
         res.json(results);
@@ -31,17 +33,4 @@ module.exports = (app) => {
         console.error(err);
       })
   })
-
-  // Get route for retrieving a single post
-  app.get('/api/posts/:id', (req, res) => {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
-    db.Post.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: [db.Author],
-    }).then((dbPost) => res.json(dbPost));
-  });
 }

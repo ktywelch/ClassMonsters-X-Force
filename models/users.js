@@ -42,7 +42,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     parentPhoneNumber: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isNumeric: true
+      }
     },
     parentEmail: {
       type: DataTypes.STRING,
@@ -60,7 +63,10 @@ module.exports = function(sequelize, DataTypes) {
       Users.belongsTo(models.Role),
       Users.hasMany(models.Attendence);
       Users.hasOne(models.Character);
-      Users.hasOne(Users, {as: 'teacher'})
+      Users.hasOne(Users, {as: 'Teacher'});
+      Users.hasMany(models.Feeling);
+      // Users.hasMany(models.Messages, {foreignKey: 'From'}, {as: 'msgFrom'});
+      // Users.hasMany(models.Messages, {foreignKey: 'ToId'}, {as: 'msgTo'});
     };
   
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database

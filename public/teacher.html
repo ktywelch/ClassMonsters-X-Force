@@ -16,173 +16,89 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand text-light" id="navBar">
-    </a>
-  
-</nav>
-<div class="container">
+<div id="content" class="container">
     <div class="row">
         <div class="col-md-12">
-        <div id="content" class="container-fluid">
-        <div class="profile">
-        <div class="profile-header">
-        <div class="profile-header-cover"></div>
-        <div class="profile-header-content">
-            <div class="profile-header-img" id="user_img">
-                <img src="./images/image (1).png" alt="">
+            <div class="profile">
+                <div class="profile-header">
+                        <div class="profile-header-content">
+                            <div class="profile-header-img" id="teacher_img">               
+                            </div>
+                            <div class="profile-header-info">
+                                <h4 class="m-t-10 m-b-5" id="user_full_name"></h4>
+                                <p class="m-b-10" id="user_role"></p>
+                            </div>
+                            <ul class="profile-header-tab nav nav-tabs">
+                                <li class="nav-item"><a href="#profile-post" class="nav-link"
+                                        data-toggle="tab">EDIT PROFILE</a></li>
+                                <li class="nav-item"><a href="#profile-about" class="nav-link"
+                                        data-toggle="tab">RECENT ACTIVITIES</a></li>
+                                <li class="nav-item"><a href="#profile-photos" class="nav-link"
+                                        data-toggle="tab">PHOTOS</a></li>
+                                <li class="nav-item" id="navMess"><a class="nav-link"
+                                        data-toggle="tab">MESSAGE</a></li>
+                                <li class="nav-item">
+                                    <a href="/" id="logoutBtn">LOGOUT</a></li>
+                                <li class="nav-item" id="msg-alert" style="display: none;">
+                                        <a class="btn btn-lg btn-success" href="#">
+                                            <i class="fa fa-bell fa-2x text-light pull-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
             </div>
-            <div class="profile-header-info">
-                <h4 class="m-t-10 m-b-5" id="user_full_name"></h4>
-                <p class="m-b-10" id="user_role"></p>
-            </div>
-            <ul class="profile-header-tab nav nav-tabs">
-                <li class="nav-item"><a href="#profile-post" class="nav-link"
-                        data-toggle="tab">EDIT PROFILE</a></li>
-                <li class="nav-item"><a href="#profile-about" class="nav-link"
-                        data-toggle="tab">RECENT ACTIVITIES</a></li>
-                <li class="nav-item"><a href="#profile-photos" class="nav-link"
-                        data-toggle="tab">PHOTOS</a></li>
-                <li class="nav-item"><a href="#profile-videos" class="nav-link"
-                        data-toggle="tab">VIDEOS</a></li>
-                <li class="nav-item"><a href="#profile-friends" class="nav-link active show"
-                        data-toggle="tab">STUDENTS</a></li>
-                <li class="nav-item" id="msg-alert" style="display: none;">
-                        <a class="btn btn-lg btn-success" href="#">
-                            <i class="fa fa-bell fa-2x text-light pull-right"></i></a>
-                        </li>
-            </ul>
         </div>
     </div>
+
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div id="content" class="container-fluid">
-                <div class="profile">
-                    <div class="profile-header">
-                        <div class="profile-header-cover"></div>
-                        </div>
-                    </div>
-                    <div class="profile-content">
-                    <div
-                    class="tab-content p-0">
-                    <div class="tab-pane fade in active show" id="profile-friends">
-                        <h4 class="m-t-0 m-b-20"> Student List (5)</h4>
-                                                                <div
-                                                                    class="row row-space-2">
-                                                                    <!-- begin col-6 -->
-                                                                    <div
-                                                                        class="col-md-6 m-b-2">
-                                                                        <div
-                                                                            class="p-10 bg-white">
-                                                                            <div
-                                                                                class="media media-xs overflow-visible">
-                                                                                <a class="media-left"
-                                                                                    href="javascript:;">
-                                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                                                        alt=""
-                                                                                        class="media-object img-circle">
-                                                                                </a>
-                                                                                <div
-                                                                                    class="media-body valign-middle">
-                                                                                    <b
-                                                                                        class="text-inverse">James
-                                                                                        Pittman</b>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="media-body valign-middle text-right overflow-visible">
-                                                                                    <div
-                                                                                        class="btn-group dropdown">
-                                                                                        <a href="javascript:;"
-                                                                                            class="btn btn-default">Friends</a>
-                                                                                        <a href="javascript:;"
-                                                                                            data-toggle="dropdown"
-                                                                                            class="btn btn-default dropdown-toggle"
-                                                                                            aria-expanded="false"></a>
-                                                                                        <ul class="dropdown-menu dropdown-menu-right"
-                                                                                            x-placement="bottom-end"
-                                                                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(101px, 34px, 0px);">
-                                                                                            <li><a
-                                                                                                    href="javascript:;">Action
-                                                                                                    1</a>
-                                                                                            </li>
-                                                                                            <li><a
-                                                                                                    href="javascript:;">Action
-                                                                                                    2</a>
-                                                                                            </li>
-                                                                                            <li><a
-                                                                                                    href="javascript:;">Action
-                                                                                                    3</a>
-                                                                                            </li>
-                                                                                            <li
-                                                                                                class="divider">
-                                                                                            </li>
-                                                                                            <li><a
-                                                                                                    href="javascript:;">Action
-                                                                                                    4</a>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                            <!-- end
-                                                                            col-6
-                                                                            -->
-
-                                                                    </div>
-                                                                    <!-- end row -->
-                                                                </div>
-                                                                <!-- end col-6 -->
-
-                                                            </div>
-                                                            <!-- end #profile-friends tab -->
-                                                        </div>
-                                                        <!-- end tab-content -->
-                                                    </div>
-                                                    <!-- end profile-content -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+  
+       <div class="album py-5 bg-light col-md-12">
+        <div id="stuCount"></div>
+                <!-- This is just a palce hoder tag to add the Student Html-->  
+                <div id="stu-info"></div>
+        </div>
+    </div>
+ </div>
 
 
 <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
 
-    <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <div id="messModalLabel" class="modal-title">Messages in queue</div>
-                <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-                <div class="modal-body">
-                <!--  --> 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-4 list-container">
-                        <div class="card">
-                            <ul class="list-group">
-                            </ul>
-                        </div>
-                        </div>
-                        <div class="col-8">
-                        <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
-                        <input class="message-subject" placeholder="Subject" maxlength="28" type="text">
-                        <input class="message-from" placeholder="Message From" maxlength="28" type="text">
-                        <textarea class="message-textarea" placeholder="message Text"></textarea>
-                        </div>
-                    </div>
-                    </div>
-                <!--  --> 
-                </div>
-            </div>  
+<div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <div id="messModalLabel" class="modal-title">Messages</div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+            <div class="modal-body">
+            <!--  --> 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-4 list-container">
+                    <div class="card">
+                        <ul class="list-group">
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="col-8">
+                    <a class="dropDownTo"></a>  
+                    <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
+                    <input class="message-subject" placeholder="Subject" maxlength="28" type="text" style="display: none;">
+                    <p id="frmTxt" style="display: none;">Message From</p>
+                    <input class="message-from" placeholder="Message From" maxlength="28" type="text" style="display: none;">
+                    <p id="msgTxt" style="display: none;">Message</p>
+                    <textarea class="message-textarea" placeholder="Message Text" style="display: none;"rows="10"></textarea>
+                    <button id="messBtn">New Message</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>  
     </div>
+</div>
 
     
 <!---  END of modal  DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
@@ -190,8 +106,6 @@
 <script src="./js/common.js"></script>
 <script src="./js/messages.js"></script>
 <script src="./js/teacher.js"></script>
-
-
 <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
