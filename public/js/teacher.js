@@ -4,24 +4,15 @@ let messIdLoc = document.querySelector('.message-id');
 let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
 let messFrom = document.querySelector('.message-from')
+let mess
+let messDrop = document.querySelector('.dropDownTo');
 let messList = document.querySelectorAll('.list-container .list-group');
+let messBtn = document.querySelector('#messBtn');
 let lname,fname,role,full_name;
 let activeMess = {};
-let stu_img,alt,stu_name; 
+let stu_img,alt,stu_name,toId,myId;
 
-
-let begHtml =`<div class="row row-space-2" >
-  </div><div class="col-md-6 m-b-2">\
-    <divclass="p-10 bg-white">\
-        <div class="media media-xs overflow-visible">\
-            <a class="media-left" href="javascript:;">`;
-
-// //let midHtml= `<img src=${stu_img} alt=${alt} class="media-object img-circle"></a>
-//             <div class="media-body valign-middle">
-//                 <b class="text-inverse">${full_name}</b>`;
-
-
-// Teacher Functions
+// Teacher
 
 const renderStudents = (students) => {
   let  allStuHtml= "";
@@ -87,9 +78,7 @@ const renderStudents = (students) => {
 
 
 
-
 const getStudents = (t_id,cb) => {
-  console.log("getting Students");
   fetch(`/api/students/${t_id}`, {
     method: 'GET',
     headers: {

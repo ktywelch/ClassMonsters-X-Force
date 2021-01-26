@@ -79,6 +79,15 @@ app.get('/api/users/:id', function(req, res) {
   console.error(err);
   })
 })
+//Search "1" User and a specific fields
+app.get('/api/allnames', function(req, res) {
+  db.Users.findAll({
+      }).then((dbGetAll) => {
+      res.json(dbGetAll)})
+    .catch(err => {
+  console.error(err);
+  })
+})
 
 //Login Route
 app.post('/api/login', function(req, res) {
