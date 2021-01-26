@@ -42,7 +42,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     parentPhoneNumber: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isNumeric: true
+      }
     },
     parentEmail: {
       type: DataTypes.STRING,
