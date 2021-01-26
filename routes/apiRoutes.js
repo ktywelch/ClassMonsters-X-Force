@@ -72,9 +72,18 @@ app.get('/api/users/:id', function(req, res) {
   db.Users.findOne({
       where: {
         id: req.params.id,
-        }, include: [db.Role, db.Character, db.Feeling], 
+        }, include: {all: true}, 
       }).then((dbGetMess) => {
       res.json(dbGetMess)})
+    .catch(err => {
+  console.error(err);
+  })
+})
+//Search "1" User and a specific fields
+app.get('/api/allnames', function(req, res) {
+  db.Users.findAll({
+      }).then((dbGetAll) => {
+      res.json(dbGetAll)})
     .catch(err => {
   console.error(err);
   })

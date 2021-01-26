@@ -69,7 +69,7 @@
         <div class="modal-content">
         <div class="modal-header">
             <div id="messModalLabel" class="modal-title">Messages in queue</div>
-            <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -84,12 +84,13 @@
                     </div>
                     </div>
                     <div class="col-8">
+                    <a class="dropDownTo"></a>  
                     <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
-                    <input class="message-subject" placeholder="Subject" maxlength="28" type="text">
-                    <input class="message-from" placeholder="Message From" maxlength="28" type="text">
-                    <textarea class="message-textarea" placeholder="message Text"></textarea>
-                    <input type="text" id="btn_text"/>
-                    <button id="Create Message">New Message</button>
+  
+                    <input class="message-subject" placeholder="Subject" maxlength="28" type="text" style="display: none;">
+                    <input class="message-from" placeholder="Message From" maxlength="28" type="text" style="display: none;">
+                    <textarea class="message-textarea" placeholder="Message Text" style="display: none;"></textarea>
+                    <button id="messBtn">New Message</button>
                     </div>
                 </div>
                 </div>

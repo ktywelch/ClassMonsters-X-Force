@@ -56,9 +56,12 @@ const getMess = (id) =>{
       } 
     newMessageAlert.addEventListener("click", (e) =>{
       e.preventDefault();
-
+    
+    messBtn.addEventListener('click', (e) => handleMessBtn(e,uid));  
       // this is how message pops happen - will need to update the modal 
       $('#messModal').modal('show')
+
+    //messBtn.addEventListener('click', handleMessBtn);    
 
     $("#messModal").on('hide.bs.modal', function() { 
         //alert('The modal is about to be hidden.'); 
