@@ -32,6 +32,8 @@ const handleMessView = (e) => {
   activeMess = {};
 };
 
+// this function resets all the vlause and the forms so that a new messages are clean
+
 
 const handleMessBtn = (e,uid) => {
   console.log("value of uid",uid);
@@ -43,14 +45,7 @@ const handleMessBtn = (e,uid) => {
   } else {  btnAction = "renderActive";}
    switch (btnAction){
     case 'Close Message':  
-          messSubject.style.display =  'none';
-          messText.style.display =  'none';
-          messFrom.style.display =  'none';
-          messTo.style.display = 'none';
-          messSubject.value = "";
-          messText.value = "";
-          messFrom.value = "";
-          messBtn.innerText = "New Message";
+        resetView();
         //*** Marking the messages as read ***/// 
         fetch(`/api/messages/${messIdLoc.value}`, {
           method: 'PUT',
@@ -59,8 +54,11 @@ const handleMessBtn = (e,uid) => {
             read: 1
           })
          });
+        messBtn.innerText = "New Message";  
        break;
     case 'New Message':
+          messSubject.removeAttribute("readonly");
+          messText.removeAttribute("readonly");
           messSubject.style.display =  'initial';
           messText.style.display = 'initial';
           messTo.style.display =  'initial';
@@ -82,16 +80,19 @@ const handleMessBtn = (e,uid) => {
             headers: {'Content-Type': 'application/json'},
               body: msgJSON
           }).then((res) => {
+                  resetView();
+                  getAndRendMessages(uid);
                 //console.log(res.json);
           }).catch((err) => console.error(err));
-          messSubject.style.display =  'none';
-          messText.style.display =  'none';
-          messTo.style.display =  'none';
-          messBtn.innerText = "New Message"
-          getAndRendMessages(uid);
+          messBtn.innerText = "New Message";  
         break;
       case 'RenderActive':
+        messBtn.innerText = "New Message";
         renderActiveMess ();
+        break;
+      default:
+        messBtn.innerText = "New Message";
+        resetView();
         break;
     }
   //activeMess = {};
@@ -120,10 +121,8 @@ const createMessageDropDown = () => {
       messTo = document.querySelector('.messTo');
       document.querySelectorAll('.nmli').forEach( function(el) { 
         el.addEventListener('click', function() {
-            console.log(el);
             messTo.innerText = el.textContent;
             toId = el.id;
-            console.log("toID is ",toId)
         });
     });
   }).catch(err => console.error(JSON.parse(err)))
