@@ -4,17 +4,17 @@ let messIdLoc = document.querySelector('.message-id');
 let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
 let messFrom = document.querySelector('.message-from')
-let mess
 let messDrop = document.querySelector('.dropDownTo');
 let messList = document.querySelectorAll('.list-container .list-group');
 let messBtn = document.querySelector('#messBtn');
+let messModal = document.querySelector("#messModal");
 let lname,fname,role,full_name;
 let activeMess = {};
-let stu_img,alt,stu_name,toId,myId;
+let toId,myId,stuId,listItems;
 
 // Teacher
 
-const renderStudents = (students) => {
+const renderStudents = (students,cb) => {
   let  allStuHtml= "";
   students.forEach(st => {   
     let nickname = st.nickname;
@@ -39,10 +39,10 @@ const renderStudents = (students) => {
                           <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Class Tools</button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                  <button class="dropdown-item" type="button" id="Send_Message" value="${st.id}">Send Message to Student</button>
-                                  <button class="dropdown-item" type="button" id="Send_Message" value="${st.id}">Send Message to Student</button>
-                                  <button class="dropdown-item" type="button" id="Delete_Student" value="${st.id}">Deleter Student</button> 
-                                  <button class="dropdown-item" type="button" id="Change_Teacher" value="${st.id}">Change Teacher</button>    
+                                  <button class="dropdown-item Send_Message" type="button" value="${st.id}">Send Message to Student</button>
+                                  <button class="dropdown-item Delete_Student" type="button" value="${st.id}">Delete Student</button> 
+                                  <button class="dropdown-item Add_Student" type="button" value="${st.id}">Add Student</button> 
+                                  <button class="dropdown-item Change_Teacher" type="button" value="${st.id}">Change Teacher</button>    
                               </div>
                             </div>
                           </div> 
@@ -63,7 +63,7 @@ const renderStudents = (students) => {
                 </div>
     `
   allStuHtml += newHtml; 
-  // console.log (stuHtml)        
+        
   });
   let locCount = document.querySelector('#stuCount');
   let stuInfo = document.querySelector('#stu-info')
@@ -74,8 +74,29 @@ const renderStudents = (students) => {
   locCount.appendChild(newDiv1)
   newDiv.innerHTML = allStuHtml;
   stuInfo.appendChild(newDiv);
+  cb()
 }
 
+const addNavList = () => {
+  let navMess = document.querySelector('#navMess');
+    navMess.addEventListener('click',() => {
+      handleMessBtn("New Message",uid)
+      showMessCenter();
+    })
+  }
+
+const addStuList = () => {  
+    listItems = document.querySelectorAll('.list-container .list-group');
+    //Listeners for all Student Send Messages
+    document.querySelectorAll('.Send_Message').forEach( (btn) => { 
+      console.log("added Lis");
+      btn.addEventListener('click',() =>  {
+          stuId = btn.value;
+          handleMessBtn("New Stu Message",uid);
+          showMessCenter();
+      });
+    })
+}
 
 
 const getStudents = (t_id,cb) => {
@@ -86,7 +107,6 @@ const getStudents = (t_id,cb) => {
     },
   }).then((res) => {return res.json()
   }).then((students) => {
-    //console.log(students)
     cb(students); 
   }).catch(err => console.error(err))
 }    
@@ -94,13 +114,12 @@ const getStudents = (t_id,cb) => {
 //main
 params = getParams();
 uid = params.uid;
-//getUserInfor is in common 
+//getUserInfor is in common function
 getUserInfo(uid, user =>  {
-  console.log(user)
   if (user) {
   lname = user.last_name;
   fname = user.first_name;
-  console.log(user.Character.filename)
+  character = user.Character.filename;
   let teach_place = document.querySelector('#teacher_img')
   let newD2 = document.createElement("div");
   let newHtml = `<img src="./images/${user.Character.filename}" alt="${user.Character.alt_text}">`
@@ -114,7 +133,10 @@ getUserInfo(uid, user =>  {
  
 if (window.location.pathname === '/teacher') {
     //these are from common & message js since they are common to students and teachers
+    addNavList();
     getMess(uid);
     getAndRendMessages(uid);
-    getStudents(uid, students => renderStudents(students));
+    //can't render students without getting them first, can't add the listeners without render ... using callbacks!
+    getStudents(uid, students => renderStudents(students, () => addStuList()));
+    //addStuList();
 }
