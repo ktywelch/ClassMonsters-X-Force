@@ -32,12 +32,12 @@
                                 <p class="m-b-10" id="user_role"></p>
                             </div>
                             <ul class="profile-header-tab nav nav-tabs">
-                                <li class="nav-item"><a href="#profile-post" class="nav-link"
-                                        data-toggle="tab">EDIT PROFILE</a></li>
-                                <li class="nav-item"><a href="#profile-about" class="nav-link"
-                                        data-toggle="tab">RECENT ACTIVITIES</a></li>
-                                <li class="nav-item"><a href="#profile-photos" class="nav-link"
-                                        data-toggle="tab">PHOTOS</a></li>
+                                <li class="nav-item" id="navUpdate"><a  class="nav-link"
+                                        data-toggle="tab">UPDATE PROFILE</a></li>
+                                <li class="nav-item" id="navReports"><a  class="nav-link"
+                                        data-toggle="tab">REPORTS</a></li>
+                                <li class="nav-item" id="navReload"><a class="nav-link"
+                                        data-toggle="tab">RELOAD</a></li>
                                 <li class="nav-item" id="navMess"><a class="nav-link"
                                         data-toggle="tab">MESSAGE</a></li>
                                 <li class="nav-item">
@@ -66,6 +66,39 @@
 
 
 <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+  <!-- Edit page -->
+  <div class="modal fade" id="studModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+            <!--  --> 
+                <div class="row">
+                    <div class="col-md-6">
+                            <label>Parent First Name: </label>
+                                <input type="text" id="parentFi">
+                            
+                            <label>Parent Last Name: </label>
+                                <input type="text" id="parentLa">
+                            
+                            <label>Parent Email: </label>
+                                <input type="email" id="parentEm">
+                            
+                            <label for="parentNum">Parent Number: </label>
+                                <input type="tel" id="parentNum" placeholder="1234567890">
+                        <button class='btn btn-primary' id="editParBio">Update</button>
+                    </div>
+                </div>
+            <!--  --> 
+            </div>
+        </div>  
+    </div>
+</div>
+<!---  END of modal  DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
 
 <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
