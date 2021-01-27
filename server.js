@@ -7,7 +7,6 @@ const apiRouter = require('./routes/apiRoutes');
 //Studnet APIs
 const stuRouter = require('./routes/stuRoutes');
 //Teacher APIs
-const teaRouter = require('./routes/teaRoutes')
 
 
 
@@ -28,7 +27,6 @@ app.use(express.static('public'));
 clientRouter(app);
 apiRouter(app);
 stuRouter(app);
-teaRouter(app);
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync({ force: false }).then(() => {

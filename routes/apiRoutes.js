@@ -1,6 +1,5 @@
 // Requiring our models
 const db = require('../models');
-var emoji = require('node-emoji');
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
 const path = require('path');

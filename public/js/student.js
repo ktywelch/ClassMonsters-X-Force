@@ -4,6 +4,7 @@ let messIdLoc = document.querySelector('.message-id');
 let messSubject = document.querySelector('.message-subject')
 let messText = document.querySelector('.message-textarea');
 let messFrom = document.querySelector('.message-from')
+let messDrop = document.querySelector('.dropDownTo');
 let messList = document.querySelectorAll('.list-container .list-group');
 let messBtn = document.querySelector('#messBtn');
 let messModal = document.querySelector("#messModal");
@@ -66,7 +67,6 @@ editParentBio.addEventListener('click', (e) => {
     let parentEm = document.querySelector("#parentEm").value
     let parentNum = document.querySelector("#parentNum").value 
                                         
-    
     let updateJson = JSON.stringify({
             parentFName: parentFi,
             parentLName: parentLa,
