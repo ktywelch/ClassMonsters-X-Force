@@ -102,9 +102,8 @@ const usersInfo = () => {
         pLast = user.parentLName;
         pEmail = user.parentEmail;
         userChar = user.Character.filename;
-        userAlt = user.Character.alt_text
-        pNum = user.parentPhoneNumber
-        console.log(pNum)
+        userAlt = user.Character.alt_text;
+        pNum = user.parentPhoneNumber;
         
 
         pFName.innerText = pFirst
