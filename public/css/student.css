@@ -512,3 +512,22 @@ h4 {
 #msg-alert {
     margin-bottom: 5px;
 }
+
+.dropdown {
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#postMsg {
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+#dropdownMenu2 {
+    background-color: #007bff;
+}
+
+.bio-graph-heading {
+    margin-bottom: -55px;
+}
