@@ -10,9 +10,21 @@ let messBtn = document.querySelector('#messBtn');
 let messModal = document.querySelector("#messModal");
 let lname,fname,role,full_name;
 let activeMess = {};
-let toId,myId,stuId,listItems;
+let toId,myId,stuId,listItems,img_loc;
 
-// Teacher
+
+const getFeeling = () => {
+  fetch(`/api/feelings/${uid}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+  }).then((res) => {
+      return res.json();
+  }).then((feelingInfo) => {
+      console.log(feelingInfo)
+  })
+}
 
 const renderStudents = (students,cb) => {
   let  allStuHtml= "";
@@ -26,8 +38,7 @@ const renderStudents = (students,cb) => {
                   <div class="card mb-2 mx-auto" style="display: flex;">
                   <div class="text-center">
                   <img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" 
-                     class="img-responsive profile-image" 
-                     />
+                     class="img-responsive profile-image" id="stImg_${st.id}">
                   <h5 class="card-title">Student Information</h5>
                   <div class="text-left" >
                       <p>Name: ${st.first_name}  ${st.last_name}</p>
@@ -41,7 +52,6 @@ const renderStudents = (students,cb) => {
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                   <button class="dropdown-item Send_Message" type="button" value="${st.id}">Send Message to Student</button>
                                   <button class="dropdown-item Delete_Student" type="button" value="${st.id}">Delete Student</button> 
-                                  <button class="dropdown-item Add_Student" type="button" value="${st.id}">Add Student</button> 
                                   <button class="dropdown-item Change_Teacher" type="button" value="${st.id}">Change Teacher</button>    
                               </div>
                             </div>
@@ -76,16 +86,23 @@ const renderStudents = (students,cb) => {
   stuInfo.appendChild(newDiv);
   cb()
 }
-
+//adding listeners to the nav bar
 const addNavList = () => {
   let navMess = document.querySelector('#navMess');
     navMess.addEventListener('click',() => {
       handleMessBtn("New Message",uid)
       showMessCenter();
     })
+
+  let navReload = document.querySelector('#navReload');
+    navReload.addEventListener('click',() => {
+      getAndRenderSudents(uid);
+      location.reload();
+    })  
   }
 
-const addStuList = () => {  
+//post render ass the listeners for the student pages  
+const addStuListeners = () => {  
     listItems = document.querySelectorAll('.list-container .list-group');
     //Listeners for all Student Send Messages
     document.querySelectorAll('.Send_Message').forEach( (btn) => { 
@@ -98,7 +115,7 @@ const addStuList = () => {
     })
 }
 
-
+//Gets the students that belong to the teacher
 const getStudents = (t_id,cb) => {
   fetch(`/api/students/${t_id}`, {
     method: 'GET',
@@ -130,13 +147,62 @@ getUserInfo(uid, user =>  {
   newD2="";
   }
 });
+
+const updStudentFeelings = (students) => {
+  students.forEach(el =>{
+    let stId =  el.id;
+    getUserInfo(stId, user => {
+     let nm = `#stImg_${stId}`
+     let img_loc = document.querySelector(nm) 
+     let lastFeeling = (user.Feelings.length - 1)
+     console.log(stId,lastFeeling)
+     if(lastFeeling >= 0){
+        let b = (user.Feelings[lastFeeling].feeling).split(" ");
+        currentFeels = b[0]
+        currentFeels.trim()
+        console.log(stId,currentFeels)
+        switch (currentFeels) {
+          case 'happy':
+            img_loc.classList.add("bg-success")
+            break;
+          case 'angry':
+        console.log("here")
+          img_loc.classList.add("bg-danger")
+            break;
+          case "tired":
+            img_loc.classList.add("bg-warning")
+            break;
+          case "confused":
+            img_loc.classList.add("bg-info")
+            break;
+          case "sad":
+            img_loc.classList.add("bg-secondary")
+            break;
+          default:
+            break;
+        }
+    }
+    })
+  }) 
+}
+
+/*can't render students without getting them first, can't add the listeners without render ... 
+using callbacks to ensure we get,render and update so putting all in one set.
+*/
+const getAndRenderSudents = (uid) => {
+  getStudents(uid, students => renderStudents(students, () => {
+    //This adds the
+    addStuListeners();
+    updStudentFeelings(students);
+  }))
+}
  
 if (window.location.pathname === '/teacher') {
     //these are from common & message js since they are common to students and teachers
     addNavList();
     getMess(uid);
     getAndRendMessages(uid);
-    //can't render students without getting them first, can't add the listeners without render ... using callbacks!
-    getStudents(uid, students => renderStudents(students, () => addStuList()));
-    //addStuList();
+    getAndRenderSudents(uid)
+;
+
 }
