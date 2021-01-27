@@ -81,6 +81,7 @@ const handleMessBtn = (e,uid) => {
     case 'New Message':
           messSubject.removeAttribute("readonly");
           messText.removeAttribute("readonly");
+          messTo.style.display = 'initial';
           messSubject.style.display =  'initial';
           messText.style.display = 'initial';
           messBtn.innerText = "Send Message"
