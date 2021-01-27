@@ -12,7 +12,6 @@ let lname,fname,role,full_name;
 let activeMess = {};
 let toId,myId,stuId,listItems;
 
-
 let editNickname = document.querySelector("#editStudbtn")
 let editParentBio = document.querySelector("#editParBio")
 let fn_loc = document.querySelector('#user_full_name');
@@ -126,37 +125,41 @@ const usersInfo = () => {
         //adding email
         em_loc.textContent = fname.charAt(0) + lname + "@WeAreHeroes.com"
 
+
+        console.log(user.Feelings)
+        let currentUser = user.Feelings.pop()
         //setting current feelings
-        currentFeels = user.Feelings.pop().feeling
-        console.log(currentFeels)
+        currentFeels = currentUser.feeling
 
         studPostFeeling.innerText = "I am feeling " + currentFeels + " today"
 
         //setting latest feelings update
-        latestUpdate = user.Feelings.pop().createdAt
+
+        latestUpdate = currentUser.createdAt
+        console.log(latestUpdate)
 
         updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
 
 
     });
 }
+// getParams();
+// usersInfo();
 
-getParams();
-usersInfo();
-
-//creating new messages
+//creating new feelings
 postMsg.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("clicked")
     
     //students can type in the textarea to update feelings
     let feelingMsg = document.querySelector('#feelingMsg').value
-    updateFeelings(feelingMsg)
-    getFeeling(uid)
+    updateFeelings(feelingMsg, () => {
+        getFeeling(uid, usersInfo())
+    })
     location.reload()
 })
 
-const updateFeelings = (studentFeels) => {
+const updateFeelings = (studentFeels, cb) => {
     fetch(`/api/feelings/${uid}`, {
         method: 'POST',
         headers: {
@@ -167,19 +170,19 @@ const updateFeelings = (studentFeels) => {
         }),
     })
         .then((res) => {
-            console.log(res.json);
+            cb()
         })
         .catch((err) => console.error(err));
 }
 
-const getFeeling = () => {
+const getFeeling = (cb) => {
     fetch(`/api/feelings/${uid}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     }).then((res) => {
-        return res.json();
+        cb(res.json());
     }).then((feelingInfo) => {
         console.log(feelingInfo)
     })
