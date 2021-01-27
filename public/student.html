@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="./css/student.css">
 
 </head>
@@ -22,52 +25,44 @@
 
 <body>
 
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand text-light" id="navBar">
-        </a>
-        <h4 class="m-t-10 m-b-5" id="user_full_name"></h4>
-        <div class="icons p-2">
-            <a href="/" id="logoutBtn" style="font-size: 17px; color: white">Logout</a>
-            <i class="fas fa-bell text-light new-msg" style="display: none;"></i>  
-        </div>
-    </nav>
-    
-    <div class="container">
+    <div id="content" class="container">
         <div class="row">
             <div class="col-md-12">
-            <div id="content" class="container-fluid">
-            <div class="profile">
-            <div class="profile-header">
-            <div class="profile-header-cover"></div>
-            <div class="profile-header-content">
-                <div class="profile-header-img" id="user_img">
+                <div class="profile">
+                    <div class="profile-header">
+                        <div class="profile-header-content">
+                            <div class="profile-header-info">
+                                <h4 class="m-t-10 m-b-5" id="user_full_name"></h4>
+                                <p class="m-b-10" id="user_role"></p>
+                            </div>
+                            <ul class="profile-header-tab nav nav-tabs">
+                                <li class="nav-item"><a href="#profile-about" class="nav-link"
+                                    data-toggle="tab" id="parentContact">PARENT CONTACT</a></li>
+                                <li class="nav-item"><a href="#profile-about" class="nav-link"
+                                        data-toggle="tab">RECENT ACTIVITIES</a></li>
+                                <li class="nav-item"><a href="#profile-photos" class="nav-link"
+                                        data-toggle="tab">PHOTOS</a></li>
+                                <li class="nav-item" id="navMess"><a class="nav-link"
+                                        data-toggle="tab">MESSAGE</a></li>
+                                <li class="nav-item">
+                                    <a href="/" id="logoutBtn">LOGOUT</a></li>
+                                <li class="nav-item" id="msg-alert" style="display: none;">
+                                    <a class="btn btn-lg btn-success" href="#">
+                                        <i class="fa fa-bell fa-2x text-light pull-right animate__animated animate__swing"></i><a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="profile-header-info">
-                    <p class="m-b-10" id="user_role"></p>
-                </div>
-                <ul class="profile-header-tab nav nav-tabs">
-
-                    <li class="nav-item"><a href="#profile-about" class="nav-link"
-                            data-toggle="tab" id="parentContact">PARENT CONTACT</a></li>
-                    <li class="nav-item"><a href="#profile-photos" class="nav-link"
-                            data-toggle="tab">PHOTOS</a></li>
-                    <li class="nav-item"><a href="#profile-videos" class="nav-link"
-                            data-toggle="tab">VIDEOS</a></li>
-                    <li class="nav-item" id="msg-alert" style="display: none;">
-                            <a class="btn btn-lg btn-success" href="#">
-                                <i class="fa fa-bell fa-2x text-light pull-right"></i></a>
-                            </li>
-                </ul>
+            </div>
         </div>
-    </div>
 
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="profile-nav col-md-3">
                 <div class="panel">
                     <div class="user-heading round" >
-                        <a href="#" id="studentImg" >
-                            <!-- <img class="characterIcon" src="./images/girl 4.png" alt="" > -->
+                        <a id="studentImg" class='animate__animated animate__bounceInLeft'>
                         </a>
                         <h1 id='studentName'></h1>
                         <h6 id="studentEmail">
@@ -86,7 +81,6 @@
                     </form>
                     <footer class="panel-footer">
                         <button class="btn btn-warning pull-right" id="postMsg">Post</button>
-
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Feelings
@@ -99,7 +93,6 @@
                                 <button class="dropdown-item" type="button" id="confused 😕">Confused 😕</button>
                                 
                             </div>
-                
                         </div>
                         <ul class="nav nav-pills">
                             <li>
@@ -111,132 +104,57 @@
                         </ul>
                     </footer>
                 </div>
-                <div class="panel">
-                    <div class="bio-graph-heading">How I am Currently Feeling: <h3 id='studPostFeeling'></h3>
+                    <div class="panel">
+                        <div class="bio-graph-heading">How I am Currently Feeling: <h3 id='studPostFeeling'></h3>
+                        </div>
+                        <div class="bio-graph-heading">Latest Feeling Update:<h3 id="updateFeelStatus"></h3></div> 
                     </div>
-                    <div class="bio-graph-heading">Latest Feeling Update:<h3 id="updateFeelStatus"></h3></div> 
-                   
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="panel">
-                                <div class="panel-body">
-                                    <div class="bio-chart">
-                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
-                                                height="100px"></canvas><input class="knob" data-width="100"
-                                                data-height="100" data-displayprevious="true" data-thickness=".2"
-                                                value="35" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8"
-                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;">
-                                        </div>
-                                    </div>
-                                    <div class="bio-desk">
-                                        <h4 class="red">Envato Website</h4>
-                                        <p>Started : 15 July</p>
-                                        <p>Deadline : 15 August</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="panel">
-                                <div class="panel-body">
-                                    <div class="bio-chart">
-                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
-                                                height="100px"></canvas><input class="knob" data-width="100"
-                                                data-height="100" data-displayprevious="true" data-thickness=".2"
-                                                value="63" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8"
-                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;">
-                                        </div>
-                                    </div>
-                                    <div class="bio-desk">
-                                        <h4 class="terques">ThemeForest CMS </h4>
-                                        <p>Started : 15 July</p>
-                                        <p>Deadline : 15 August</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="panel">
-                                <div class="panel-body">
-                                    <div class="bio-chart">
-                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
-                                                height="100px"></canvas><input class="knob" data-width="100"
-                                                data-height="100" data-displayprevious="true" data-thickness=".2"
-                                                value="75" data-fgcolor="#96be4b" data-bgcolor="#e8e8e8"
-                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(150, 190, 75); padding: 0px; -webkit-appearance: none; background: none;">
-                                        </div>
-                                    </div>
-                                    <div class="bio-desk">
-                                        <h4 class="green">VectorLab Portfolio</h4>
-                                        <p>Started : 15 July</p>
-                                        <p>Deadline : 15 August</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="panel">
-                                <div class="panel-body">
-                                    <div class="bio-chart">
-                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
-                                                height="100px"></canvas><input class="knob" data-width="100"
-                                                data-height="100" data-displayprevious="true" data-thickness=".2"
-                                                value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8"
-                                                style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(203, 164, 219); padding: 0px; -webkit-appearance: none; background: none;">
-                                        </div>
-                                    </div>
-                                    <div class="bio-desk">
-                                        <h4 class="purple">Adobe Muse Template</h4>
-                                        <p>Started : 15 July</p>
-                                        <p>Deadline : 15 August</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-        <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
-        <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <div id="messModalLabel" class="modal-title">Messages in queue</div>
-                    <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <div class="modal-body">
-                    <!--  --> 
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-4 list-container">
-                            <div class="card">
-                                <ul class="list-group">
-                                </ul>
-                            </div>
-                            </div>
-                            <div class="col-8">
-                            <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
-                            <input class="message-from" placeholder="Message From" maxlength="28" type="text">
-                            <textarea class="message-textarea" placeholder="message Text"></textarea>
-                            </div>
-                        </div>
-                        </div>
-                    <!--  --> 
-                    </div>
-                </div>  
+    <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+    <div class="modal fade" id="messModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <div id="messModalLabel" class="modal-title">Messages</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+                <div class="modal-body">
+                <!--  --> 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-4 list-container">
+                        <div class="card">
+                            <ul class="list-group">
+                            </ul>
+                        </div>
+                        </div>
+                        <div class="col-8">
+                        <a class="dropDownTo"></a>  
+                        <input class="message-id" placeholder="Message id" maxlength="15" type="hidden">
+                        <input class="message-subject" placeholder="Subject" maxlength="28" type="text" style="display: none;">
+                        <p id="frmTxt" style="display: none;">Message From</p>
+                        <input class="message-from" placeholder="Message From" maxlength="28" type="text" style="display: none;">
+                        <p id="msgTxt" style="display: none;">Message</p>
+                        <textarea class="message-textarea" placeholder="Message Text" style="display: none;"rows="10"></textarea>
+                        <button id="messBtn">New Message</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>  
         </div>
-
+    </div>
+        
     <!---  END of modal  DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
-    
         <!---  Start of modal DO NOT REMOVE OR CHANGE between comments Please leave in place has place holders -->
+        <!-- Edit page -->
         <div class="modal fade" id="studModal" tabindex="-1" role="dialog" aria-labelledby="messModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -255,15 +173,18 @@
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                    <label>Parent First Name: 
+                                    <label>Parent First Name: </label>
                                         <input type="text" id="parentFi">
-                                    </label>
-                                    <label>Parent Last Name: 
+                                    
+                                    <label>Parent Last Name: </label>
                                         <input type="text" id="parentLa">
-                                    </label>
-                                    <label>Parent Email: 
+                                    
+                                    <label>Parent Email: </label>
                                         <input type="email" id="parentEm">
-                                    </label>
+                                    
+                                    <label for="parentNum">Parent Number: </label>
+                                        <input type="tel" id="parentNum" placeholder="1234567890">
+                                    
                                 <button id="editParBio">Update</button>
                             </div>
                         </div>
@@ -307,6 +228,13 @@
                                 <p>
                                     <h4>Email: 
                                         <h5 id='EmailPar'></h5>
+                                    </h4>
+                                </p>
+                            </div>
+                            <div class="bio-row">
+                                <p>
+                                    <h4>Number: 
+                                        <h5 id='numberPar'></h5>
                                     </h4>
                                 </p>
                             </div>

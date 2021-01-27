@@ -476,3 +476,16 @@ body {
     width: 150px;
     height: 220px;
 }
+
+.profile-header .profile-header-tab {
+    list-style-type: none;
+    margin: -10px 0 0;
+    padding: 0 0 0 140px;
+    white-space: nowrap;
+    border-radius: 0
+}
+
+
+.animate__animated.animate__swing {
+    --animate-duration: 2s;
+}
