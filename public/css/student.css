@@ -491,8 +491,9 @@ body {
 }
 
 .nav-item {
-    margin-left: 60px;
+    margin-left: 52px;
     color: #fbc02d;
+    font-size: 15px;
 }
 
 .nav-link {
@@ -503,6 +504,7 @@ h4 {
     color: #fbc02d;
     margin-top: 20px;
     font-weight: bold;
+    font-size: 30px;
 }
 
 #logoutBtn {
