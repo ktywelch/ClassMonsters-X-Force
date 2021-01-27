@@ -12,7 +12,19 @@ let lname,fname,role,full_name;
 let activeMess = {};
 let toId,myId,stuId,listItems;
 
-// Teacher
+
+const getFeeling = () => {
+  fetch(`/api/feelings/${uid}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+  }).then((res) => {
+      return res.json();
+  }).then((feelingInfo) => {
+      console.log(feelingInfo)
+  })
+}
 
 const renderStudents = (students,cb) => {
   let  allStuHtml= "";
@@ -26,8 +38,7 @@ const renderStudents = (students,cb) => {
                   <div class="card mb-2 mx-auto" style="display: flex;">
                   <div class="text-center">
                   <img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" 
-                     class="img-responsive profile-image" 
-                     />
+                     class="img-responsive profile-image" id="stImg_${st.id}">
                   <h5 class="card-title">Student Information</h5>
                   <div class="text-left" >
                       <p>Name: ${st.first_name}  ${st.last_name}</p>
@@ -137,6 +148,35 @@ if (window.location.pathname === '/teacher') {
     getMess(uid);
     getAndRendMessages(uid);
     //can't render students without getting them first, can't add the listeners without render ... using callbacks!
-    getStudents(uid, students => renderStudents(students, () => addStuList()));
-    //addStuList();
+    getStudents(uid, students => renderStudents(students, () => {
+      addStuList();
+      students.forEach(el =>{
+        let stId =  el.id;
+        getUserInfo(stId, user => {
+         let nm = `#stImg_${stId}`;
+         let img_loc=document.querySelector(nm) 
+         let currentFeels = user.Feelings.pop().feeling;
+         switch (currentFeels) {
+          case happy:
+            img_log.classList.add("border-success")
+            break;
+          case angry:
+          img_log.classList.add("border-danger")
+            break;
+          case tired:
+            img_log.classList.add("border-warning")
+             break;
+          case confused:
+            img_log.classList.add("border-info")
+            break;
+          case sad:
+            img_log.classList.add("secondary")
+            break;
+          default:
+             break;
+         }
+        })
+      })  
+    }));
+
 }
