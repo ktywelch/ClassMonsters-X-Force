@@ -489,3 +489,47 @@ body {
 .animate__animated.animate__swing {
     --animate-duration: 2s;
 }
+
+.nav-item {
+    margin-left: 52px;
+    color: #fbc02d;
+    font-size: 15px;
+}
+
+.nav-link {
+    color: #fbc02d;
+}
+
+h4 {
+    color: #fbc02d;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#logoutBtn {
+    color: #fbc02d;
+}
+
+#msg-alert {
+    margin-bottom: 5px;
+}
+
+.dropdown {
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#postMsg {
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+#dropdownMenu2 {
+    background-color: #007bff;
+}
+
+.bio-graph-heading {
+    margin-bottom: -55px;
+}
