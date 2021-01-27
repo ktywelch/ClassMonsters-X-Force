@@ -484,3 +484,8 @@ body {
     white-space: nowrap;
     border-radius: 0
 }
+
+
+.animate__animated.animate__swing {
+    --animate-duration: 2s;
+}

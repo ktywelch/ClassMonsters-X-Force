@@ -4,19 +4,7 @@ const db = require('../models');
 // Routes
 module.exports = (app) => {
 
-  //// Victor are we calling this anywhere I think it was old .....
-  app.get('/api/students', (req, res) => {
-    const query = {};
-    if (req.query.author_id) {
-      query.AuthorId = req.query.author_id;
-    }
-    db.Student.findAll({
-      where: query,
-      include: [db.Author],
-    }).then((dbPost) => res.json(dbPost));
-  });
-
-  //update nicknames
+  //update student
   app.put('/api/students/:id', (req, res) => {
     console.log("from api: ", req.body)
     db.Users.update(
