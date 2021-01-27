@@ -43,7 +43,7 @@ const renderStudents = (students,cb) => {
                   <div class="text-left" >
                       <p>Name: ${st.first_name}  ${st.last_name}</p>
                       <p>Prefers: ${nickname} </p>
-                      <p>Bio: </p>
+                      <p id="feeling_update_${st.id}"> </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <div class="dropdown">
@@ -89,16 +89,31 @@ const renderStudents = (students,cb) => {
 //adding listeners to the nav bar
 const addNavList = () => {
   let navMess = document.querySelector('#navMess');
-    navMess.addEventListener('click',() => {
+    navMess.addEventListener('click',(e) => {
+      e.preventDefault();
       handleMessBtn("New Message",uid)
       showMessCenter();
     })
 
   let navReload = document.querySelector('#navReload');
-    navReload.addEventListener('click',() => {
+    navReload.addEventListener('click',(e) => {
+      e.preventDefault();
       getAndRenderSudents(uid);
       location.reload();
     })  
+
+    let navReports = document.querySelector('#navReports');
+    navReports.addEventListener('click',(e) => {
+      e.preventDefault();
+      //getAndRenderSudents(uid);
+      //location.reload();
+    }) 
+    let navUpdate = document.querySelector('#navUpdate');
+    navUpdate.addEventListener('click',(e) => {
+      e.preventDefault();
+      //getAndRenderSudents(uid);
+      //location.reload();
+    })   
   }
 
 //post render ass the listeners for the student pages  
@@ -154,12 +169,14 @@ const updStudentFeelings = (students) => {
     getUserInfo(stId, user => {
      let nm = `#stImg_${stId}`
      let img_loc = document.querySelector(nm) 
+     let date_loc = document.querySelector(`#feeling_update_${stId}`)
      let lastFeeling = (user.Feelings.length - 1)
      console.log(stId,lastFeeling)
      if(lastFeeling >= 0){
         let b = (user.Feelings[lastFeeling].feeling).split(" ");
-        currentFeels = b[0]
-        currentFeels.trim()
+        let updTime = new Date((user.Feelings[lastFeeling].createdAt));
+        date_loc.innerText = "Updated: \n" + updTime.toString();
+        currentFeels = b[0].trim()
         console.log(stId,currentFeels)
         switch (currentFeels) {
           case 'happy':
