@@ -547,7 +547,7 @@ h4 {
 }
 
 .modal-content {
-    background-color: lemonchiffon;
+    background-color: #ffe176;
 }
 
 .modal-title {
@@ -567,8 +567,13 @@ input {
     margin-bottom: 10px;
 }
 
+.message-subject {
+    width: 270px;
+}
+
 .message-textarea {
     margin-bottom: 10px;
+    width: 270px
 }
 
 button {
@@ -585,3 +590,4 @@ button {
 .message-id {
     text-align: left;
 }
+
