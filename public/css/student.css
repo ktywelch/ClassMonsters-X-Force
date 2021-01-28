@@ -546,6 +546,42 @@ h4 {
     color: black;
 }
 
-.modal-header {
-    text-decoration: underline;
+.modal-content {
+    background-color: lemonchiffon;
+}
+
+.modal-title {
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
+
+.card {
+    margin-top: 10%;
+    width: 150px;
+    margin-left: -10px;
+    margin-right: 10px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.message-textarea {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-right: 10%;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.dropDownTo {
+    font-size: 18px;
+}
+
+.message-id {
+    text-align: left;
 }
