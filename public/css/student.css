@@ -504,7 +504,7 @@ h4 {
     color: #fbc02d;
     margin-top: 20px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 23px;
 }
 
 #logoutBtn {
@@ -532,4 +532,20 @@ h4 {
 
 .bio-graph-heading {
     margin-bottom: -55px;
+}
+
+#updateInfo {
+    border-left: solid;
+}
+
+#studPostFeeling, #updateFeelStatus {
+    color: black;
+}
+
+#feelingMsg {
+    color: black;
+}
+
+.modal-header {
+    text-decoration: underline;
 }

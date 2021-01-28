@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./css/student.css">
 
 </head>
-<style>
+    <style>
     body {
         background-image: url('./images/Student\ background\ 2.png');
     }
@@ -46,10 +46,9 @@
                                         data-toggle="tab">MESSAGE</a></li>
                                 <li class="nav-item">
                                     <a href="/" class="nav-link"id="logoutBtn">LOGOUT</a></li>
-
                                 <li class="nav-item" id="msg-alert" style="display: none;">
                                     <a class="btn btn-lg btn-success" href="#">
-                                        <i class="fa fa-bell fa-2x text-light pull-right animate__animated animate__swing"></i><a>
+                                    <i class="fa fa-bell fa-2x text-light pull-right animate__animated animate__swing"></i><a>
                                 </li>
                             </ul>
                         </div>
@@ -70,7 +69,6 @@
                         </h6>
                         <button class="btn btn-primary"id='editPro'>Edit Profile</button>
                     </div>
-
                 </div>
             </div>
             <div class="profile-info col-md-9">
@@ -91,7 +89,6 @@
                                 <button class="dropdown-item" type="button" id="angry 😡">Angry 😡</button>
                                 <button class="dropdown-item" type="button" id="tired 😴">Tired 😴</button>
                                 <button class="dropdown-item" type="button" id="confused 😕">Confused 😕</button>
-                                
                             </div>
                         </div>
                         <button class="btn btn-warning pull-right" id="postMsg">Post</button>
@@ -160,6 +157,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
+                    <h1>Edit Page:</h1>
                     <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -167,22 +165,19 @@
                     <div class="modal-body">
                     <!--  --> 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" >
                                 <ul>Edit Nickname: 
                                     <input type="text" id="btn_text"/>
                                     <button class='btn btn-primary' id="editStudbtn">Update</button>  
                                 </ul>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="updateInfo">
                                     <label>Parent First Name: </label>
                                         <input type="text" id="parentFi">
-                                    
                                     <label>Parent Last Name: </label>
                                         <input type="text" id="parentLa">
-                                    
                                     <label>Parent Email: </label>
                                         <input type="email" id="parentEm">
-                                    
                                     <label for="parentNum">Parent Number: </label>
                                         <input type="tel" id="parentNum" placeholder="1234567890">
                                 <button class='btn btn-primary' id="editParBio">Update</button>
@@ -199,7 +194,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <div id="messModalLabel" class="modal-title" style="text-align: center;">Parent Bio:</div>
+                <div id="messModalLabel" class="modal-title" style="text-align: center;"><h1>Emergency Contact:</h1></div>
                 <button type="button" class="close" data-dismiss=   "modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -208,7 +203,7 @@
                 <!--  --> 
                 <form class="studentBio" >
                     <div class="panel-body bio-graph-info">
-                        <h1>Emergency Contact:</h1>
+                
                         <div class="row">
                             <div class="bio-row">
                                 <p>

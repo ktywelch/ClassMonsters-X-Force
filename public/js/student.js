@@ -135,16 +135,16 @@ const usersInfo = () => {
 
         //setting latest feelings update
 
-        latestUpdate = currentUser.createdAt
-        console.log(latestUpdate)
+        let lastFeeling = (user.Feelings.length - 1)
 
-        updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
-
-
+        if(lastFeeling >= 0){
+            let newDate = new Date((user.Feelings[lastFeeling].createdAt));
+            updateFeelStatus.innerText = newDate.toString().slice(0, 24);
+        }
+        console.log(newDate)
     });
 }
-// getParams();
-// usersInfo();
+
 
 //creating new feelings
 postMsg.addEventListener('click', (e) => {
