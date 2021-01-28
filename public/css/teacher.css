@@ -492,3 +492,10 @@ button {
     margin-left: 26%;
 }
 
+.text-center {
+    width: max-content;
+}
+
+.col-md-4 mx-auto {
+    margin-left: 500px;
+}
