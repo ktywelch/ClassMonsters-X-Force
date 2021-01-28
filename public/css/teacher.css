@@ -439,3 +439,42 @@ body {
     margin-right: 20px;
 }
 
+.modal-header {
+    background-color: lemonchiffon;
+}
+
+.modal-body {
+    background-color: lemonchiffon;
+}
+
+.modal-title {
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
+
+.card {
+    margin-top: 7%;
+    width: 145px;
+    margin-right: 10px;
+    margin-left: -10px;
+}
+
+.message-textarea {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.dropDownTo {
+    font-size: 18px;
+}
+
+.message-id {
+    text-align: left;
+}
