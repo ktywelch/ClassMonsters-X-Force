@@ -439,3 +439,63 @@ body {
     margin-right: 20px;
 }
 
+.modal-header {
+    background-color: lightblue;
+}
+
+.modal-body {
+    background-color: lightblue;
+}
+
+.modal-title {
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
+
+.card {
+    margin-top: 7%;
+    width: 145px;
+    margin-right: 10px;
+    margin-left: -10px;
+}
+
+.message-subject {
+    width: 270px;
+}
+
+.message-textarea {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 270px;
+}
+
+button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.dropDownTo {
+    font-size: 18px;
+}
+
+.message-id {
+    text-align: left;
+}
+
+#msg-alert {
+    margin-left: 12px;
+}
+
+#navUpdate {
+    margin-left: 26%;
+}
+
+.text-center {
+    width: max-content;
+}
+
+.col-md-4 mx-auto {
+    margin-left: 500px;
+}
