@@ -134,7 +134,7 @@ const usersInfo = () => {
         studPostFeeling.innerText = "I am feeling " + currentFeels + " today"
 
         //setting latest feelings update
-
+        
         let lastFeeling = (user.Feelings.length - 1)
 
         if(lastFeeling >= 0){
