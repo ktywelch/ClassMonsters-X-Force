@@ -146,19 +146,6 @@ const usersInfo = () => {
 }
 
 
-//creating new feelings
-// postMsg.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     console.log("clicked")
-    
-//     //students can type in the textarea to update feelings
-//     let feelingMsg = document.querySelector('#feelingMsg').value
-//     updateFeelings(feelingMsg, () => {
-//         getFeeling(uid, usersInfo())
-//     })
-//     location.reload()
-// })
-
 const updateFeelings = (studentFeels, cb) => {
     console.log("updating Feelings",studentFeels)
     fetch(`/api/feelings/${uid}`, {
@@ -171,36 +158,11 @@ const updateFeelings = (studentFeels, cb) => {
         }),
     })
         .then((res) => {
-            alert(res);
             cb()
         })
         .catch((err) => console.error(err));
 }
 
-// const getFeeling = (cb) => {
-//     fetch(`/api/feelings/${uid}`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     }).then((res) => {
-//         cb(res.json());
-//     }).then((feelingInfo) => {
-//         console.log(feelingInfo)
-//     })
-// }
-
-//Dropdown btn so student don't have to type out how they are feeling
-//let feelingsBtn = document.querySelector(".dropdown-menu")
-//feelingsBtn.addEventListener("click", printFeels)
-
-// function printFeels(e) {
-//     if (e.target !== e.currentTarget) {
-//         let clickedItem = e.target.id
-//         feelingMsg.innerText = clickedItem
-//     };
-//     e.stopPropagation();
-// }
 
 const addNavList = () => {
     let navMess = document.querySelector('#navMess');
@@ -228,10 +190,9 @@ const addFeelList = () => {
           selected.addEventListener('click',(e) => {
                 e.preventDefault();
                 let newFeel = el;
-                let nowFeel = `Feeling ${el} today!`;
+                let nowFeel = `Feeling ${el} today.`;
                 //updates the Database and post the feeling 
                 updateFeelings (el, updFeeling(nowFeel))
-                alert(newFeel);
     });
 
     })
