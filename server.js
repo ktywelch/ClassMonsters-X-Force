@@ -9,7 +9,7 @@ const stuRouter = require('./routes/stuRoutes');
 //Teacher APIs
 
 
-
+ 
 // Sets up the Express App
 const app = express();
 
