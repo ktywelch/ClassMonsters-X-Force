@@ -173,11 +173,9 @@ const updStudentFeelings = (students) => {
      let lastFeeling = (user.Feelings.length - 1)
      console.log(stId,lastFeeling)
      if(lastFeeling >= 0){
-        let b = (user.Feelings[lastFeeling].feeling).split(" ");
-        let updTime = new Date((user.Feelings[lastFeeling].createdAt));
-        date_loc.innerText = "Updated: \n" + updTime.toString();
-        currentFeels = b[0].trim()
-        console.log(stId,currentFeels)
+         let currentFeels = (user.Feelings[lastFeeling].feeling);
+        let updTime = new Date((user.Feelings[lastFeeling].createdAt)).toLocaleString("en-US", { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true, timeZone: "America/Los_Angeles"})
+        date_loc.innerText = "Updated: " + updTime;
         switch (currentFeels) {
           case 'happy':
             img_loc.classList.add("bg-success")
