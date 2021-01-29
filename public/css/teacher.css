@@ -440,11 +440,11 @@ body {
 }
 
 .modal-header {
-    background-color: lemonchiffon;
+    background-color: lightblue;
 }
 
 .modal-body {
-    background-color: lemonchiffon;
+    background-color: lightblue;
 }
 
 .modal-title {
@@ -460,9 +460,14 @@ body {
     margin-left: -10px;
 }
 
+.message-subject {
+    width: 270px;
+}
+
 .message-textarea {
     margin-bottom: 10px;
     margin-top: 10px;
+    width: 270px;
 }
 
 button {
@@ -477,4 +482,20 @@ button {
 
 .message-id {
     text-align: left;
+}
+
+#msg-alert {
+    margin-left: 12px;
+}
+
+#navUpdate {
+    margin-left: 26%;
+}
+
+.text-center {
+    width: max-content;
+}
+
+.col-md-4 mx-auto {
+    margin-left: 500px;
 }
