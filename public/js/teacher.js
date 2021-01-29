@@ -34,8 +34,8 @@ const renderStudents = (students,cb) => {
         nickname = st.first_name;
     }
     let newHtml =`
-                <div class="col-md-4 mx-auto" style="display: inline-block;width: 16rem;">
-                  <div class="card mb-2 mx-auto" style="display: flex;">
+                <div class="col-md-4 mx-auto" style="display: inline;width: 60rem; ">
+                  <div class="card mb-2 mx-auto" style="display: inline-table;">
                   <div class="text-center">
                   <img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" 
                      class="img-responsive profile-image" id="stImg_${st.id}">

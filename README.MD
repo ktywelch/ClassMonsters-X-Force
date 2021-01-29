@@ -46,15 +46,18 @@ Users inputs
 ## Technologies
 
  [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
+ 
  [Postman](https://www.postman.com/) - Simplify each step of building an API and streamline collaboration so you can create better APIs—faster.
+ 
  [Trello](https://trello.com/en-US) - Trello’s boards, lists, and cards enable teams to organize and prioritize projects in a fun, flexible, and rewarding way.
+ 
  [Lucid Chart](https://www.lucidchart.com/pages/) - Create powerful visuals to understand the teams, information and process.
 
 
 
 ## Team
 
-[Christian Suchoski](https://github.com/Huski82) |[Kathleen Welch](https://github.com/ktywelch) [Lea Wilhelmer](https://github.com/leawilhelmer) |[Victor Tran](https://github.com/Victortran415)
+[Christian Suchoski](https://github.com/Huski82) |[Kathleen Welch](https://github.com/ktywelch) |[Lea Wilhelmer](https://github.com/leawilhelmer) |[Victor Tran](https://github.com/Victortran415)
 
 ## [License]()
 
