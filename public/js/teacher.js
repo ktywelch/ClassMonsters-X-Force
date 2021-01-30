@@ -87,13 +87,22 @@ const renderStudents = (students,cb) => {
   cb()
 }
 //adding listeners to the nav bar
-const addNavList = () => {
-  let navMess = document.querySelector('#navMess');
-    navMess.addEventListener('click',(e) => {
-      e.preventDefault();
+const addMessBtnList = () => {
+  btnMess = document.querySelector('#messBtn');
+    btnMess.addEventListener('click',(e) => {
       handleMessBtn("New Message",uid)
       showMessCenter();
     })
+  }
+  
+    const addNavList = () => {
+      let navMess = document.querySelector('#navMess');
+        navMess.addEventListener('click',(e) => {
+          e.preventDefault();
+          handleMessBtn("New Message",uid)
+          showMessCenter();
+        })
+        
 
   let navReload = document.querySelector('#navReload');
     navReload.addEventListener('click',(e) => {
@@ -206,7 +215,6 @@ using callbacks to ensure we get,render and update so putting all in one set.
 */
 const getAndRenderSudents = (uid) => {
   getStudents(uid, students => renderStudents(students, () => {
-    //This adds the
     addStuListeners();
     updStudentFeelings(students);
   }))
@@ -215,6 +223,7 @@ const getAndRenderSudents = (uid) => {
 if (window.location.pathname === '/teacher') {
     //these are from common & message js since they are common to students and teachers
     addNavList();
+    addMessBtnList();
     getMess(uid);
     getAndRendMessages(uid);
     getAndRenderSudents(uid)

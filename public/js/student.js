@@ -172,6 +172,16 @@ const addNavList = () => {
     })
 }
 
+const addMessBtnList = () => {
+    btnMess = document.querySelector('#messBtn');
+      btnMess.addEventListener('click',(e) => {
+        e.preventDefault();
+        console.log("mess button");
+        handleMessBtn(e,uid)
+        showMessCenter();
+      })
+    }
+
 const updFeeling = (feeling) => {
     studPostFeeling.innerText = feeling;
     let d = new Date().toLocaleString("en-US", { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true, timeZone: "America/Los_Angeles"})  
@@ -207,8 +217,10 @@ uid = params.uid;
 usersInfo()
 
 if (window.location.pathname === '/student') {
-    addNavList()
+    // Adding listeners
+    addNavList();
     addFeelList();
+    addMessBtnList();
     getMess(uid);
     getAndRendMessages(uid)
 }
