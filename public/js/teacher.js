@@ -34,8 +34,8 @@ const renderStudents = (students,cb) => {
         nickname = st.first_name;
     }
     let newHtml =`
-                <div class="col-md-4 mx-auto" style="display: inline-block;width: 16rem;">
-                  <div class="card mb-2 mx-auto" style="display: flex;">
+                <div class="col-md-4 mx-auto" style="display: inline;width: 60rem; ">
+                  <div class="card mb-2 mx-auto" style="display: inline-table;">
                   <div class="text-center">
                   <img src="./images/${st.Character.filename}" alt="${st.Character.alt_txt}" 
                      class="img-responsive profile-image" id="stImg_${st.id}">
@@ -87,13 +87,22 @@ const renderStudents = (students,cb) => {
   cb()
 }
 //adding listeners to the nav bar
-const addNavList = () => {
-  let navMess = document.querySelector('#navMess');
-    navMess.addEventListener('click',(e) => {
-      e.preventDefault();
+const addMessBtnList = () => {
+  btnMess = document.querySelector('#messBtn');
+    btnMess.addEventListener('click',(e) => {
       handleMessBtn("New Message",uid)
       showMessCenter();
     })
+  }
+  
+    const addNavList = () => {
+      let navMess = document.querySelector('#navMess');
+        navMess.addEventListener('click',(e) => {
+          e.preventDefault();
+          handleMessBtn("New Message",uid)
+          showMessCenter();
+        })
+        
 
   let navReload = document.querySelector('#navReload');
     navReload.addEventListener('click',(e) => {
@@ -173,11 +182,9 @@ const updStudentFeelings = (students) => {
      let lastFeeling = (user.Feelings.length - 1)
      console.log(stId,lastFeeling)
      if(lastFeeling >= 0){
-        let b = (user.Feelings[lastFeeling].feeling).split(" ");
-        let updTime = new Date((user.Feelings[lastFeeling].createdAt));
-        date_loc.innerText = "Updated: \n" + updTime.toString();
-        currentFeels = b[0].trim()
-        console.log(stId,currentFeels)
+         let currentFeels = (user.Feelings[lastFeeling].feeling);
+        let updTime = new Date((user.Feelings[lastFeeling].createdAt)).toLocaleString("en-US", { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true, timeZone: "America/Los_Angeles"})
+        date_loc.innerText = "Updated: " + updTime;
         switch (currentFeels) {
           case 'happy':
             img_loc.classList.add("bg-success")
@@ -208,7 +215,6 @@ using callbacks to ensure we get,render and update so putting all in one set.
 */
 const getAndRenderSudents = (uid) => {
   getStudents(uid, students => renderStudents(students, () => {
-    //This adds the
     addStuListeners();
     updStudentFeelings(students);
   }))
@@ -217,6 +223,7 @@ const getAndRenderSudents = (uid) => {
 if (window.location.pathname === '/teacher') {
     //these are from common & message js since they are common to students and teachers
     addNavList();
+    addMessBtnList();
     getMess(uid);
     getAndRendMessages(uid);
     getAndRenderSudents(uid)

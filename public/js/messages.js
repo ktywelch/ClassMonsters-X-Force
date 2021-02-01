@@ -38,35 +38,39 @@ const sendMess = () => {
     headers: {'Content-Type': 'application/json'},
       body: msgJSON
   }).then((res) => {
-          resetView();
-          getAndRendMessages(uid);
+        //  console.log(res);
+        //   resetView();
+        //   getAndRendMessages(uid);
+        //   messBtn.innerText = "New Message"
   }).catch((err) => console.error(err));
-  messBtn.innerText = "New Message"; 
+  ; 
 }
 
 /* assumes the mess locations are set by the main and chances when he user clicks on the subject they will be able to see the message 
 deatils - the click/listener action is assigned to each message in generated list*/
 const handleMessView = (e) => {
   e.preventDefault();
-  let messBtn = document.querySelector('#messBtn');
+  messBtn = document.querySelector('#messBtn');
   activeMess = JSON.parse(e.target.parentElement.getAttribute('data-message'));
   messBtn.innerText = "Close Message"
   renderActiveMess();
   activeMess = {};
 };
 
+
 /* We have one button on the messages and the action changes based on the text value
 THis function handles what happens when there is a click on the button.
 */
 const handleMessBtn = (e,uid) => {
-  uid=myId;
+  //uid = myId;
   let  btnAction;
   if (typeof(e) !== 'string'){
   e.preventDefault();
   btnAction = messBtn.innerText;
+  console.log(btnAction);
   } else {  btnAction = e;}
    switch (btnAction){
-    case 'Close Message':  
+    case 'Close Message':  //this is reading 
         resetView();
         //*** Marking the messages as read ***/// 
         fetch(`/api/messages/${messIdLoc.value}`, {
@@ -100,11 +104,15 @@ const handleMessBtn = (e,uid) => {
       break;
     case 'Send Message':
         sendMess();
-        
+        messBtn.innerText = "Send Message"
+        getAndRendMessages(uid);
+        $('#messModal').modal('hide')
         break;
       case 'Send and Close Messages':
          sendMess();
-         resetView();
+         getAndRendMessages(uid);
+         $('#messModal').modal('hide')
+         break;
       case 'RenderActive':
         messBtn.innerText = "New Message";
         renderActiveMess ();
@@ -112,7 +120,6 @@ const handleMessBtn = (e,uid) => {
       default:
         console.log(e)
         messBtn.innerText = "New Message";
-        resetView();
         break;
     }
 };

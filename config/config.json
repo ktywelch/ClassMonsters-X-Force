@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "classHeros_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql", 
+    "dialectOptions": {
+      "useUTC": false
+    },
+    "timezone": "-08:00"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "ptho3gtevu4rvjrf",
+    "password": "uh7zj9mhd139tz9z",
+    "database": "e40ks68jjyixzs5a",
+    "host": "td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}

@@ -82,7 +82,7 @@ editParentBio.addEventListener('click', (e) => {
     .catch(err => {
         console.error(err);
     })
-    location.reload()
+   //location.reload()
 })
 
 //Parent Contact Modal
@@ -134,32 +134,20 @@ const usersInfo = () => {
         studPostFeeling.innerText = "I am feeling " + currentFeels + " today"
 
         //setting latest feelings update
+        
+        let lastFeeling = (user.Feelings.length - 1)
 
-        latestUpdate = currentUser.createdAt
-        console.log(latestUpdate)
-
-        updateFeelStatus.innerText =  latestUpdate.slice(5, 8) + latestUpdate.slice(8, 10) + "-" + latestUpdate.slice(0, 4)
-
-
+        if(lastFeeling >= 0){
+            let newDate = new Date((user.Feelings[lastFeeling].createdAt)).toLocaleString("en-US", { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true, timeZone: "America/Los_Angeles"});
+            updateFeelStatus.innerText = newDate
+        }
+        console.log(newDate)
     });
 }
-// getParams();
-// usersInfo();
 
-//creating new feelings
-postMsg.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log("clicked")
-    
-    //students can type in the textarea to update feelings
-    let feelingMsg = document.querySelector('#feelingMsg').value
-    updateFeelings(feelingMsg, () => {
-        getFeeling(uid, usersInfo())
-    })
-    location.reload()
-})
 
 const updateFeelings = (studentFeels, cb) => {
+    console.log("updating Feelings",studentFeels)
     fetch(`/api/feelings/${uid}`, {
         method: 'POST',
         headers: {
@@ -175,30 +163,6 @@ const updateFeelings = (studentFeels, cb) => {
         .catch((err) => console.error(err));
 }
 
-const getFeeling = (cb) => {
-    fetch(`/api/feelings/${uid}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((res) => {
-        cb(res.json());
-    }).then((feelingInfo) => {
-        console.log(feelingInfo)
-    })
-}
-
-//Dropdown btn so student don't have to type out how they are feeling
-let feelingsBtn = document.querySelector(".dropdown-menu")
-feelingsBtn.addEventListener("click", printFeels)
-
-function printFeels(e) {
-    if (e.target !== e.currentTarget) {
-        let clickedItem = e.target.id
-        feelingMsg.innerText = clickedItem
-    };
-    e.stopPropagation();
-}
 
 const addNavList = () => {
     let navMess = document.querySelector('#navMess');
@@ -208,13 +172,55 @@ const addNavList = () => {
     })
 }
 
+const addMessBtnList = () => {
+    btnMess = document.querySelector('#messBtn');
+      btnMess.addEventListener('click',(e) => {
+        e.preventDefault();
+        console.log("mess button");
+        handleMessBtn(e,uid)
+        showMessCenter();
+      })
+    }
+
+const updFeeling = (feeling) => {
+    studPostFeeling.innerText = feeling;
+    let d = new Date().toLocaleString("en-US", { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true, timeZone: "America/Los_Angeles"})  
+    updateFeelStatus.innerText = d;
+
+}
+
+//add listener to each feeling button updateFeelStatus"
+const addFeelList = () => {
+    let feelBtns = ['happy','sad','angry','tired','confused'];
+    
+    feelBtns.forEach(el => {
+        let btn = `#${el}`
+
+        let selected =  document.querySelector(btn);
+          selected.addEventListener('click',(e) => {
+                e.preventDefault();
+                let newFeel = el;
+                let nowFeel = `Feeling ${el} today.`;
+                //updates the Database and post the feeling 
+                updateFeelings (el, updFeeling(nowFeel))
+    });
+
+    })
+}
+
+
+
+
 //main
 params = getParams();
 uid = params.uid;
 usersInfo()
 
 if (window.location.pathname === '/student') {
-    addNavList()
+    // Adding listeners
+    addNavList();
+    addFeelList();
+    addMessBtnList();
     getMess(uid);
     getAndRendMessages(uid)
 }
