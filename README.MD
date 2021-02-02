@@ -27,12 +27,34 @@ Heroku deployment: https://class-heros.herokuapp.com/
 
 
 ## Installation
-To create this application, you would have to run `npm install` which will provide you a npm dependencies such as node_modules & package.json. However, if users only need to install package.json they can run `npm init -y` on the command-line. 
+To download the application from git hub from the following location https://github.com/ktywelch/ClassMonsters-X-Force.
+
+Onece downloaded run `npm install` which will provide you a npm dependencies such as node_modules idendtified in package.json.
+
+To run this application on a local system you will need to have mysql installed and running on the default port 3306.
+
+Change the file config/config.json so that the user name and  password in the development section matches the password on your local host.
+
+Prior to running the application you will need to use the sql script "schema.sql" located in the /db_schema dicretory to create an initial empty database structure as required by sequelize models.
+
+Start the application by running:
+node server.js 
+or 
+nodemon server.js 
+
+In this case will will need to pre-populate test data for the classes do this by executing:
+
+npx sequelize-cli db:seed:all
+
+This will create 3 sample teachers and students for you to use. 
+
+These are the modules that have been installed in this exercise:
   - `inquirer` will capture user response in the command-line 
   - `mySQL2` a database management system
   - `animate.css` a package that can target a specific element to create a unique motion.
   - `bcryptjs` this allows that users to hash our their password when signing into the application
   - `sequelize` a promise-based ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server
+  - `passport` athentication and authorization services
 
 
 ## Technologies
@@ -60,6 +82,6 @@ MIT © [X-Force 4 Team](https://github.com/)
 
 ## Questions?
 
-- Github: https://github.com/Victortran415
+- Github: https://github.com/ktywelch/ClassMonsters-X-Force
 
-- Email: victortran415@gmail.com
+- Email: ktywelch@gmail.com
