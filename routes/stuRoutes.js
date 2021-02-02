@@ -6,7 +6,6 @@ module.exports = (app) => {
 
   //update student
   app.put('/api/students/:id', (req, res) => {
-    console.log("from api: ", req.body)
     db.Users.update(
       req.body,
       {where: {id: req.params.id}}

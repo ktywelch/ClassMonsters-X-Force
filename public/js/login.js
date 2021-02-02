@@ -29,11 +29,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
       .then((data) => {
         console.log(data);
         if(data.url.includes("login")){
-        alert("Invalid Credentals Provided"); 
-        if(data.url)
-        window.location.href="/"} else {
-          window.location.href=data.url  
-        }  
+        // alert("Invalid Credentals Provided"); 
+        // if(data.url)
+         window.location.href="/"
+        } 
+        //else {
+        //   window.location.href=data.url  
+        // }  
       })
       .catch(function(err) {
         console.log(err);

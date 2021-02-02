@@ -59,8 +59,8 @@ const getMess = (id) =>{
   }).then((res) => {
     return res.json();
   }).then((messages) => { 
+    newMessageAlert = document.querySelector('#msg-alert');
     if(messages.length > 0 ){
-      newMessageAlert = document.querySelector('#msg-alert');
       show(newMessageAlert); 
       } else {
       hide(newMessageAlert);
@@ -70,6 +70,7 @@ const getMess = (id) =>{
       showMessCenter();
     });
     //If there is a message or not we are adding a listener
+    messBtn = document.querySelector('#messBtn');
     messBtn.addEventListener('click', (e) => handleMessBtn(e,uid));
   }).catch(err => console.error(err))
 };

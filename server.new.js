@@ -28,6 +28,26 @@ const clientRouter = require('./routes/clientRoutes');
 const apiRouter = require('./routes/apiRoutes');
 //Studnet APIs
 const stuRouter = require('./routes/stuRoutes');
+<<<<<<< HEAD
+=======
+//Teacher APIs
+
+
+ 
+// Sets up the Express App
+const app = express();
+
+const PORT = process.env.PORT || 8080;
+
+const db = require('./models');
+
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Static directory
+app.use(express.static('public'));
+>>>>>>> c27006177a4cda5d2bb8bf3608012fd3aff5c79b
 
 clientRouter(app);
 apiRouter(app);
