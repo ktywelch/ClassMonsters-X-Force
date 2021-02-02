@@ -124,26 +124,6 @@ const handleMessBtn = (e,uid) => {
     }
 };
 
-// const sendMess = () => {
-//   let subject =  messSubject.value;
-//   let message = messText.value;
-//   let msgJSON = JSON.stringify({
-//     subject:  subject,
-//     message: message,
-//     fromId: myId, 
-//     read: 0,
-//     toId:  toId
-//   })
-//   fetch(`/api/messages`, {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//       body: msgJSON
-//   }).then((res) => {
-//           resetView();
-//           getAndRendMessages(uid);
-//   }).catch((err) => console.error(err));
-//   messBtn.innerText = "New Message"; 
-// }
 
 //This creates our message drop down button so we can select users to send message to 
 const createMessageDropDown = () => {

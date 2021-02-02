@@ -74,8 +74,7 @@ const getMess = (id) =>{
   }).catch(err => console.error(err))
 };
 
-const showMessCenter = () =>{
-           
+const showMessCenter = () =>{           
         // this is how message pops happen - will need to update the modal 
         $('#messModal').modal('show')
 
