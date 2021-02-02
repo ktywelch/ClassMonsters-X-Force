@@ -12,20 +12,13 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "bcryptjs": "^2.4.3",
-<<<<<<< HEAD
     "dotenv": "^8.2.0",
-=======
-    "dateformat": "^4.5.0",
->>>>>>> c27006177a4cda5d2bb8bf3608012fd3aff5c79b
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",
-<<<<<<< HEAD
     "passport-local": "^1.0.0",
     "phone": "^2.4.20",
-=======
->>>>>>> c27006177a4cda5d2bb8bf3608012fd3aff5c79b
     "sequelize": "^6.4.0"
   }
 }

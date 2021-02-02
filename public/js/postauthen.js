@@ -1,9 +1,6 @@
 
 
 console.log("made it this far");
-
-
-
   
 fetch('/api/user_data', {
   method: 'GET',

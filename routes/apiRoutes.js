@@ -27,7 +27,7 @@ module.exports = (app) => {
 app.post('/api/login',  passport.authenticate("local"), function(req, res) {
   var username = req.body.userID;
   var password = req.body.password;
-  console.log(req.user);  
+  //console.log(req.user);  
   res.json({ username: req.user.username, id: req.user.id, roleid: req.user.id, rolename: req.user.Role.name});
 });
 
@@ -99,7 +99,6 @@ app.put('/api/messages/:id', (req, res, next) => {
     {where: {id: req.params.id}}
     ).then((results) => {
       res.json(results);
-      console.log(results);
       if (results.changedRows === 0) {
         return res.status(404).end()
       }

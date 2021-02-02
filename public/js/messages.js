@@ -313,11 +313,8 @@ const handleMessDelete = (e) => {
     messFrom.value = '';
     $('#messModal').removeData('bs.modal')
   }
-    deleteMess(messId).then(() => {
-    activeMess={};
-    getAndRenderMessages(uid);
-    handleMessBtn("RenderActive",uid);
-  });
+    deleteMess(messId);
+  
 };
 
 

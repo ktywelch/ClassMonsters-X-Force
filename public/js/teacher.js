@@ -122,8 +122,19 @@ const addMessBtnList = () => {
       e.preventDefault();
       //getAndRenderSudents(uid);
       //location.reload();
-    })   
-  }
+    }) 
+    
+    let navlogout = document.querySelector('#logoutBtn');
+    navlogout.addEventListener('click',(e) => {
+      e.preventDefault();
+      fetch(`/logout`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(() => location.reload()) 
+  })
+}
 
 //post render ass the listeners for the student pages  
 const addStuListeners = () => {  
