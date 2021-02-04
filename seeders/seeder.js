@@ -4,18 +4,18 @@ const db = require("../models");
 
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.bulkInsert('Roles', [
+    await queryInterface.bulkInsert('Role', [
       {name: 'Teacher'},
       {name: 'Student'}
     ], {});
 
 
     const role1 = await queryInterface.sequelize.query(
-      'SELECT id from Roles where name = "Teacher";'
+      'SELECT id from Role where name = "Teacher";'
     );
     console.log(role1);
     const role2 = await queryInterface.sequelize.query(
-      'SELECT id from Roles where name = "Student";'
+      'SELECT id from Role where name = "Student";'
     );
     console.log("role2",role2[1][0].id);
 
@@ -37,7 +37,7 @@ module.exports = {
 
 
 
-await queryInterface.bulkInsert('Characters',[
+await queryInterface.bulkInsert('Character',[
   {name: 'caped_orange', filename: 'ClipartKey_1528455.png',alt_text: 'cartoon image of caped hero from ClipartKey',UserId: '4'},
   {name: 'caped_blue', filename:  'ClipartKey_156046.png',alt_text:'cartoon image of caped hero from ClipartKey',UserId:'5'},
   {name: 'flying_purple', filename:  'ClipartKey_1586159.png',alt_text:'cartoon image of caped hero from ClipartKey',UserId:'6'},
