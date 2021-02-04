@@ -11,11 +11,11 @@ module.exports = {
 
 
     const role1 = await queryInterface.sequelize.query(
-      'SELECT id from Role where name = "Teacher";'
+      'SELECT id from Roles where name = "Teacher";'
     );
     console.log(role1);
     const role2 = await queryInterface.sequelize.query(
-      'SELECT id from Role where name = "Student";'
+      'SELECT id from Roles where name = "Student";'
     );
     console.log("role2",role2[1][0].id);
 
