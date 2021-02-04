@@ -1,7 +1,11 @@
 {
-  "name": "project_2",
+  "name": "class_heros",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application to allow teachers to interactively work with students",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
