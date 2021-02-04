@@ -4,7 +4,7 @@ const db = require("../models");
 
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.bulkInsert('roles', [
+    await queryInterface.bulkInsert('Roles', [
       {name: 'Teacher'},
       {name: 'Student'}
     ], {});
@@ -37,7 +37,7 @@ module.exports = {
 
 
 
-await queryInterface.bulkInsert('characters',[
+await queryInterface.bulkInsert('Characters',[
   {name: 'caped_orange', filename: 'ClipartKey_1528455.png',alt_text: 'cartoon image of caped hero from ClipartKey',UserId: '4'},
   {name: 'caped_blue', filename:  'ClipartKey_156046.png',alt_text:'cartoon image of caped hero from ClipartKey',UserId:'5'},
   {name: 'flying_purple', filename:  'ClipartKey_1586159.png',alt_text:'cartoon image of caped hero from ClipartKey',UserId:'6'},
