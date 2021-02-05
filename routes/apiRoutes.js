@@ -38,12 +38,6 @@ app.post('/api/login',  passport.authenticate("local"), function(req, res) {
   });
 
   app.get("/api/user_data", (req, res) => {
-      //  res.json({
-      //     username: req.user.username,
-      //     id: req.user.id,
-      //     roleid: req.user.RoleId,
-      //     rolename: req.user.Role.name
-      //   });     
 
             if(req.user.Role.name=== 'Teacher'){
               console.log("going to redirect here");
@@ -98,11 +92,12 @@ app.put('/api/messages/:id', (req, res, next) => {
     {read: req.body.read},
     {where: {id: req.params.id}}
     ).then((results) => {
-      res.json(results);
+      //res.json(results);
       if (results.changedRows === 0) {
         return res.status(404).end()
-      }
+      } else {
         res.status(200).end();
+      }
     })
   .catch(next)
 })
