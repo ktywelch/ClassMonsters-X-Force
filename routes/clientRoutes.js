@@ -28,7 +28,7 @@ module.exports = (app) => {
 
   app.get('/student',  (req, res) => {
      if(req.user) {
-      res.sendFile(path.join(__dirname, `../public/student.html?uid=${req.user.id}`))
+      res.sendFile(path.join(__dirname, `../public/student.html`))
      }
      else {    
       res.sendFile(path.join(__dirname, '../public/login.html'))
