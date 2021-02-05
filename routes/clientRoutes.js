@@ -10,16 +10,16 @@ module.exports = (app) => {
      //f the user session is valid pass to post athententication process
      if (req.user) {
         res.redirect("/postauthen");
-     }
-    res.sendFile(path.join(__dirname, '../public/login.html'))
+     } else {
+    res.sendFile(path.join(__dirname, '../public/login.html'))}
     });
 
   app.get('/login', (req, res) =>{
   //f the user session is valid pass to post athententication process
     if (req.user) {
      res.redirect("/postauthen");
-    }
-    res.sendFile(path.join(__dirname, '../public/login.html'))
+    } else {
+    res.sendFile(path.join(__dirname, '../public/login.html'))}
   });
 
   app.get('/signup', (req, res) =>{
