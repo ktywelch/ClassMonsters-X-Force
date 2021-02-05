@@ -4,20 +4,6 @@ const db = require("../models");
 
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.bulkInsert('Role', [
-      {name: 'Teacher'},
-      {name: 'Student'}
-    ], {});
-
-
-    const role1 = await queryInterface.sequelize.query(
-      'SELECT id from Roles where name = "Teacher";'
-    );
-    console.log(role1);
-    const role2 = await queryInterface.sequelize.query(
-      'SELECT id from Roles where name = "Student";'
-    );
-    console.log("role2",role2[1][0].id);
 
     await db.Users.bulkCreate( [
     {username: 'msmith', password: 'teacher', last_name: 'Smith', first_name: 'Maggie',  RoleId: role1[0][0].id},
